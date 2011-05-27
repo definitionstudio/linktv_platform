@@ -1,0 +1,4 @@
+# override active_scaffold/frontends/default/views/on_create.js.rjs
+
+# redirect to video edit screen
+page << "document.location = '/admin/videos/'+#{@record.id}+'/edit';"

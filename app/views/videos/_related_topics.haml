@@ -1,0 +1,1 @@
+%span!= related_topics.collect{|t| link_to t.name, topic_path(t.permalink), :rel => 'foaf:topic'}.join(', ')

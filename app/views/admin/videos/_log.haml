@@ -1,0 +1,9 @@
+%dl.log-text
+  %dt Log:
+  %dd
+    - if @video.log_text.blank?
+      None
+    - else
+      - @video.log_text.split("\n").each do |line|
+        = line
+        %br

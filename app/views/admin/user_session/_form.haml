@@ -1,0 +1,21 @@
+- onclick ||= nil
+= form.error_messages
+%table.standard
+  %tr
+    %th= form.label :login
+    - unless @user
+      %td= form.text_field :login
+    - else
+      %td
+        = @user.login
+        = form.hidden_field :login, :value => @user.login
+  %tr
+    %th= form.label :password
+    %td= form.password_field :password
+
+  %tr
+    %th
+    %td
+      %button.button.submit{:type => 'submit', :onclick => onclick} Login
+      - if @user
+        %button.button.cancel Cancel

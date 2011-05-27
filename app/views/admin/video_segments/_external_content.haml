@@ -1,0 +1,4 @@
+- form_for :video, Video.new do |video_form|
+  - video_form.fields_for :video_segments, VideoSegment.new, :child_index => @segment_index do |segment_form|
+    = render :partial => 'admin/video_segments/content_list', :locals => {:segment_form => segment_form,
+      :contents => @contents, :content_type => @content_type}

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+%html{:xmlns => "http://www.w3.org/1999/xhtml", :'xmlns:foaf' => "http://xmlns.com/foaf/0.1/", :'xmlns:dc' => "http://purl.org/dc/elements/1.1/", :'xmlns:owl' => 'http://www.w3.org/2002/07/owl#', :'xmlns:cc' => 'http://creativecommons.org/ns#', :'xmlns:og' => 'http://ogp.me/ns#', :'xmlns:fb' => 'http://www.facebook.com/2008/fbml', :version => "XHTML+RDFa 1.0", :'xml:lang' => "en"}
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %title= @page_title
+
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/reset-min.css"
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/linktv_platform"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/linktv_platform.js"
+
+    -# http://developers.facebook.com/docs/opengraph
+    -# http://developers.facebook.com/docs/insights
+    %meta{:property => 'og:site_name', :content => APP_CONFIG[:site][:name]}
+    - unless APP_CONFIG[:facebook][:app_id].blank?
+      %meta{:property => 'fb:app_id', :content => APP_CONFIG[:facebook][:app_id]}
+    - unless APP_CONFIG[:facebook][:page_id].blank?
+      %meta{:property => 'fb:page_id', :content => APP_CONFIG[:facebook][:page_id]}
+    - unless APP_CONFIG[:facebook][:admins].blank?
+      %meta{:property => 'fb:admins', :content => APP_CONFIG[:facebook][:admins]}
+
+    = yield :head
+    = render :partial => 'layouts/google_analytics', :locals => {:track_pageview => true}
+  %body
+    #header
+      #header-content
+        .title= site_name
+        %ul#header-nav
+          %li
+            %a{:href => root_path} Home
+          %li
+            %a{:href => videos_path} Videos
+          %li
+            %a{:href => topics_path} Topics
+      = render :partial => 'search/search_box_header'
+
+    #body
+      #flash-and-errors-block
+        - flash.each do |type, message|
+          %div{:class => "flash-message flash-#{type}"}
+            .message-type= type.to_s.titleize
+            %p
+              = message
+
+      = yield
+
+    #footer
+      %ul#footer-links.footer-links
+        - footer_links.each do |link|
+          %li
+            %a{:href => "#{!link.page.nil? ? link.page.path : link.url}", :target => link.target || nil}= link.name
+
+      #footer-attribution
+        An
+        %a(href="https://github.com/definitionstudio/linktv_platform" target="_blank") open source project
+        developed for
+        %a{:href => "http://www.viewchange.org/", :target => "_blank"} ViewChange.org
+        and
+        %a{:href => "http://www.linktv.org/", :target => "_blank"} Link TV
+        %span>.
+        #footer-powered-by
+          Powered by
+          %ul.footer-links
+            %li
+              %a{:href => "http://www.freebase.com/", :target => "_blank"} Freebase
+            %li
+              %a{:href => "http://dbpedia.org/", :target => "_blank"} DBpedia
+            %li
+              %a{:href => "http://www.zemanta.com/", :target => "_blank"} Zemanta
+            %li
+              %a{:href => "http://www.daylife.com/", :target => "_blank"} Daylife
+            %li
+              %a{:href => "http://www.truveo.com/", :target => "_blank"} Truveo
+            %li
+              %a{:href => "http://www.socialactions.com/", :target => "_blank"} Social Actions
+
+    = yield :after_body

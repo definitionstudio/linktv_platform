@@ -1,0 +1,24 @@
+- config = APP_CONFIG[:thumbnails][:video_segment]
+
+.thumbnail= video_segment_thumbnail_html video_segment, :height => config[:height], :width => config[:width], :crop => :center
+.title-info
+  .contents
+    .video-segment-number= sprintf("%.2d", index+1)
+    .title= !video_segment.name.blank? ? video_segment.name : "Segment #{index+1}"
+
+- related_internal_videos = video_segment.view_data[:related_internal_videos] || []
+- unless related_internal_videos.empty?
+  .related-internal-videos
+    %h2 Related Videos
+    .contents
+      - video_segment.view_data[:related_internal_videos].each do |video|
+        = render :partial => 'videos/index_video', :locals => {:video => video, :fields => [:thumbnail, :name, :description, :duration]}
+
+- ContentType.live.ordered.each do |ct|
+  - related_contents = video_segment.view_data[:contents_by_type][ct.id] || []
+  - unless related_contents.empty?
+    %div{:class => "related-external-#{ct.item_type}s"}
+      %h2= ct.name + ' Around the Web'
+      .contents
+        - related_contents.each do |item|
+          = render :partial => "external_contents/#{ct.item_type}", :locals => {:item => item} rescue ""

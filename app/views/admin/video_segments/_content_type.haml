@@ -1,0 +1,22 @@
+.object-content-type.operation-context{:data => {:id => content_type.id, :name => content_type.name.singularize}}
+  .ajax-context.bottom-margin
+    .ajax-content= render :partial => 'admin/video_segments/content_list', :locals => {:segment_form => segment_form,
+      :content_type => content_type, :contents => contents}
+  .buttons
+    - if video_segment.id.present?
+      %a.button.global-handler.refresh-external-contents{:href => '#', :title => "Reload exising saved content from server"}
+        = icon :'icon-refresh icon-margin-right'
+        Refresh
+    .video-segment-has-topics
+      %a.button.global-handler.query-external-contents{:href => '#', :title => "Query external API's for content using current transcript and topics"}
+        = icon :'icon-query icon-margin-right'
+        Query
+    .video-segment-has-no-topics
+      %a.button.global-handler.state-disabled.query-external-contents{:href => '#', :title => "Once the segment's Topics panel contains topics, the Reload Related Articles function will be available."}
+        = icon :'icon-query icon-margin-right'
+        Query
+    %a.button.global-handler.add-external-content{:href => '#', :title => "Add content manually"}
+      = icon :'icon-add icon-margin-right'
+      Add New
+  .clear
+ 

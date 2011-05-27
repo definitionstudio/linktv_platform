@@ -1,0 +1,43 @@
+- is_model ||= false
+- inputs_disabled = 'disabled' if is_model
+- index_s = index.to_s
+
+%div{:class => "ui-corner-bottom segment-tabs segment-tabs-details indexed #{is_model ? 'model' : 'do-init'}", :id => "segment-tabs-details-#{index_s}"}
+  %ul
+    %li
+      %a.indexed{:href => "#segment-panel-details-#{index_s}"} Details
+    %li
+      %a.indexed{:href => "#segment-panel-topics-#{index_s}"} Topics
+
+  %div.indexed.standard-padding.segment-panel-details{:id => "segment-panel-details-#{index_s}"}
+    -# This panel's inputs are enabled by JS when copied from the model to a new segment
+    = segment_form.hidden_field :id, :value => video_segment.id, :class => 'video-segment-id', :disabled => inputs_disabled
+    = segment_form.hidden_field :active, :disabled => inputs_disabled
+    = render :partial => 'admin/video_segments/details', :locals => {:segment_form => segment_form,
+      :video_segment => video_segment, :is_model => is_model}
+
+  %div.indexed{:id => "segment-panel-topics-#{index_s}", :class => 'segment-panel-topics'}
+    = render :partial => 'admin/video_segments/topics', :locals => {:is_model => is_model,
+      :video => video, :video_topics => video_topics, :imported_video_keywords => imported_video_keywords,
+      :segment_form => segment_form, :video_segment => video_segment, :topic_video_segments => topic_video_segments}
+
+%div{:class => "ui-corner-bottom segment-tabs segment-tabs-content indexed #{is_model ? 'model' : 'do-init'}", :id => "segment-tabs-content-#{index_s}"}
+  %ul
+    - unless is_model
+      %li
+        %a.indexed{:href => "#segment-panel-internal-videos-#{index_s}"} Internal Videos
+    - @content_types.each do |content_type|
+      %li
+        %a.indexed{:href => "#segment-panel-#{content_type.css_class}-#{index_s}"}= content_type.name
+
+  - unless is_model
+    %div.indexed.standard-padding.segment-panel-internal-videos{:id => "segment-panel-internal-videos-#{index_s}"}
+      = render :partial => 'admin/video_segments/internal_videos', :locals => {:video_segment => video_segment,
+        :videos => internal_videos}
+
+  - @content_types.each do |content_type|
+    - contents = is_model ? [] : external_contents_by_content_type_id[content_type.id]
+    %div.standard-padding{:id => "segment-panel-#{content_type.css_class}-#{index_s}", :class => "segment-panel-external-contents indexed segment-panel-#{content_type.css_class}"}
+      = render :partial => 'admin/video_segments/content_type', :locals => {:segment_form => segment_form,
+        :video_segment => video_segment, :content_type => content_type, :contents => contents}
+

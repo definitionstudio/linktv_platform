@@ -1,0 +1,19 @@
+.video-downloads
+  - if video.media_type == :youtube
+    Downloads for YouTube videos are not available.
+  - elsif !video.download_enabled
+    Downloads for this video are not available.
+  - elsif video_files.empty?
+    Downloads for this video are currently unavailable.
+  - else
+    Download the video for viewing on your iPod&reg;, portable media player or desktop application.
+    %ul.list
+      - video_files.each do |video_file|
+        %li
+          %a{:href => video_file.download_url, :target => '_blank'}
+            %span Download
+            %span
+              = video_file.human_format
+            %span.file-size
+              - if !video_file.file_size.nil?
+                = " (#{number_to_human_size(video_file.file_size)})"

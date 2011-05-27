@@ -1,0 +1,15 @@
+#video-video
+
+  %div#video-files-panels
+    #video-files-panel-header
+      %span.header Video Source:
+      %select#video-files-select
+        - @video_files.each do |video_file|
+          - video_file.key = unique_index
+          %option{:value => "video-file-panel-#{video_file.key}", :'data-media-type' => video_file.media_type, :disabled => false}
+            = video_file.media_type_display_name
+
+    - @video_files.each do |video_file|
+      %div.video-file-panel{:id => "video-file-panel-#{video_file.key}", :'data-media-type' => video_file.media_type, :style => 'display: none'}
+        = render :partial => 'admin/videos/video_player', :locals => {:video_file => video_file}
+  

@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+%html{:xmlns => "http://www.w3.org/1999/xhtml", :'xmlns:foaf' => "http://xmlns.com/foaf/0.1/", :'xmlns:dc' => "http://purl.org/dc/elements/1.1/", :'xmlns:owl' => 'http://www.w3.org/2002/07/owl#', :'xmlns:cc' => 'http://creativecommons.org/ns#', :'xmlns:og' => 'http://ogp.me/ns#', :'xmlns:fb' => 'http://www.facebook.com/2008/fbml', :version => "XHTML+RDFa 1.0", :'xml:lang' => "en"}
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %title= @page_title
+
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/reset-min.css"
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/embedded-player.css"
+
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/linktv_platform.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/embedded-video.js"
+
+    = yield :head
+    = render :partial => 'layouts/google_analytics', :locals => {:track_embed => true}
+  %body
+    = yield
+    = yield :after_body

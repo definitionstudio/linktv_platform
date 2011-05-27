@@ -1,0 +1,6 @@
+.flash-messages
+  - flash.each do |type, message|
+    %div{:class => "flash-message flash-#{type}"}
+      .message-type= type.to_s.titleize
+      %p
+        = message

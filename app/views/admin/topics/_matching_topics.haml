@@ -1,0 +1,17 @@
+- if topics.empty?
+  %span.message-notice No existing unlinked topics match the current topic name.
+- else
+  .matching-topics
+    .ajax-loading= loading_html
+    .ajax-content
+      - topics.each do |topic|
+        .object-topic{:data => {:id => topic.id, :name => topic.name}}
+          - form_html = capture do
+            -# Create a dummy topic_video_segment record linking to the topic
+            - fields_for TopicVideoSegment.new(:topic => topic) do |tvs_form|
+              = render :partial => 'admin/video_segments/topic_template.haml', :locals => {:topic_video_segment => tvs_form.object,
+                :topic_video_segment_form => tvs_form}
+          = radio_button_tag 'topic_id', topic.id
+          %label{:for => 'topic_id_' + topic.id.to_s}
+            = render :partial => 'admin/topics/topic_with_identifiers.haml', :locals => {:topic => topic,
+              :form_html => form_html, :show_link_count => :true}

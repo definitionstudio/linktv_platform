@@ -1,0 +1,54 @@
+- content_for :head do
+  %link(rel="alternate" type="application/rdf+xml" href="#{video_url(@video.permalink)}.rdf" title="Structured Description in RDF/XML format")
+
+  -# opengraph markup: http://developers.facebook.com/docs/opengraph
+  -# og:site_name and fb:app_id in layout
+  %meta{ :property => 'og:title', :content => html_escape(@video.name) }
+  %meta{ :property => 'og:type', :content => 'article' }
+  %meta{ :property => 'og:url', :content => video_url(@video.permalink) }
+  %meta{ :property => 'og:image', :content => html_escape(thumbnail_url @video.thumbnail, :width => 480, :height => 360) }
+  %meta{ :property => 'og:description', :content => html_escape(strip_tags(@video.description)) }
+
+#video-page
+
+  #video
+
+    #video-heading
+      .video-title{:property => 'dc:title'}= @video.name
+      .video-description{:property => 'dc:description'}!= sanitize_html @video.description, :add_links => true
+
+    #video-body
+      = render :partial => 'video_player'
+
+    - unless @more_info.nil?
+      #more-info
+        %h2 More Information
+        .content
+          = @more_info.value
+
+    - if @video.download_enabled && @video.media_type == :internal
+      #downloads
+        %h2 Downloads
+        .content
+          = render :partial => "downloads", :locals => {:video => @video, :video_files => @video_files}
+
+    #share
+      %h2 Share
+      .content
+        = render :partial => "share", :locals => {:video => @video}
+
+    - unless @related_topics.empty?
+      #related-topics.related-topics
+        %h2 Related Topics
+        .content
+          = render :partial => "related_topics", :locals => {:related_topics => @related_topics}
+
+    #video-segments
+      %h2 Video Segments
+      %ul#video-segments-list.content
+        - video_segment_index = 0
+        - @video_segments.each do |video_segment|
+          %li.video-segment-heading.object-video-segment{:id => "video-segment-#{video_segment.id}-heading", :data => {:id => video_segment.id}}
+            .contents
+              = render :partial => "video_segments/show", :locals => {:video_segment => video_segment, :index => video_segment_index}
+          - video_segment_index += 1

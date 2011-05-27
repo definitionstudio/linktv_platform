@@ -1,0 +1,29 @@
+<%
+  # Based on version from active_scaffold/frontends/default/views
+  # Also see _create_form.html.erb in this directory
+%>
+<% content_for :head do %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/entities.js" %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/topics.js" %>
+<% end %>
+<% url_options = params_for(:action => :update) -%>
+<%  if request.xhr? %>
+  <%  if active_scaffold_config.update.multipart?  # file_uploads %>
+  <% else %>
+    <% remote_form_for @record, {:url => admin_topic_path(@record)} do |form| -%>
+      <%= render :partial => 'update_form_contents', :locals => {:form => form} %>
+    <% end -%>
+  <% end %>
+<% else -%>
+  <% form_for @record, {:url => admin_topic_path(@record)} do |form| -%>
+    <%= render :partial => 'update_form_contents', :locals => {:form => form} %>
+  <% end -%>
+<% end -%>
+<script type="text/javascript">
+Topics.newTopicInit($j('#edit_topic_<%= @topic.id %>'), {
+  data: {},
+  dataType: 'script',
+  successJsEval: false, // Updates handled by active scaffold/rjs
+  errorJsEval: false // Updates handled by active scaffold/rjs
+});
+</script>

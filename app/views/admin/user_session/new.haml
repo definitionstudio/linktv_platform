@@ -1,0 +1,3 @@
+%h1 Admin Login
+- form_for @user_session, :url => admin_user_session_path do |form|
+  = render :partial => 'form', :locals => {:form => form}

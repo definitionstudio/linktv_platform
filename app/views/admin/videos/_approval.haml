@@ -1,0 +1,15 @@
+
+= hidden_field_tag :operation
+.video-approval
+  %dl
+    %dt
+      Notes
+    %dd
+      = video_form.text_area :notes, :class => 'imported-video-notes'
+  %table
+    %tr
+      %td
+        %input.button.accept{:type => 'submit', :name => 'op', :value => 'Accept Video'}
+      - unless @video.status == :rejected
+        %td
+          %input.button.reject{:type => 'submit', :name => 'op', :value => 'Reject Video'}

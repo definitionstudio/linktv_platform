@@ -1,0 +1,14 @@
+%h1 An Error Has Occurred
+
+- unless exception.nil?
+  %h2 Exception
+  %pre
+    .exception= exception.inspect
+
+  - unless exception.backtrace.nil?
+    %h2 Backtrace
+    %ul.backtrace
+      - exception.backtrace.each do |item|
+        %li
+          %pre
+            != item

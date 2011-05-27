@@ -1,0 +1,18 @@
+%table.external-content-table
+  %thead
+    %tr
+      %th.name= content_type.name
+      %th.date Date
+      %th.source{:title => "Web site which hosts the content"} Source
+      %th.relevance{:title => "Relevance score returned by the source API"} Relevance
+      %th.score{:title => "Final relevance score, which is the API score scaled by the weight factor of the content source"} Weighted Score
+      %th.api{:title => "Source API from which the content was suggested"} API
+      %th.actions
+  %tbody{:class => "empty-indicator #{contents.nil? || contents.empty? ? nil : 'display-none'}"}
+    %tr
+      %td{:colspan => 6} No content
+  %tbody.content-list
+    - unless contents.nil?
+      -# Must have unique index for external_content instances across different content type tabs
+      - contents.each do |content|
+        = render :partial => 'admin/video_segments/content_row', :locals => {:segment_form => segment_form, :content => content}

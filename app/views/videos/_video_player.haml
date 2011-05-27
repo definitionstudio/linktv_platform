@@ -1,0 +1,66 @@
+-# empty player container, with fallback content
+
+- content_for :head do
+  = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/json2.js"
+  = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/swfobject.js"
+
+- if @player_type == 'embedded'
+  - player_options = @player_options[:embedded_player]
+  - player_width = params[:size] == 'large' ? player_options[:large_width] : player_options[:width]     # values also set in video.js
+  - player_height = params[:size] == 'large' ? player_options[:large_height] : player_options[:height]
+- else
+  - player_options = @player_options[:player]
+  - player_width = player_options[:width]
+  - player_height = player_options[:height]
+
+#video-player-wrapper
+  %div{:id => player_options[:id], :style => "width: #{player_width}px; height: #{player_height}px;"}
+    %table{:style => "width: 100%; height: 100%; border: none;"}
+      %tr
+        %td.player-message{:valign => "middle", :align => 'center'}
+          %a{:href => "http://adobe.com/go/getflashplayer", :target => "_blank"}Flash Player
+          #{player_options[:flash_player_version]}+ or HTML5 video support is required to play this video.
+
+:javascript
+  $(function() {
+    window.playerFallbackElement = $('##{player_options[:id]}').html();  // save initial notice html (fallback)
+    $.ajax({
+      url: '#{player_video_path(@video.permalink)}',
+      dataType: 'json',
+      data: {'type':'#{@player_type}', 'start':#{@start}, 'size':'#{params[:size]}'},
+      error: function() {
+        $('##{player_options[:id]}').html(window.playerFallbackElement);
+      },
+      success: function(data){
+        try {
+          $('##{player_options[:id]}').html(data.html);
+        } catch(err) {
+          $('##{player_options[:id]}').html(window.playerFallbackElement);
+        }
+      }
+    });
+  });
+
+- if @player_type == 'embedded' && params[:related] == 'true'
+
+  -# fix for embedded video overflow
+  :css
+    #video-player-wrapper {
+      width: #{player_width}px;
+      height: #{player_height}px;
+      overflow: hidden;
+    }
+
+  #embedded-player-related-content
+    %ul#video-segments
+      - @video_segments.each do |segment|
+        %li.video-segment{:id => "video-segment-#{segment.id}", :data => {:id => segment.id, :url => video_segment_path(segment)}}
+
+    :javascript
+      $(function() {
+        try {
+          EmbeddedVideo.loadSegmentContent(#{@video_segment.id});
+        } catch(err) {
+          // not present
+        }
+      });

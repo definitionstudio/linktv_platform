@@ -1,0 +1,9 @@
+- onclick ||= nil
+%div
+  %p
+    - if @message.present?
+      = @message
+    - else
+      Your session has expired. Please enter your password to continue.
+  - form_for @user_session, :url => admin_user_session_path, :html => {:method => :put} do |form|
+    = render :partial => 'admin/user_session/form', :locals => {:form => form, :onclick => onclick}

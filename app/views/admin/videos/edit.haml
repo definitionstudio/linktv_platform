@@ -1,0 +1,149 @@
+- content_for :title, ': ' + @video.name unless @video.name.empty?
+- content_for :head do
+  = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/admin/entities.js"
+  = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/admin/topics.js"
+  = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/admin/video_edit.js"
+  = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/video_edit"
+
+#video
+  -# Note that @video may be of class video or imported_video here. Differentiation should be safe using the status method
+  - form_for @video, @video.accepted? ? |
+      {:url => admin_video_path(@video.id), :html => {:onsubmit => "return false", :method => :put, :multipart => true}} : |
+      {:url => admin_imported_video_path(@video.id), :html => {:onsubmit => "return false"}} |
+      do |video_form| |
+
+    = error_messages_for :video, :header_message => "The video could not be saved", :message => "The following must be corrected:"
+
+    -##########################################################################
+    -# Header
+
+    %h1.float-left
+      - if !@video.is_imported_video? && @video.accepted?
+        Review Video
+        - if @video.permalink.present?
+          &mdash;
+          %a{:href => video_path(@video.permalink), :title => 'View on front end', :target => '_blank'}
+            = @video.name if @video.name.present?
+      - else
+        Review Imported Video &mdash;
+        = @video.name if @video.name.present?
+    .float-right
+      - if !@video.is_imported_video? && @video.deleted
+        %a#video-undelete{:href => undelete_admin_video_path(@video), :title => 'Undelete this video'} Undelete Video
+      .video-status{:class => status_css_class(@video)}= @video.status.to_s.titleize
+      - if !@video.is_imported_video? && @video.accepted?
+        .video-status{:class => published_status_css_class(@video)}= @video.published_status
+    .clear-both
+
+
+    -##########################################################################
+    -# Video
+
+    #video-edit-video-metadata
+
+      = render :partial => 'admin/videos/video', :locals => {:video_form => video_form, :video => @video}
+
+      -##########################################################################
+      -# Video tabs
+
+      - if @video.is_imported_video?
+        - tabs = [:source_data, :log]
+      - else
+        - tabs = [:metadata, :publishing, :media, :transcript, :source_data, :log]
+
+      - if authorized? :super_admin
+        - tabs << :advanced
+
+      - tabs.delete :source_data unless @video.is_imported_video? || @video.imported_video.present?
+
+      %div#video-tabs.ui-corner-bottom{:style => 'display: none'}
+        %ul
+          - tabs.each do |tab|
+            %li
+              %a.indexed{:href => "#video-tabs-panel-#{tab.to_s}"}= tab.to_s.titleize
+
+        - tabs.each do |tab|
+          %div.video-tabs-panel{:id => "video-tabs-panel-#{tab.to_s}"}
+            = render :partial => "admin/videos/#{tab.to_s}", :locals => {:video_form => video_form}
+
+        .clear-both
+
+      #video-tabs-footer
+
+      -##########################################################################
+      -# Imported video controls
+
+      - if @video.is_imported_video? && !@video.accepted?
+        = render :partial => "admin/videos/approval", :locals => {:video_form => video_form}
+
+      .clear-both
+
+    -##########################################################################
+    -# Video segments
+
+    - if !@video.is_imported_video? && @video.accepted?
+
+      #video-segments{:style => 'display: none'}
+        %div{:style => "margin-bottom: 0.4em"}
+          %h2{:style => "display: inline"} Video Segments
+          %a#add-segment{:href => '#'}
+            = icon :'icon-add icon-margin-right'
+            Add New Segment at Playhead Time
+        #video-segments-accordion
+          -# Render each segment in a loop. Model will be first, index == 0
+          - index = -1
+          - is_model = true
+          -# Need to fetch nested resources here to handle failed validations
+          - video_segment_model = VideoSegment.new :video => @video, :active => true
+          -# Add a model video segment for dynamic adds at the head of the array
+          - video_segments = @video.video_segments.unshift(video_segment_model)
+          - video_segments.each do |video_segment|
+            -# Note: As of rails 2.3.5 cannot manually set the index for one instance (needed for the :model instance) and use
+            -# the nested video_form.fields_for.
+            - next unless video_segment.live?
+
+            - fields_for "#{video_form.object_name}[video_segments_attributes][#{is_model ? ':model' : index}]", video_segment do |segment_form|
+
+              %h3.segment-header{:id => "#{is_model ? 'segment-model-header' : nil}", :class => "segment-header #{is_model ? 'model-object' : ''}"}
+                %a{:href => '#'}
+                  %span.segment-header-time
+                    = format_time(video_segment.start_time) unless video_segment.start_time.nil?
+                  &ndash;
+                  %span.segment-header-title= video_segment.name.blank? ? 'Untitled Segment' : video_segment.name
+
+              - segment_index = is_model ? ':model' : index
+              - id = "#{is_model ? 'object-video-segment-model' : nil}"
+              - css_class = "object-video-segment #{is_model ? 'model-object' : 'state-unloaded'}"
+              %div{:id => id, :class => css_class, :data => {:id => video_segment.id, :index => segment_index}}
+
+                - if is_model
+                  = render :partial => 'admin/video_segments/segment', :locals => {:is_model => true,
+                    :segment_form => segment_form,
+                    :video => @video,
+                    :video_topics => @video_topics,
+                    :video_segment => video_segment,
+                    :imported_video_keywords => [],
+                    :internal_videos => [],
+                    :topic_video_segments => [],
+                    :index => segment_index,
+                    :external_contents_by_content_type_id => []}
+                - else
+                  %a{:href => edit_admin_video_segment_path(video_segment.id) + "?review=1&segment_index=#{segment_index}", :onlick => 'javascript:void(0)'}
+                  %p.ajax-loader.standard-margin Loading...
+
+              - is_model = false
+              - index += 1
+        %br
+        %button.button{:type => 'submit', :value => 'save'}
+          = icon :'icon-save icon-margin-right'
+          Save
+        .clear-both
+
+:javascript
+  $j(function() {
+    VideoEdit.init({
+      player_width: #{APP_CONFIG[:video][:admin_player][:width]},
+      player_height: #{APP_CONFIG[:video][:admin_player][:height]},
+      flowplayer_swf: "#{APP_CONFIG[:video][:admin_player][:flowplayer_swf]}"
+    });
+  });

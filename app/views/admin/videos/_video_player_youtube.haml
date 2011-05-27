@@ -1,0 +1,10 @@
+- ytapiplayer = video_player_id + '-ytapiplayer'
+
+%div.video-player-youtube{:id => video_player_id}
+  .video-player-handler
+  %div.ytapiplayer{:id => ytapiplayer}
+    .video-file-flash-warn You need Flash Player 9+ and JavaScript enabled to view this video.
+
+- if youtube_id.present?
+  :javascript
+    VideoEdit.initYoutubePlayer("#{ytapiplayer}", "#{youtube_id}", {width: #{width}, height: #{height}});

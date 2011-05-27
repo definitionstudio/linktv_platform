@@ -1,0 +1,5 @@
+.title{:style => 'display: none'}= entity_data['name'] + " (#{entity_db.name})"
+- if entity_data['thumbnail_uri']
+  .float-left
+    %img.lookup-thumbnail{:src => entity_data['thumbnail_uri']}
+= (entity_identifier.description rescue nil) || entity_data['description']

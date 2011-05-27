@@ -1,0 +1,23 @@
+<%
+  # Wrap in the ID active scaffold normally uses for the form, since we can't override the form ID with the form_for method.
+  # The js uses this id to find items within the form.
+-%>
+<div id="<%= element_form_id(:action => :update) %>">
+<h4><%= @record.to_label.nil? ? active_scaffold_config.update.label : as_(:update_model, :model => clean_column_value(@record.to_label)) %></h4>
+
+  <div id="<%= element_messages_id(:action => :update) %>" class="messages-container">
+<% if request.xhr? -%>
+    <%= error_messages_for :record, :object_name => @record.class.human_name.downcase %>
+<% else -%>
+    <%= render :partial => 'form_messages' %>
+<% end -%>
+  </div>
+
+  <%= render :partial => 'form_contents', :locals => { :form => form, :columns => active_scaffold_config.update.columns } %>
+
+  <p class="form-footer">
+    <%= submit_tag as_(:update), :class => "submit" %>
+    <%= link_to as_(:cancel), main_path_to_return, :class => 'cancel' %>
+    <%= loading_indicator_tag(:action => :update, :id => params[:id]) %>
+  </p>
+</div>

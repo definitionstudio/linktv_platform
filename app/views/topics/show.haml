@@ -1,0 +1,52 @@
+- content_for :head do
+  - url = topic_url("#{@topic.permalink}") + ".rdf"
+  %link{:rel => "alternate", :type => "application/rdf+xml", :href => url, :title => "Structured Description in RDF/XML format"}
+
+#topic-page
+  %h1.title
+    About
+    %a{:href => parameterized_videos_path(nil, :topic => @topic)}= @topic.name
+  %a.watch-videos-link{:href => parameterized_videos_path(nil, :topic => @topic)} Watch videos
+
+  %table
+    %thead
+      %tr
+        %th Title
+        %td
+          %span{:property => "dc:title"}= @topic.name
+    %tbody
+      - description = @topic.attributed_description
+      - unless description.nil?
+        %tr
+          %th
+            Description
+            - if description[:entity_db].present?
+              %br
+              (from&nbsp;
+              %a{:href => description[:entity_db].url}>= description[:entity_db].name
+              )
+          %td
+            %span{:property => "dc:description"}= description[:text]
+      %tr
+        %th Linked Data
+        %td
+          %ul.entity-identifiers
+            - @topic.entity_identifiers.each do |ident|
+              %li
+                %a{:href => ident.uri, :rel => "owl:sameAs", :target => "_blank"}= ident.uri
+      %tr
+        %th Related Videos
+        %td
+          %ul.related-videos.limited-list{:data => {:size => 10}}
+            - @related_videos.each do |video|
+              %li.limited-list-item
+                %a{:href => video_path(video.permalink), :rel => 'dc:relation', :title => "Score: #{video.score}"}= video.name
+            = limited_list_show_more_html
+      %tr
+        %th Related Topics
+        %td
+          %ul.related-topics.limited-list{:data => {:size => 10}}
+            - @related_topics.each do |related_topic|
+              %li.limited-list-item
+                %a{:href => topic_path("#{related_topic.permalink}"), :rel => 'dc:relation', :title => "Score: #{related_topic.score}, #{related_topic.video_count} common videos"}= related_topic.name
+            = limited_list_show_more_html

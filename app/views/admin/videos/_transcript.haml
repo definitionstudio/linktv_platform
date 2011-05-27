@@ -1,0 +1,9 @@
+.in-place-edit-context
+  %dl
+    %dt
+      Transcript Text:
+      = in_place_edit_controls
+    %dd
+      .in-place-edit-value.video-transcript-text
+        != simple_format(@video.transcript_text) || "None"
+      = video_form.text_area :transcript_text, :rows => 5, :cols => 80, :class => 'in-place-edit-field'

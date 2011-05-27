@@ -1,0 +1,20 @@
+- fields ||= [:name, :description, :duration]
+.video{:id => "video-#{video.permalink}", :about => video_path(video.permalink)}
+  - fields.each do |field|
+    - if field.is_a? String
+      = field
+    - else
+      - if field == :thumbnail
+        %a.video-thumbnail{:href => video_path(video.permalink)}
+          - config ||= APP_CONFIG[:thumbnails][:video]
+          = video_thumbnail_html video, :height => config[:height], :width => config[:width]
+
+      - if field == :name
+        .video-name{:property => 'dc:title', :content => "#{video.name}"}
+          %a{:href => video_path(video.permalink)}= video.name
+
+      - if field == :description
+        .video-description{:property => 'dc:description'}!= truncate(strip_tags(video.description), :length => local_assigns[:text_length] || 150)
+
+      - if field == :duration
+        .video-duration= to_timecode(video.duration)

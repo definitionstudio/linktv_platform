@@ -1,0 +1,27 @@
+- imported_video = @video.is_imported_video? ? @video : @video.imported_video
+%dl
+  %dt Imported From:
+  %dd
+    = @video.video_source.try :name
+    &mdash;
+    %a.external{:href => @video.link, :target => '_blank'}
+      source video link
+      = icon :'icon-external'
+
+  %dt Description
+  %dd= imported_video.description
+
+  %dt
+    Source Published Date:
+  %dd= imported_video.source_published_at
+
+  %dt Source-provided Keywords:
+  %dd= @video.imported_video_keywords || "None"
+
+  %dt License:
+  %dd= @video.license
+
+  %dt
+    Transcript Text:
+  %dd
+    .video-transcript-text!= simple_format(@video.transcript_text) || "None"

@@ -1,0 +1,33 @@
+<%
+  # Based on version from active_scaffold/frontends/default/views
+  # Changes:
+  # - Calling a custom form to display all fields
+  # - Using a form helper instance rather than generic form tag, to allow for use of nested attributes
+  # - Moved form contents into _create_form.html.erb parial
+
+%>
+<% content_for :head do %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/entities.js" %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/topics.js" %>
+<% end %>
+<% url_options = params_for(:action => :create) -%>
+<% if request.xhr? -%>
+  <%  if active_scaffold_config.create.multipart? # file_uploads %>
+  <% else %>
+    <% remote_form_for @record, {:url => admin_topics_path} do |form| -%>
+      <%= render :partial => 'create_form_contents', :locals => {:form => form} %>
+    <% end -%>
+  <%  end %>
+<% else -%>
+  <% form_for @record, {:url => admin_topics_path} do |form| -%>
+    <%= render :partial => 'create_form_contents', :locals => {:form => form} %>
+  <% end -%>
+<% end -%>
+<script type="text/javascript">
+Topics.newTopicInit($j('#new_topic'), {
+  data: {},
+  dataType: 'script',
+  successJsEval: false, // Updates handled by active scaffold/rjs
+  errorJsEval: false // Updates handled by active scaffold/rjs
+});
+</script>

@@ -1,0 +1,6 @@
+%h1 Add Admin User
+
+- form_for @user, :url => admin_users_path do |f|
+  = f.error_messages
+  = render :partial => "form", :object => f
+  = f.submit "Register"

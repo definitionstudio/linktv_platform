@@ -1,0 +1,6 @@
+- form_for @topic, {:url => url} do |form|
+  = form.error_messages
+  = hidden_field_tag :requestor, params[:requestor]
+  - [:'omit[keywords]', :'omit[topic_entity_identifiers]', :'omit[topic_ids]'].each do |field_name|
+    = hidden_field_tag field_name unless (params[field_name] || nil)
+  = render :partial => 'admin/topics/form_contents', :locals => {:form => form}

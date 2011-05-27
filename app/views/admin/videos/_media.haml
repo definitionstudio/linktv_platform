@@ -1,0 +1,68 @@
+-#
+  .ajax-context
+    .ajax-content
+      = render :partial => 'media_content', :locals => {:video_form => video_form, :video_files => @video_files}
+    .ajax-loading
+      .ajax-loader Updating...
+
+.media-content-context
+  %dl
+    %dt Media Type:
+    %dd= video_form.select_sym :media_type
+
+    - APP_CONFIG[:media_types].each do |media_type_data|
+      - media_type = media_type_data[:key]
+      %div.video-media-type{:id => "video-media-type-#{media_type.to_s}", :style => 'display: none'}
+        - media_type_data[:media_instance_types].each do |media_instance_type|
+          %div.video-media-instance-type{:id => "video-media-type-#{media_type.to_s}-#{media_instance_type.underscore}"}
+
+            - @video_files.each do |video_file|
+              - next unless video_file.media_type.to_sym == media_type.to_sym
+              - next unless video_file.media_instance_type == media_instance_type
+              - next if video_file.is_cdn
+
+              - video_form.fields_for :video_files, video_file do |video_file_form|
+                .in-place-edit-context
+                  %dl
+                    %dt.video-file-heading
+                      - if video_file.media_type.to_sym == :internal
+                        = "Media Source (#{video_file.media_instance_type}):"
+                      - elsif video_file.media_type.to_sym == :youtube
+                        YouTube URL:
+                      = in_place_edit_controls
+                    %dd
+                      .in-place-edit-value
+                        = video_file.url
+                        - unless video_file.new_record?
+                          - if video_file.media_type.to_sym == :internal
+                            - if video_file.available
+                              %span{:title => "CDN Status: Active"}
+                                = icon :'icon-green-light'
+                            - else
+                              %span{:title => "CDN Status: #{video_file.status.to_s.titleize}"}
+                                = icon :'icon-red-light'
+
+                      = video_file_form.hidden_field :id
+                      = video_file_form.hidden_field :active
+                      = video_file_form.hidden_field :media_type
+                      = video_file_form.text_field :url, :size => 100, :class => 'in-place-edit-field video-file-url', :'data-video-panel-id' => "video-file-panel-#{video_file.key}"
+
+                      .in-place-edit-notes.subtitle
+                        %p
+                          Enter new source video URL.
+                          %br
+                          - if video_file.media_type.to_sym == :youtube
+                            %p
+                              Supported YouTube URL formats:
+                              %ul
+                                %li http://www.youtube.com/watch?v=l0DXhTruWT0
+                                %li http://www.youtube.com/v/l0DXhTruWT0
+                                %li http://youtu.be/l0DXhTruWT0
+                          - else
+                            Video must be an h.264 encoded MP4. HTTP and FTP URL's supported.
+
+        - if media_type.to_sym == :youtube
+          %div.video-media-youtube-options
+            %input{:id => 'update-youtube-metadata', :type => :checkbox, :checked => true}
+            Update video metadata on URL change?
+

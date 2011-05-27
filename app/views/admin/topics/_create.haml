@@ -1,0 +1,8 @@
+-# Since this tvs is rendered out of context, we don't use a parent form in the fields_for.
+-# The javascript will need to determine context and prepend the appropriate id and name prefixes to the form fields.
+- fields_for topic_video_segment do |tvs_form|
+  -# Create a container with a dummy table containing only the row that is ready to be copied into the topics table
+  %span.new-video-segment-topic{:style => 'display: none'}
+    %table
+      = render :partial => 'admin/video_segments/topic_row.haml',
+        :locals => {:topic_video_segment => topic_video_segment, :topic_video_segment_form => tvs_form}

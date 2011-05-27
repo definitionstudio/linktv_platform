@@ -1,0 +1,18 @@
+- form_html ||= nil
+- unless href ||= nil
+  - if topic.new_record?
+    = topic.name
+  - else
+    %span.existing-topic.object-topic.resource{:data => {:id => topic.id, :name => topic.name}}
+      %span.topic-name= topic.name
+      = form_html
+- else
+  %a{:href => href, :class => (link_class || nil)}
+    = topic.name
+    = form_html
+- if topic.is_featured
+  %span.featured-topic{:title => 'Featured Topic'}= icon 'icon-home'
+= render :partial => 'admin/topics/topic_identifiers', :locals => {:topic => topic}
+- unless topic.new_record? || (show_link_count ||= nil).nil?
+  - link_count = topic.topic_video_segments.count
+  (#{pluralize link_count, 'link'})

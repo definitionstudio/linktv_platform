@@ -1,0 +1,118 @@
+.in-place-edit-context
+  %dl
+    %dt
+      Title:
+      - if @video.accepted?
+        = in_place_edit_controls
+    %dd
+      - if @video.accepted?
+        .in-place-edit-value= @video.name
+      = video_form.text_field :name, :size => 60, :class => 'in-place-edit-field'
+
+- if @video.accepted?
+
+  .in-place-edit-context
+    %dl
+      %dt
+        Duration:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value= format_time @video.duration || 0
+        = video_form.text_field :duration, :size => 10, :class => 'in-place-edit-field', :value => format_time(@video.duration)
+
+  .in-place-edit-context
+    %dl
+      %dt
+        Description:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value!= @video.description
+        = video_form.text_area :description, :rows => 5, :cols => 80, :class => 'in-place-edit-field tinymce'
+
+    - unless @video.accepted?
+      -# This is only for ImportedVideo records
+      %dl
+        %dt Video Thumbnail:
+        %dd= image_tag non_resource_thumbnail_path(@video.thumbnail_url, :width => @thumb_config[:width], :height => @thumb_config[:height]), :alt => "Thumbnail"
+
+  -# Thumbnail
+  .in-place-edit-context.image-uploader
+    %dl
+      %dt
+        Preview Image:
+        = in_place_edit_controls
+      %dd
+        = video_form.hidden_field :thumbnail_id, :class => 'image-id'
+        .in-place-edit-value= video_thumbnail_html(@video)
+        .in-place-edit-field
+          -# input will be enabled if a standard form upload is to be used
+          = video_form.file_field :thumbnail, :class => 'in-place-edit-field', :accept => APP_CONFIG[:thumbnails][:input_accept], :disabled => true
+          .image-attribution
+            .label Image Attribution:
+            = video_form.text_field :thumbnail_attribution, :size => 60, :value => @video.thumbnail_attribution
+
+  -# Source display
+  .in-place-edit-context
+    %dl
+      %dt
+        Source Name:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value=@video.source_name
+        = video_form.text_field :source_name, :size => 60, :class => 'in-place-edit-field'
+  .in-place-edit-context
+    %dl
+      %dt
+        Source Link:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value=@video.source_link
+        = video_form.text_field :source_link, :size => 60, :class => 'in-place-edit-field'
+  .in-place-edit-context.date-time
+    %dl
+      %dt
+        Display Date:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value=@video.source_published_at
+        .in-place-edit-fields
+          = video_form.label :source_published_at, 'Display Date'
+          = datetime_select 'video', 'source_published_at', {}, {:class => 'in-place-edit-field inline'}
+          - t = Time.zone.now
+          = t.zone
+
+  -# Regions
+  .in-place-edit-context
+    %dl
+      %dt
+        %span{:title => "Regions to which this video content is relevant"} Relevant Regions:
+        = in_place_edit_controls
+      %dd
+        .in-place-edit-value= @video.regions.empty? ? "None" : @video.regions.collect{|r| r.name}.join(', ')
+        = collection_select :video, :region_ids, Region.all, :id, :name, {:prompt => false}, {:class => 'in-place-edit-field', :multiple => true}
+
+  .in-place-edit-context
+    %dl
+      %dt
+        Additional Information:
+        = in_place_edit_controls
+      %dd
+        -# For now we only support this one resource_attr for video records
+        - video_form.fields_for :resource_attrs do |resource_attr_form|
+          .in-place-edit-value!= (resource_attr_form.object.value rescue "None")
+          = resource_attr_form.hidden_field :id
+          = resource_attr_form.hidden_field :name
+          = resource_attr_form.text_area :value, :rows => 5, :cols => 80, :class => 'in-place-edit-field tinymce'
+
+- unless @video.accepted?
+  - if @video.accepted? && @video.imported_video.present?
+    %dl
+      %dt= @video.accepted? ? 'Accepted:' : 'Rejected:'
+      %dd
+        - user_id = @video.imported_video.status_by_user_id
+        - unless user_id.nil?
+          = User.find(user_id).display_name
+          at
+        = @video.imported_video.status_at
+      %dt Notes:
+      %dd= @video.notes.blank? ? 'None' : @video.notes

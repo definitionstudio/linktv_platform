@@ -1,0 +1,22 @@
+(function() {
+  html = jQuery("<div/>").html("<%= render(:partial => 'admin/user_session/renew.haml',
+    :locals => {:onclick => "return false"}).to_json %>").text();
+  var dialog;
+  Admin.dialog({
+    html: html,
+    title: "Session Expired",
+    width: "auto",
+    modal: true,
+    afterOpen: function(event) {
+      dialog = $j(event.target);
+    },
+    ajaxFormHandler: {
+      formSelector: '#edit_user_session',
+      ajaxOptions: {
+        complete: function(xhr, textStatus) {
+          dialog.dialog('close');
+        }
+      }
+    }
+  });
+})();

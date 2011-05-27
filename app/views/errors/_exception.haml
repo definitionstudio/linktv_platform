@@ -1,0 +1,5 @@
+- if DEVELOPMENT_MODE && exception.present?
+  .exception
+    %h1 Exception
+    %pre
+      = exception.inspect

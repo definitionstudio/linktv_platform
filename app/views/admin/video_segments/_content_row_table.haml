@@ -1,0 +1,6 @@
+-# Render a single content row inside a dummy table, for ajax
+- form_for :video, Video.new do |video_form|
+  - video_form.fields_for :video_segments, VideoSegment.new, :child_index => params[:segment_index] do |segment_form|
+    %table
+      = render :partial => 'admin/video_segments/content_row',
+        :locals => {:segment_form => segment_form, :content => @external_content}

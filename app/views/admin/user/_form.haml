@@ -1,0 +1,22 @@
+%dl
+
+  %dt Login:
+  %dd= h @user.login
+
+  %dt= form.label :display_name, "Display name:"
+  %dd= form.text_field :display_name
+
+  %dt= form.label :location, "Location:"
+  %dd= form.text_field :location
+
+  %dt= form.label :email, "Email:"
+  %dd= form.text_field :email
+
+  %dt= form.label :current_password, form.object.new_record? ? nil : "Current password"
+  %dd= form.password_field :current_password
+
+  %dt= form.label :password, form.object.new_record? ? nil : "Change password"
+  %dd= form.password_field :password
+
+  %dt= form.label :password_confirmation
+  %dd= form.password_field :password_confirmation

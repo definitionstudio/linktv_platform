@@ -1,0 +1,15 @@
+#video-topics
+  - if video_topics.empty?
+    None
+  - else
+    %ul.inline-keyword-list
+      - video_topics.each do |topic|
+        -# Create a dummy TopicVideoSegment
+        - tvs = TopicVideoSegment.new :topic => topic
+        %li
+          %span.object-suggested-topic{:data => {:id => topic.id, :name => topic.name}}
+            %a.inline-suggested-topic{:href => '#', :title => 'Add this topic'}><
+              = render :partial => 'admin/topics/topic_with_identifiers.haml', :locals => {:topic => topic}
+            - fields_for "#{segment_form.object_name}[topic_video_segments_attributes][#{unique_index}]", tvs do |tvs_form|
+              = render :partial => 'admin/video_segments/topic_template.haml',
+                :locals => {:topic_video_segment => tvs, :topic_video_segment_form => tvs_form, :disabled => true}

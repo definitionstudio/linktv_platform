@@ -1,0 +1,17 @@
+.internal-videos
+  %table.internal-videos-table
+    %thead
+      %tr
+        %th Title
+        %th Score
+    %tbody
+      - if videos.empty?
+        %tr
+          %td None
+          %td
+      - else
+        - videos.each do |content|
+          %tr
+            %td.internal-video-title
+              %a{:target => "_blank", :href => admin_video_path(content.id)}= content.name
+            %td.internal-video-score= content.score

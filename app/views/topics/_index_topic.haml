@@ -1,0 +1,24 @@
+- fields ||= [:name, :description]
+.topic{:id => "topic-#{topic.id}", :about => topic_path(topic.permalink)}
+  - fields.each do |field|
+    - if field.is_a? String
+      = field
+    - else
+
+      - if field == :name
+        .topic-name{:property => 'dc:title', :content => "#{topic.name}"}
+          %a{:href => topic_path(topic.permalink)}= topic.name
+
+      - if field == :video_count
+        .topic-video-count
+          %a{:href => parameterized_videos_path(nil, :topic => topic)}
+            = topic.video_count
+
+      - if field == :description
+        - description = topic.attributed_description
+        - if description.present?
+          .topic-description{:property => 'dc:description'}
+            - if description[:entity_db].present?
+              = "(#{description[:entity_db].name})"
+            - if description[:text].present?
+              = description[:text]

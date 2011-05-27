@@ -1,0 +1,10 @@
+- unless topic.entity_identifiers.empty?
+  - topic.entity_identifiers.each do |ident|
+    %a{:href => ident.uri, :data => {:id => ident.id}, :class => "entity-identifier entity-db-#{ident.entity_db.name.downcase}",
+      :target => '_blank'}
+      %span{:style => 'display: none'}
+        %span.identifier= ident.identifier
+        %span.name
+          = topic.name
+          = "(#{ident.entity_db.name})"
+      = icon ident.entity_db.icon_css_class

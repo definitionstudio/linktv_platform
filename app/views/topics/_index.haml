@@ -1,0 +1,15 @@
+#page-heading Topics
+
+#topics-filters.index-filters
+  .sort
+    .label Sort by:
+    = select :topic, :order_by, @order_bys.collect {|ob| [ob[:name], parameterized_topics_path(@page_params, :order_by => ob[:value].to_s, :page => nil)]}, {:selected => parameterized_topics_path(@page_params)}
+
+#topics-index
+  - if @topics.nil? || @topics.empty?
+    No matching topics found.
+  - else
+    - @topics.each do |topic|
+      = render :partial => 'topics/index_topic', :locals => {:topic => topic, :fields => [:name, :video_count, :description]}
+    #pagination
+      = will_paginate @topics

@@ -1,0 +1,57 @@
+.content
+  - form_for @external_content, {:url => admin_external_contents_path, :onsubmit => 'return false'} do |form|
+    = form.error_messages
+    = form.hidden_field :active, :value => 1
+    = form.hidden_field :video_segment_id
+    = form.hidden_field :content_type_id
+    = form.hidden_field :sticky
+
+    %table.new-external-content-table.standard
+      %tbody
+        %tr
+          %th
+            = form.label :name, 'Title:'
+          %td{:colspan => 3}= form.text_field :name, :class => 'external-content-name', :size => 60, :autocomplete => 'off'
+        %tr
+          %th
+            = form.label :url, 'URL:'
+          %td{:colspan => 3}= form.text_field :url, :class => 'external-content-url', :size => 60, :autocomplete => 'off'
+        %tr
+          %th
+            = form.label :published_date, 'Publish Date:'
+          %td{:width => '1%'}
+            = form.text_field :published_date, :class => 'external-content-published-date datepicker', :size => 10, :autocomplete => 'off'
+          %th{:width => '1%'}
+            = form.label :published_time, 'Time:'
+          %td
+            = form.text_field :published_time, :class => 'external-content-published-time timepicker', :size => 8, :autocomplete => 'off'
+        %tr
+          %th
+            = form.label :description, 'Description:'
+            %br
+            %span.subtitle (Optional)
+          %td{:colspan => 3}= form.text_area :description, :class => 'external-content-article-description', :rows => 5, :cols => 60
+
+        - if @external_content.content_type.item_type == 'video'
+          %tr.in-place-edit-context.standard-margin.image-uploader.left
+            %th
+              = form.label :thumbnail, 'Thumbnail:'
+              = in_place_edit_controls
+              .subtitle (Optional)
+            %td{:colspan => 3}
+              = form.hidden_field :thumbnail_id, :class => 'image-id'
+              .in-place-edit-value= external_content_thumbnail_html(nil)
+              .in-place-edit-field
+                = form.file_field :thumbnail, :class => 'in-place-edit-field', :accept => APP_CONFIG[:thumbnails][:input_accept], :disabled => true
+
+      %tbody
+        %tr
+          %td &nbsp
+          %td{:colspan => 3}
+        %tr
+          %th
+          %td.buttons{:colspan => 3}
+            %button.button.cancel{:value => 'cancel', :onclick => 'return false'} Cancel
+            %button.button.add-external-content{:value => 'create_external_content', :onclick => 'return false'}
+              Create
+              = @external_content.content_type.name.singularize

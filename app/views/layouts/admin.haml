@@ -1,0 +1,176 @@
+%html{ :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %title
+      = site_name
+      - title = capture do
+        = yield :title
+      = title unless title.empty?
+
+    -# jQuery
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"
+    :javascript
+      $j = jQuery.noConflict(); // Use $j instead of $ for jQuery due to prototype being required in ActiveScaffold
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"
+
+    = javascript_include_tag :defaults
+
+    -# jQuery plugins/add-ons
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/jquery/themes/cupertino/jquery-ui-1.8.custom.css"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/jquery/jquery-qtip-1.0.0/jquery.qtip-1.0.0-rc3.min.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/jquery/jquery-hover-init.js"
+
+    -# SWFObject
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/swfobject.js"
+    = javascript_include_tag "#{APP_CONFIG[:video][:admin_player][:flowplayer_js]}"
+
+    -# Admin styles
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/web_app_theme"
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/warehouse_theme.css"
+
+    -# Header drop-down menus
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/noupe_nav_menu/nav.js"
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/noupe_nav_menu/nav.css"
+
+    != active_scaffold_includes
+
+    -# Freebase
+    = javascript_include_tag "http://freebaselibs.com/static/suggest/1.3/suggest.min.js"
+    = stylesheet_link_tag "http://freebaselibs.com/static/suggest/1.3/suggest.min.css"
+
+    -# Application-specific
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/admin"
+    = stylesheet_link_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/stylesheets/messages"
+
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/admin/tiny_mce/jquery.tinymce.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/jquery/ajaxupload.js"
+    = javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}/javascripts/admin/admin.js"
+
+    -# Create object data map root
+      :javascript
+        oData = {};
+
+    = yield :head
+
+  %body
+    #container
+      #header
+        %h1
+          %a{ :href => admin_home_path }
+            #{site_name} Administration
+        #user-navigation
+          %ul.wat-cf
+            %li
+              %a.account{:href => root_url, :target => "_blank"}
+                = t("web-app-theme.site", :default => "Visit Site")
+            - if auth_present?
+              - if current_user.present? && authorized?(:admin)
+                %li
+                  %a.account{:href => admin_user_path}
+                    = t("web-app-theme.account", :default => "Account")
+                %li
+                  %a.logout{:href => admin_logout_path}
+                    = t("web-app-theme.logout", :default => "Sign out")
+              - else
+                %li
+                  %a.login{:href => admin_login_path}
+                    = t("web-app-theme.login", :default => "Sign in")
+        - if authorized? :admin
+          %ul#topnav.topnav
+            %li
+              %a{:href => admin_videos_path} Videos
+              %ul.subnav
+                %li
+                  %a{:href => admin_new_videos_path} New Videos
+                - if featured_videos_playlist = Video.featured_videos_playlist
+                  %li
+                    %a{:href => admin_playlist_items_path + "?playlist_id=#{featured_videos_playlist.id}"} Featured Videos
+                %li
+                  %a{:href => admin_rejected_videos_path} Rejected Videos
+            %li
+              %a{:href => admin_topics_path} Topics
+              %ul.subnav
+                - if featured_topics_playlist = Topic.featured_topics_playlist
+                  %li
+                    %a{:href => admin_playlist_items_path + "?playlist_id=#{featured_topics_playlist.id}"} Featured Topics
+            %li
+              %a{:href => admin_users_path} Users
+            %li
+              %a{:href => admin_pages_path} Pages
+              %ul.subnav
+                %li
+                  %a{:href => admin_links_path} Links
+            %li
+              .non-link Configuration
+              %ul.subnav
+                %li
+                  %a{:href => admin_video_sources_path} Video Sources
+                %li
+                  %a{:href => admin_semantic_apis_path} Semantic API's
+                %li
+                  %a{:href => admin_entity_dbs_path} Entity Databases
+                %li
+                  %a{:href => admin_content_sources_path} Content Sources
+                %li
+                  %a{:href => admin_content_types_path} Content Types
+                %li
+                  %a{:href => admin_regions_path} Regions
+
+            - unless @custom_menu_items.empty?
+              %li
+                .non-link=@custom_menu_title
+                %ul.subnav
+                  - @custom_menu_items.each do |item|
+                    %li
+                      %a{:href => item['path']}=item['name']
+
+            - if authorized? :super_admin
+              %li
+                .non-link Advanced
+                %ul.subnav
+                  - if defined? LoggedException
+                    %li
+                      %a{:href => logged_exceptions_path, :target => '_blank'} Logged Exceptions
+                  %li
+                    %a{:href => super_admin_video_files_path} Video Files
+                  %li
+                    %a{:href => super_admin_video_segments_path} Video Segments
+                  %li
+                    %a{:href => super_admin_countries_path} Countries
+                  %li
+                    %a{:href => super_admin_entity_identifiers_path} Entity Identifiers
+                  %li
+                    %a{:href => super_admin_external_contents_path} External Content
+                  %li
+                    %a{:href => super_admin_images_path} Images
+                  %li
+                    %a{:href => super_admin_imported_videos_path} Imported Videos
+                  %li
+                    %a{:href => super_admin_roles_path} Roles
+                  %li
+                    %a{:href => super_admin_topics_path} Topics
+        %div{:style => "clear: both"}
+      #wrapper.wat-cf
+        #flash-messages
+          = render :partial => 'admin/flash_messages'
+        #main
+          #document-body
+            = yield
+          #footer
+            .block
+              An
+              %a(href="https://github.com/definitionstudio/linktv_platform" target="_blank") open source project
+              developed for
+              %a{:href => "http://www.viewchange.org/", :target => "_blank"} ViewChange.org
+              and
+              %a{:href => "http://www.linktv.org/", :target => "_blank"} Link TV
+              %span>.
+        #sidebar
+          = yield :sidebar
+
+- apis_config = APP_CONFIG[:apis][:config] rescue nil
+- unless apis_config.nil?
+  :javascript
+    $j(document).data('apis_config', #{apis_config.to_json});
+
+= yield :o_data

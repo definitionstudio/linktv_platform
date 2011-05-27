@@ -1,0 +1,4 @@
+#search-box-header
+- form_tag search_path, :id => 'search-form', :method => :get do
+  = text_field_tag 'q', 'Search', :class => 'search-input prompted', :title => 'Search'
+  = submit_tag "Search", :class => "search-button"

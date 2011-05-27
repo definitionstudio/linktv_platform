@@ -1,0 +1,55 @@
+- fields_for "#{segment_form.object_name}[external_contents_attributes][#{unique_index}]", content do |content_form|
+  %tr{content_object_html_attrs(content)}
+    %td.name
+
+      - info_attrs = content_object_info_attrs(content)
+      - unless info_attrs.nil?
+        = icon :'icon-notice', :class => info_attrs[:title], :title => info_attrs[:title]
+
+      %a.stick-external-content.icon-margin-right{:href => '#'}
+        = icon :'icon-sticky', :title => 'Remove sticky'
+        = icon :'icon-non-sticky', :title => 'Make sticky'
+      - disabled = false
+      = content_form.hidden_field :id, :disabled => disabled, :class => 'id'
+      = content_form.hidden_field :'_destroy', :disabled => disabled, :class => 'destroy'
+      -# Note: No need to send form fields for saved content, other than sticky and deleted, since we remove them on saves anyway
+      = content_form.hidden_field :sticky, :class => 'input-sticky', :disabled => disabled
+      = content_form.hidden_field :deleted, :class => 'input-deleted', :disabled => disabled
+      - if content.id.nil?
+        = content_form.hidden_field :data, :disabled => disabled
+        = content_form.hidden_field :content_type_id, :disabled => disabled
+        = content_form.hidden_field :name, :disabled => disabled
+        = content_form.hidden_field :description, :disabled => disabled
+        = content_form.hidden_field :identifier, :disabled => disabled
+        = content_form.hidden_field :url, :disabled => disabled
+        = content_form.hidden_field :semantic_api_id, :disabled => disabled
+        = content_form.hidden_field :content_source_id, :disabled => disabled
+        = content_form.hidden_field :thumbnail_id, :disabled => disabled
+        = content_form.hidden_field :score, :disabled => disabled
+        = content_form.hidden_field :active, :disabled => disabled
+        = content_form.hidden_field :published_at, :disabled => disabled
+      %a{:href => content.url, :target => '_blank'}
+        = content.name
+    %td.date= content.published_at
+    %td.source
+      - source = content.content_source
+      - if source
+        - title = []
+        - title.push "Base URL: #{source.base_url}"
+        - title.push "Weight: #{source.weight}"
+        - title = title.join(", ");
+        %a.resource{:title => title, :href => edit_admin_content_source_path(source.id), :target => '_blank'}
+          - if source.favicon_url.present?
+            = icon "icon-margin-right", :url => source.favicon_url
+          = content.content_source.name
+    %td.relevance.align-right= "#{content.score.nil? ? '' : ("%0.1f" % content.score)}"
+    %td.score.align-right= "#{content.weighted_score.nil? ? '' : ("%0.1f" % content.weighted_score)}"
+    %td.api
+      - if content.semantic_api.nil?
+        .italic Manual
+      - else
+        = content.semantic_api.name
+    %td.actions
+      %a.delete-external-content{:href => '#'}
+        = icon :'icon-delete', :title => 'Delete'
+        = icon :'icon-undelete', :title => 'Undelete'

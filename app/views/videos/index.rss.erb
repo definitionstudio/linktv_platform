@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title><%=  @rss_settings[:title] %></title>
+    <link><%=  @rss_settings[:link] %></link>
+    <description><%=  @rss_settings[:description] %></description>
+    <language><%= @rss_settings[:language] %></language>
+    <pubDate><%= @rss_settings[:pubDate].to_s(:rfc822) %></pubDate>
+    <copyright><%= @rss_settings[:copyright] %></copyright>
+    <% @videos.each do |video| %>
+      <% video_file = video.video_files.available.scoped_by_media_type(:internal).ordered.last %>
+      <item>
+        <title><%= video.name %></title>
+        <link><%= video_url(video.permalink) %></link>
+        <description><%= video.description %></description>
+        <pubDate><%= video.published_at.to_s(:rfc822) %></pubDate>
+        <guid><%= video_url(video.permalink) %></guid>
+        <% if video_file.present? && video.download_enabled && !video_file.download_url.blank? %>
+        <enclosure url="<%= video_file.download_url.html_safe %>" length="<%= video_file.file_size %>" type="<%= video_file.mime_type %>" />
+        <% end %>
+        <% if video.thumbnail.present? %>
+        <media:thumbnail url="<%= thumbnail_url(video.thumbnail, :width => 480, :height => 360, :format => :jpg) %>" />
+        <% end %>
+        <media:keywords><%= video_rss_keywords(video) %></media:keywords>
+        <media:text><%= video.transcript_text %></media:text>
+      </item>
+    <% end %>
+  </channel>
+</rss>

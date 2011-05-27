@@ -1,0 +1,124 @@
+-# this view is intended to be loaded via XHR
+-# use non-empty @message to validate availability (geo restriction)
+
+- if @video_files.empty? || !@message.nil?
+  %table{:style => "width: 100%; height: 100%"}
+    %tr
+      %td.player-message.warning{:style => "text-align: center"}
+        = @message || "This video is currently unavailable. Please check back later."
+
+- else
+
+  - if @player_type == 'embedded'
+    - player_options = @player_options[:embedded_player]
+    - player_width = params[:size] == 'large' ? player_options[:large_width] : player_options[:width]     # values also set in video.js
+    - player_height = params[:size] == 'large' ? player_options[:large_height] : player_options[:height]
+  - else
+    - player_options = @player_options[:player]
+    - player_width = player_options[:width]
+    - player_height = player_options[:height]
+
+  - if @video_files.first.media_type == 'youtube'
+    :javascript
+      var youtube_url = '#{@video_files.first.url}';
+      var youtube_video_id;
+      var youtube_player;
+
+      function playerLoadHTML5Video() {
+        try {
+          var matches = youtube_url.match(/\/v\/([^&\/]*)/);
+          if (!matches)
+            // Look for format http://www.youtube.com/...v=:id....
+            matches = youtube_url.match(/v=([^&]*)/);
+          if (matches && matches[1]) {
+            youtube_video_id = matches[1];
+            // load YouTube API
+            $.getScript('http://www.youtube.com/player_api');
+          } else {
+            throw "error";
+          }
+        } catch(err) {
+          // fallback
+          $('##{player_options[:id]}').html(window.playerFallbackElement);
+          $('.player-message', '##{player_options[:id]}').html('This video is not currently available. Please enable Flash Player and try again.');
+        }
+      }
+
+      function onYouTubePlayerAPIReady() {
+        youtube_player = new YT.Player('#{player_options[:id]}', {
+          height: '#{player_height}',
+          width: '#{player_width}',
+          videoId: youtube_video_id,
+          events: {
+            'onReady': onYTPlayerReady,
+            'onStateChange': onYTPlayerStateChange
+          }
+        });
+      }
+      function onYTPlayerReady(event) {
+        //console.log('youtube player ready');
+      }
+      function onYTPlayerStateChange(event) {
+        //console.log('youtube player state change: ' + event.data);
+      }
+
+  - elsif @video.download_enabled
+    :javascript
+      function playerLoadHTML5Video() {
+        var container = $('<div class="video-js-box"></div>');
+        var video = $('<video class="video-js" width="#{player_width}" height="#{player_height}" controls="controls" preload="auto" poster="#{thumbnail_url @video.thumbnail, :width => player_width, :height => player_height, :crop => :center, :format => :jpg}">');
+        var source = $('<source src="#{@video_files.first.download_url}" type="video/mp4">');
+        video.append(source);
+        container.append(video);
+        $('##{player_options[:id]}').html(container);
+        setTimeout(function(){
+          try {
+            VideoJS.setupAllWhenReady();
+          } catch(err) {}
+        }, 250);
+      }
+  - else
+    :javascript
+      function playerLoadHTML5Video() {
+        $('##{player_options[:id]}').html(window.playerFallbackElement);
+        $('.player-message', '##{player_options[:id]}').html('This video is not currently available in the requested format. Please enable Flash Player to view this video.');
+      }
+
+
+  - unless @video_files.empty? || !@message.nil?
+
+    -# assign view-specific config options
+    - @player_config[:eventHandler] = @player_type == 'embedded' ? 'EmbeddedVideo.videoPlayerEventHandler' : 'Video.videoPlayerEventHandler'
+    - @player_config[:playerId] = player_options[:id]
+
+    :javascript
+      function playerEmbedCallback(e) {
+        if(!e.success) {
+          if(supports_video_tag()) {
+            playerLoadHTML5Video();
+          } else {
+            $('##{player_options[:id]}').html(window.playerFallbackElement);
+          }
+        }
+      }
+      function supports_video_tag() {
+        return !!document.createElement('video').canPlayType;
+      }
+      $(function() {
+        var flashvars = {
+          config: JSON.stringify(#{@player_config.to_json})
+        };
+        var params = { allowfullscreen:true, allowscriptaccess:"always", wmode:"transparent" };
+        var attributes = { id: "#{player_options[:id]}", width: "#{player_width}", height: "#{player_height}" };
+        swfobject.embedSWF(
+          "#{player_options[:swf]}",
+          "#{player_options[:id]}",
+          "#{player_width}",
+          "#{player_height}",
+          "#{player_options[:flash_player_version]}",
+          "#{LINKTV_PLATFORM_ASSETS_PATH}/player/expressInstall.swf",
+          flashvars,
+          params,
+          attributes,
+          playerEmbedCallback);
+      });

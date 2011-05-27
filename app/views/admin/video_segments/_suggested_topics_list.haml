@@ -1,0 +1,30 @@
+%table.segment-suggested-topics-table
+  %thead
+    %tr
+      %th.topics{:colspan => 2} Suggested Topics
+      %th.relevance Relevance
+      %th.source Source
+  %tbody
+    - unless topic_video_segments.nil? || topic_video_segments.empty?
+      - topic_video_segments.each do |tvs|
+        -# Since this tvs is rendered out of context, we don't use a parent form in the fields_For.
+        -# The javascript will need to determine context and prepend the appropriate id and name prefixes to the form fields.
+        - fields_for tvs do |tvs_form|
+          %tr.object-suggested-topic{:data => {:name => tvs.topic.name, :score => tvs.score}}
+            %td.actions
+              - if tvs.topic.new_record?
+                - if tvs.topic.entity_identifiers.empty?
+                  -# Suggested topic does not have any disambiguations
+                  - link_class = 'create-suggested-topic'
+                - else
+                  - link_class = 'create-disambiguated-suggested-topic'
+              - else link_class = 'link-suggested-topic'
+              %a{:class => link_class, :href => '#'}
+                &laquo;&nbsp;ADD
+              - unless tvs.topic.entity_identifiers.empty?
+                = render :partial => 'admin/video_segments/topic_template.haml',
+                  :locals => {:topic_video_segment => tvs, :topic_video_segment_form => tvs_form, :disabled => true}
+            %td.topic
+              = render :partial => 'admin/topics/topic_with_identifiers.haml', :locals => {:topic => tvs.topic, :show_link_count => :true}
+            %td.relevance= tvs.score.to_i
+            %td.source= tvs.semantic_api.name

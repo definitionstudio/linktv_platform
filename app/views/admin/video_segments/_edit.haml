@@ -1,0 +1,14 @@
+- fields_for @video,
+    {:url => admin_video_path(@video.id), :html => {:onsubmit => "return false", :method => :put,
+    :multipart => true}} do |video_form|
+
+  - fields_for "#{video_form.object_name}[video_segments_attributes][#{@segment_index}]", @video_segment do |segment_form|
+    = render :partial => 'admin/video_segments/segment', :locals => {:video => @video,
+      :video_topics => @video_topics,
+      :imported_video_keywords => @imported_video_keywords,
+      :segment_form => segment_form,
+      :video_segment => @video_segment,
+      :topic_video_segments => @topic_video_segments,
+      :internal_videos => @internal_videos,
+      :index => @segment_index,
+      :external_contents_by_content_type_id => @external_contents_by_content_type_id}

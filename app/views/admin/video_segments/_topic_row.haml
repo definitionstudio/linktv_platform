@@ -1,0 +1,30 @@
+- tvs = (topic_video_segment ||= nil)
+- topic = topic || tvs.topic
+- disabled ||= false
+%tr.object-topic-with-controls{:data => {:id => topic.id, :name => topic.name}}
+  %td.topic
+    %span.object-entity-identifiers{:style => 'display: none'}
+      - topic.entity_identifiers.each do |ident|
+        %span.object-entity-identifier{:data => {:id => ident.id, :'entity-db-id' => ident.entity_db_id, :identifier => ident.identifier}}
+    - topic_video_segment_form ||= nil
+    = render :partial => 'admin/topics/topic_with_identifiers.haml', :locals => {:topic => topic}
+    - unless topic_video_segment_form.nil?
+      -# Form fields to add new topics and associations
+      - tvs = topic_video_segment_form.object
+      - unless tvs.id.nil?
+        = topic_video_segment_form.hidden_field :id, :disabled => disabled
+        = topic_video_segment_form.hidden_field :_destroy, :class => 'destroy', :disabled => disabled
+      = topic_video_segment_form.hidden_field :topic_id, :disabled => disabled
+      = topic_video_segment_form.hidden_field :semantic_api_id, :disabled => disabled
+
+  %td.score
+    - score = (tvs && tvs.score || TopicVideoSegment.default_score).to_i
+    .sizer
+      - unless topic_video_segment_form.nil?
+        = topic_video_segment_form.hidden_field :score, :class => 'topic-score', :value => score, :disabled => disabled
+      .score-slider.do-init
+      .indicator
+        = score
+  %td.actions
+    %a.delete-topic.icon{:href => '#', :title => "Delete topic association"}
+      = icon :'icon-delete'

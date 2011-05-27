@@ -1,0 +1,9 @@
+.external-article{:about => item.url}
+  .name
+    %a{:href => item.url, :target => '_blank', :property => 'dc:title'}= item.name
+  .source= external_content_attribution(item, :rel => 'dc:publisher')
+  - if item.published_at.present?
+    .date{:property => 'dc:date', :content => item.published_at}!= natural_time(item.published_at)
+  - if local_assigns[:description] || false
+    - if !item.description.blank?
+      .description{:property => 'dc:description'}= truncate(strip_tags(item.description), :length => 100)

@@ -1,0 +1,583 @@
+//
+// Default LinkTV Platform styles.
+// Recommend this file is not edited.
+// Override rules in application.sass or application.css.
+//
+
+//variables
+$corner-radius: 5px
+$main-shadow: 2px 2px 5px #ccc
+$main-inset-shadow: inset 1px 1px 3px #ddd
+
+//
+// Basic HTML Markup
+//
+
+a:link, a:visited
+  color: #090
+  text-decoration: none
+a:hover, a:active
+  color: #060
+  text-decoration: underline
+  
+html
+  background: #666
+
+body, ul, p
+  margin: 0
+  padding: 0
+  font-family: Trebuchet MS, sans-serif
+  font-size: 12px
+  color: #333
+
+ul
+  margin: 0
+  padding: 0 0 0 20px
+
+li
+  margin: 0
+  padding: 0
+
+//
+// Global layout items
+//
+
+#header
+  background: #333
+  padding: 15px 20px 0 20px
+  color: #ccc
+  height: 80px
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111111', endColorstr='#333333') /* for IE */
+  background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#333333)) /* for webkit browsers */
+  background: -moz-linear-gradient(top,  #111111,  #333333) /* for firefox 3.6+ */ 
+  
+#header-content
+  float: left
+  .title
+    font-weight: bold
+    font-size: 300%
+    height: 42px
+    line-height: 42px
+    text-shadow: #222 2px 2px 4px
+    
+ul#header-nav
+  float: left
+  li
+    display: block
+    float: left
+    height: 17px
+    margin: 0 5px 0 0
+    padding: 5px 10px
+    background: #555
+    font-size: 125%
+    line-height: 17px
+    border-top: 1px solid #666
+    border-left: 1px solid #666
+    border-right: 1px solid #444
+    border-top-left-radius: $corner-radius
+    border-top-right-radius: $corner-radius
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#444444') /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444)) /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #666666,  #444444) /* for firefox 3.6+ */ 
+  padding: 10px 0 0 0
+  a:link, a:visited
+    color: #fff
+    text-decoration: none
+  a:hover, a:active
+    color: #6f6
+    text-decoration: none
+
+#search-form
+  float: right
+  padding: 10px
+  border-top: 1px solid #111
+  border-left: 1px solid #111
+  border-right: 1px solid #444
+  border-bottom: 1px solid #444
+  background: #222
+  border-radius: $corner-radius
+  
+.search-input
+  padding: 5px
+  color: #666
+
+.search-button
+  background-color: #999
+  border-left: 1px solid #ccc
+  border-top: 1px solid #ccc
+  border-right: 1px solid #666
+  border-bottom: 1px solid #666
+  padding: 6px
+  color: white
+  
+.index-filters
+  background: #999
+  padding: 10px
+  border-radius: $corner-radius
+  margin: 5px 0
+  .label
+    font-weight: bold
+    color: white
+    display: inline
+  .sort, .regions
+    display: inline
+    margin-right: 10px
+  select
+    display: inline
+    
+#footer
+  background: #444
+  color: #999
+  a:link, a:visited
+    color: #ccc
+    text-decoration: none
+  a:hover, a:active
+    color: #fff
+    text-decoration: none
+
+#footer-powered-by
+  padding: 10px 0
+  border-top: 1px dotted #999
+  margin-top: 10px
+  
+ul.footer-links
+  list-style-type: none
+  display: inline
+  padding: 0
+  li
+    display: inline-block
+    zoom: 1
+    *display: inline
+    margin: 0 5px 0 0
+    padding: 3px 5px
+    border-bottom: 1px solid #555
+    border-right: 1px solid #555
+    border-top: 1px solid #222
+    border-left: 1px solid #222
+    border-radius: $corner-radius
+#footer-links
+  padding: 0 20px
+  display: block
+  background-color: #eee
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff') /* for IE */
+  background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#ffffff)) /* for webkit browsers */
+  background: -moz-linear-gradient(top,  #eeeeee,  #ffffff) /* for firefox 3.6+ */ 
+  li
+    padding: 5px 10px
+    background-color: #333
+    border-top: 1px solid #555
+    border-left: 1px solid #555
+    border-bottom: 0
+    border-right: 1px solid #222
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    color: #fff
+    font-size: 125%
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#111111') /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#111)) /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #333,  #111) /* for firefox 3.6+ */ 
+    a:link, a:visited
+      color: #fff
+      text-decoration: none
+    a:hover, a:active
+      color: #6f6
+      text-decoration: none
+
+#footer-attribution
+  padding: 10px 20px 0 20px
+
+#body
+  background: #eee
+  padding: 20px
+
+#page-heading
+  font-size: 200%
+  font-weight: normal
+  color: #666
+  padding: 5px 0 0 0px
+  text-shadow: #ccc 2px 2px 4px
+
+.exception
+  background: #fff
+  color: 000
+  width: 1000px
+  font-size: 10px
+
+.video
+  background: white
+  padding: 10px
+  margin: 10px 0
+  border: 1px solid #ccc
+  border-radius: $corner-radius
+  box-shadow: $main-shadow
+  position: relative
+  min-height: 90px
+  a.video-thumbnail
+    position: absolute
+    top: 10px
+    left: 10px
+  .video-description, .video-name, .video-duration
+    margin-left: 160px
+    padding-left: 10px
+  .video-name
+    font-weight: bold
+    margin-bottom: 5px
+    font-size: 125%
+  .video-duration
+    color: #999
+    margin-top: 5px
+  .video-duration:before
+    content: "duration: "
+
+.topic
+  background: white
+  padding: 10px
+  margin: 10px 0
+  border: 1px solid #ccc
+  border-radius: $corner-radius
+  box-shadow: $main-shadow
+  .topic-description
+    margin-top: 10px
+  .topic-description:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    zoom: 1
+    visibility: hidden
+
+.video-name, .topic-name
+  font-size: 120%
+  margin-bottom: 5px
+
+.topic-video-count
+  display: block
+  color: #999
+
+.topic-video-count:after
+  content: "videos"
+  color: #666
+  clear:right
+
+.hidden
+  display: none
+
+.pagination
+  font-size: 125%
+  padding-top: 10px
+  a
+    background: #090
+    color: #fff
+    padding: 5px 10px
+    border-radius: $corner-radius
+    box-shadow: $main-shadow
+  .disabled
+    background: #ddd
+    color: #999
+    padding: 5px 10px
+    border-radius: $corner-radius
+    box-shadow: $main-shadow
+  .current
+    background: #666
+    color: #fff
+    padding: 5px 10px
+    border-radius: $corner-radius
+    box-shadow: $main-shadow
+//
+// Video Index Page Styles
+//
+
+#rss-link
+  float: right
+  display: inline-block
+  zoom: 1
+  *display: inline
+  background-color: #f90
+  border-top: 1px solid #fa3
+  border-left: 1px solid #fa3
+  border-bottom: 1px solid #c60
+  border-right: 1px solid #c60
+  padding: 2px 5px
+  margin-top: 5px
+  font-size: 11px
+  &:link
+    color: white
+  &:visited
+    color: white
+//
+// Video Page Specific Styles
+//
+
+#video-page
+  .video-thumbnail
+    margin-bottom: 10px
+  .video-title
+    font-weight: bold
+    font-size: 150%
+    margin-bottom: 5px
+  h2
+    font-size: 120%
+    font-weight: bold
+    margin-bottom: 5px
+
+#video-heading
+  width: 240px
+  margin-right: 20px
+  float: left
+  display: block
+  margin-bottom: 20px
+  word-wrap: break-word
+
+#video-body
+  display: block
+  float: left
+  margin-bottom: 20px
+  
+#more-info, #related-topics, #video-segments, #share, #downloads
+  margin-top: 10px
+  background: white
+  border: 1px solid #ccc
+  padding: 10px
+  border-radius: $corner-radius
+  box-shadow: $main-shadow
+  clear: both
+
+.video-downloads li
+  list-style: square
+  margin-top: 5px
+
+#video-segments-list
+  padding: 0px
+
+.video-segment-heading
+  border: 1px solid #ccc
+  padding: 0px
+  background-color: #eee
+  margin: 10px 0px
+  position: relative
+  .video-segment-number
+    display: block
+    font-size: 150%
+    color: #ddd
+    padding: 0 10px 0 60px
+    height: 25px
+    line-height: 25px
+    background: #999
+    margin: 0
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaaa', endColorstr='#999999') /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#aaaaaa), to(#999)) /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #aaaaaa,  #999) /* for firefox 3.6+ */ 
+  .title
+    display: block
+    font-size: 150%
+    color: #fff
+    padding: 0 10px 0 60px
+    height: 25px
+    line-height: 25px
+    background: #999 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#666666') /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#666)) /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #999999,  #666) /* for firefox 3.6+ */ 
+  .thumbnail
+    position: absolute
+    top: 0px
+    left: 0px
+    img
+  .related-internal-videos, .related-external-videos
+    padding: 0 10px
+    clear: both
+    h2
+      margin: 10px 0 5px 0
+      font-size: 150%      
+    .related-content
+      position: relative
+      padding-left: 60px
+      min-height: 40px
+      display: block
+    .video
+      box-shadow: $main-inset-shadow
+      margin-left: 10px
+  .related-external-articles, .related-external-actions
+    padding: 0 10px
+    clear: both
+    h2
+      margin: 10px 0 5px 0
+      font-size: 150%
+  .related-contents
+    padding-left: 0px
+  .external-article, .external-action
+    background: #fff
+    border: 1px solid #ccc
+    margin: 10px
+    padding: 10px
+    border-radius: $corner-radius
+    box-shadow: $main-inset-shadow
+    .date
+      color: #999
+      margin-top: 5px
+
+.name
+  font-weight: bold
+  margin-bottom: 5px
+  font-size: 125%
+
+.external-video
+  position: relative
+  background: #fff
+  border: 1px solid #ccc
+  padding: 10px
+  margin: 10px
+  min-height: 40px
+  border-radius: $corner-radius
+  box-shadow: $main-inset-shadow
+  .thumbnail
+    position: absolute
+    top: 10px
+    left: 10px
+    display: block
+  .name
+    margin-left: 70px
+  .source
+    margin-left: 70px
+  .date
+    margin-left: 70px
+    color: #999
+    margin-top: 5px
+
+.related-internal-videos
+  .related-content
+    position:relative
+  .thumbnail
+    position: absolute
+    top: 10px
+    left: 10px
+
+#share
+  .formrow
+    width: 340px
+    display: inline-block
+    vertical-align: top
+  input, textarea
+    background: #eee
+    border: 1px solid #ccc
+    color: #333
+  input:focus, textarea:focus
+    background: #ddd
+  .video-share-field, .video-embed-code
+    display: block
+    width: 300px
+    margin: 5px 0 10px 0
+    padding: 10px
+  .video-embed-code
+    height: 60px
+
+//
+// Video listing page
+//
+
+#videos-sidebar
+  float: left
+  width: 200px
+  .title
+    font-weight: bold
+    color: #666
+    border-bottom: 1px solid #666
+    margin-top: 10px
+  .topic-list
+    margin-bottom: 10px
+    padding-left: 10px
+    li
+      margin: 5px 0px
+      background: #fff
+      //border: 1px solid #ddd
+      padding: 5px 10px
+      border-radius: $corner-radius
+      box-shadow: $main-shadow
+#videos-page #videos-index
+  margin-left: 210px
+#videos-index:after
+  content: "."
+  display: block
+  height: 0
+  clear: both
+  zoom: 1
+  visibility: hidden
+
+//
+// Topic listing page
+//
+
+.related-content-description
+  overflow: auto
+  max-height: 80px
+  padding: 5px
+  margin-top: 5px
+
+//
+// Topic page specific styles
+//
+
+#topic-page
+  table
+    margin-top: 10px
+  thead
+    font-weight: bold
+    background: #efefef
+    td
+      border-top: 1px solid #ccc
+    th
+      border-top: 1px solid #999
+  td
+    padding: 10px
+    border-bottom: 1px solid #ccc
+  th
+    background: #ccc
+    padding: 10px
+    border-bottom: 1px solid #999
+  li
+    list-style: square
+  h1
+    font-size: 200%
+    font-weight: normal
+    color: #666
+    border-top: 1px dotted #666
+    padding: 5px 0 0 0
+
+//
+// Search page specific styles
+//
+
+#search-results-topics, #search-results-videos, #search-results-external
+  margin-top: 10px
+  background: white
+  border: 1px solid #ccc
+  padding: 10px
+  clear: both
+  border-radius: $corner-radius
+  h1
+    border-bottom: 1px dotted #666
+    margin: 0px 0 5px 0
+    font-size: 150%
+  h2
+    font-size: 120%
+    font-weight: bold
+    margin-top: 10px
+  .video
+    margin: 10px 0
+  ul
+    margin-bottom: 10px
+  li
+    list-style: square
+    margin-top: 5px
+    
+#search-results-videos
+  .video
+    background: #eee
+    h3
+      font-weight: bold
+      margin: 10px 0 5px 170px
+    ul
+      padding-left: 190px
+
+.limited-list-show-more
+  display:none

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <% @videos.each do |video| %>
+   <url>
+     <loc><%= video_url(video.permalink) %></loc>
+     <video:video>
+       <% if video.thumbnail.present? %>
+       <video:thumbnail_loc><%= thumbnail_url(video.thumbnail, :width => 480, :height => 360, :format => :jpg) %></video:thumbnail_loc>
+       <% end %>
+       <video:title><%= truncate(video.name, :length => 100) %></video:title>
+       <video:description><%= truncate(video.description, :length => 2048) %></video:description>
+       <video:player_loc><%= swf_video_url(video.permalink) %></video:player_loc>
+       <video:duration><%= video.duration %></video:duration>
+       <video:publication_date><%= video.published_at.iso8601 %></video:publication_date>
+       <% # TODO: live (active && !deleted) topics only, without join to video_segments (OPTIMIZATION) %>
+       <% video.topics.public.order('score DESC').limit(32).each do |topic| %>
+       <video:tag><%= topic.name %></video:tag>
+       <% end %>
+     </video:video>
+   </url>
+  <% end %>
+</urlset>

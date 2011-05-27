@@ -1,0 +1,24 @@
+- options = APP_CONFIG[:video][:admin_player]
+- url = video_file.present? ? video_file.download_url || video_file.url : nil
+
+.video-player.object-video-player{:class => "#{url.present? ? 'state-video-present' : nil}"}
+  %div.video-file-not-present
+    No media present.
+  %div.video-file-video{:id => video_file.video_id}
+    - video_player_id = "video-player-#{video_file.key}"
+
+    - if video_file.media_type.to_sym == :youtube
+      -# YouTube video player
+      - if video_file.url.blank?
+        - url = ''
+      - else
+        - youtube_id = video_file.parse_youtube_id(video_file.url) rescue ''
+      = render :partial => 'admin/videos/video_player_youtube', :locals => {:youtube_id => youtube_id,
+        :video_player_id => video_player_id,
+        :width => options[:width], :height => options[:height], :id => "#{options[:id]}-#{video_file.key}"}
+
+    - else
+      -# Internal video player
+      = render :partial => 'admin/videos/video_player_internal', :locals => { |
+      :options => options, :video_file => video_file || nil, :video_player_id => video_player_id, |
+      :width => options[:width], :height => options[:height], :id => "#{options[:id]}-#{video_file.key}"} |

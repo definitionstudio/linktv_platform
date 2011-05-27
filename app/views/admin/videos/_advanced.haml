@@ -1,0 +1,7 @@
+%p Note: This tab is only seen by users with super_admin permissions.
+
+%dl
+  %dt Formatted Server Transcript Text:
+  %dd
+    .video-transcript-text.standard-padding
+      != @video.transcript_text.blank? ? "None" : Transcript.markup(@video.transcript_text)

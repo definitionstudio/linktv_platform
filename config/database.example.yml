@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  database: linktv_platform_development
+  encoding: utf8
+  username: dbDevUser
+  password: dbDevPass
+
+test:
+  adapter: mysql
+  database: linktv_platform_test
+  encoding: utf8
+  username: dbTestUser
+  password: dbTestPass
+
+production:
+  adapter: mysql
+  database: linktv_platform_production
+  encoding: utf8
+  username: dbProdUser
+  password: dbProdPass

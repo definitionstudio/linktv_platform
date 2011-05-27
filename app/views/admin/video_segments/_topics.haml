@@ -1,0 +1,70 @@
+- inputs_disabled = 'disabled' if is_model
+%table.segment-topics-divider.operation-context
+  %tr
+    %td.segment-topics
+      %table.segment-topics-table.bottom-margin
+        %thead
+          %tr
+            %th.topic Topic
+            %th.score Weight
+            %th.actions
+        %tbody.segment-topics-body.current-segment-topics
+          -# Dummy row to ensure the body tag exists in the DOM
+          %tr{:style => 'display: none'}
+            %td{:colspan => 3}
+          -# Render the collection of topic_video_segments
+          - unless is_model
+            - segment_form.fields_for :topic_video_segments, topic_video_segments do |topic_video_segment_form|
+              = render :partial => 'admin/video_segments/topic_row',
+                :locals => {:topic_video_segment_form => topic_video_segment_form,
+                :topic_video_segment => topic_video_segment_form.object}
+        -# Loading row to be shown when loading new rows via ajax
+        %tbody.loader{:style => 'display: none'}
+          %tr
+            %td{:colspan => 3}
+              = loading_html
+      %ul.subtitle.bottom-margin
+        %li Weight of zero tags a segment without including the topic in queries.
+        %li Weight of -1 filters content with the topic.
+        %li<
+          Weight of
+          = APP_CONFIG[:apis][:config][:emphasis_threshold]
+          or higher gives high priority and/or topic must be present in external content.
+
+      %button.button.add-topic{:value => 'create_external_content', :title => "Create a new topic, or add an association to topic already in the database.", :onclick => 'return false'}
+        = icon :'icon-add icon-margin-right'
+        Add New Topic
+    %td.segment-suggested-topics
+      .segment-suggested-topics
+        .ajax-context.bottom-margin
+          = render :partial => 'admin/video_segments/suggested_topics_list',
+            :locals => {:video_segment => video_segment, :topic_video_segments => []}
+        .video-segment-has-transcript
+          %a.button.global-handler.query-topics{:href => suggested_topics_admin_video_segments_path, :title => "Submit transcript to entity extraction API's", :onclick => 'return false'}
+            = icon :'icon-query icon-margin-right'
+            Query Suggested Topics
+        .video-segment-has-no-transcript
+          %a.button.global-handler.state-disabled.query-topics{:href => suggested_topics_admin_video_segments_path, :onclick => 'return false', :title => "Once the segment's Details panel contains a transcript, the Query Suggested Topics function will be available."}
+            = icon :'icon-query icon-margin-right'
+            Query Suggested Topics
+        .clear
+        %br
+        %dl
+          %dt{:title => "Keywords obtained from the original video source feed"} Source-provided keywords for video:
+          %dd
+            %ul.inline-keyword-list
+              - if imported_video_keywords.nil? || imported_video_keywords.empty?
+                None
+              - else
+                - imported_video_keywords.each do |keyword|
+                  %li
+                    %span.object-suggested-keyword{:data => {:name => keyword}}
+                      %a.inline-suggested-keyword{:href => '#', :title => 'Add this keyword as a new topic'}><
+                        = keyword
+        %dl
+          %dt{:title => "Topics that are associated with any video segments from the same video"} Topics from all segments:
+          %dd
+            .video-topics-list
+              = render :partial => 'admin/video_segments/video_topics', :locals => { |
+                :video_topics => video_topics, |
+                :segment_form => segment_form} |

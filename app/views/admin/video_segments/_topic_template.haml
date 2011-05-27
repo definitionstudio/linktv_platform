@@ -1,0 +1,18 @@
+- disabled ||= false
+-# Container with a dummy table containing only the row that is ready to be copied into the topics table
+.segment-topic-template{:style => 'display: none'}
+  - topic = topic_video_segment.topic
+  - if topic.new_record?
+    - fields_for :topic, topic do |topic_form|
+      - index = unique_index
+      = topic_form.hidden_field :id, :id => "topic_id_#{index}", :value => nil, :disabled => disabled
+      = topic_form.hidden_field :active, :id => "topic_active_#{index}", :disabled => disabled
+      = topic_form.hidden_field :name, :class => 'topic-name', :id => "topic_name_#{index}", :disabled => disabled
+      - unless topic.entity_identifiers.empty?
+        - topic_form.fields_for :entity_identifiers, topic.entity_identifiers do |ident_form|
+          = ident_form.hidden_field :entity_db_id, :disabled => disabled
+          = ident_form.hidden_field :identifier, :disabled => disabled
+  - else
+    %table
+      = render :partial => 'admin/video_segments/topic_row.haml', :locals => {:disabled => disabled,
+        :topic_video_segment => topic_video_segment, :topic_video_segment_form => topic_video_segment_form}

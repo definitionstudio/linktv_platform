@@ -1,0 +1,97 @@
+.object-add-new-topic
+  %table.new-topic-table.standard
+    %tbody
+      %tr
+        %th
+          = form.label :name, 'Topic Name:'
+        %td= form.text_field :name, :class => 'topic-name', :size => 60, :autocomplete => 'off'
+      %tr
+        %th
+        %td.subtitle
+          Be sure to use a name that is easy to distinguish from other similarly-named topics.
+      - if @allow_existing_topics
+        %tr
+          %th Existing&nbsp;Topics:
+          %td.topic-chooser
+            .p.matching-topics
+              .ajax-loading= loading_html
+              .ajax-content= render :partial => 'admin/topics/matching_topics', :locals => {:topics => @matching_topics}
+            %p
+              = radio_button_tag 'topic_id', ''
+              %label{:for => 'topic_id_'} Create new topic
+      %tr
+        %th
+          = form.label :is_featured, 'Featured Topic:'
+        %td
+          = form.check_box :is_featured
+      - if @using_active_scaffold.present?
+        %tr
+          %th
+            = form.label :active, 'Active:'
+          %td
+            = form.check_box :active
+        - if @topic.deleted
+          %tr
+            %th
+              = form.label :deleted, 'Deleted:'
+            %td
+              = form.check_box :deleted
+      - else
+        = form.hidden_field :active, :value => 1
+    %tbody.show-when-state-new-topic
+      %tr
+        %th
+          = form.label :description, 'Topic Description:'
+          %br
+          %span.subtitle (optional)
+        %td= form.text_area :description, :rows => 3, :cols => 50
+      %tr
+        %th
+        %td.subtitle
+          Description text will be populated automatically when associated with Named Entities (below)
+    %tbody{:class => ('show-when-state-new-topic' if @allow_existing_topics)}
+      %tr
+        %th.border{:colspan => 2} &nbsp;
+      %tr
+        %th
+          Linked Data:
+        %td
+          - unassigned_entity_dbs = []
+          - @topic.entity_identifiers.each do |ident|
+            - unassigned_entity_dbs << ident.entity_db if ident.new_record?
+          = select_tag :entity_db_id, options_from_collection_for_select(unassigned_entity_dbs, 'id', 'name'), :class => 'entity-db-id'
+          %a.add-disambiguation{:href => '#'}
+            = icon :'icon-add'
+            Add
+          -#= render :partial => 'admin/topics/new', :locals => {:form => form}
+      - form.fields_for :entity_identifiers, @topic.entity_identifiers do |ident_form|
+        - ident = ident_form.object
+        - css_class = "disambiguator-#{ident.entity_db.name.downcase} disambiguator-entity-db-id-#{ident.entity_db.id}"
+        %tbody.disambiguator.object-entity-db{:data => {:id => ident.entity_db.id}, :class => css_class, :style => "#{ident.new_record? ? 'display: none' : nil}"}
+          %tr
+            %td
+            %td &nbsp;
+          %tr
+            %th.border= "#{ident.entity_db.name}"
+            %td
+              %a.icon.img.delete-disambiguation{:href => '#'}
+                = icon :'icon-delete'
+                Delete
+          = render :partial => "admin/entity_dbs/disambiguator_#{ident.entity_db.name.downcase}",
+            :locals => {:form => ident_form, :topic_name => @topic.name}
+          %tr
+            %td
+            %td &nbsp;
+    - unless @using_active_scaffold || nil
+      %tbody.footer
+        %tr
+          %td &nbsp
+          %td
+        %tr
+          %th
+          %td.buttons
+            -# TODO Note: Ok button might be doing a create, or might be provisionally associating an existing topic.
+            -# Save is not the right verb. Probably should dynamically change the button title.
+            - unless @active_scaffold
+              %input.button.submit{:type => :submit, :value => 'Create', :name => :commit}
+              %button.button.cancel{:value => 'cancel', :onclick => 'return false'} Cancel

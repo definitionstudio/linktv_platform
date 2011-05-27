@@ -1,0 +1,1913 @@
+---
+234:
+  name: Virgin Islands, U.s.
+  created_at:
+  updated_at:
+  id: 234
+  iso3166_1_numeric: 850
+  iso3166_1_alpha_2: VI
+  iso3166_1_alpha_3: VIR
+33:
+  name: Bulgaria
+  created_at:
+  updated_at:
+  id: 33
+  iso3166_1_numeric: 100
+  iso3166_1_alpha_2: BG
+  iso3166_1_alpha_3: BGR
+100:
+  name: Indonesia
+  created_at:
+  updated_at:
+  id: 100
+  iso3166_1_numeric: 360
+  iso3166_1_alpha_2: ID
+  iso3166_1_alpha_3: IDN
+167:
+  name: Paraguay
+  created_at:
+  updated_at:
+  id: 167
+  iso3166_1_numeric: 600
+  iso3166_1_alpha_2: PY
+  iso3166_1_alpha_3: PRY
+201:
+  name: Sudan
+  created_at:
+  updated_at:
+  id: 201
+  iso3166_1_numeric: 736
+  iso3166_1_alpha_2: SD
+  iso3166_1_alpha_3: SDN
+67:
+  name: Estonia
+  created_at:
+  updated_at:
+  id: 67
+  iso3166_1_numeric: 233
+  iso3166_1_alpha_2: EE
+  iso3166_1_alpha_3: EST
+134:
+  name: Martinique
+  created_at:
+  updated_at:
+  id: 134
+  iso3166_1_numeric: 474
+  iso3166_1_alpha_2: MQ
+  iso3166_1_alpha_3: MTQ
+235:
+  name: Wallis and Futuna
+  created_at:
+  updated_at:
+  id: 235
+  iso3166_1_numeric: 876
+  iso3166_1_alpha_2: WF
+  iso3166_1_alpha_3: WLF
+34:
+  name: Burkina Faso
+  created_at:
+  updated_at:
+  id: 34
+  iso3166_1_numeric: 854
+  iso3166_1_alpha_2: BF
+  iso3166_1_alpha_3: BFA
+101:
+  name: Iran, Islamic Republic of
+  created_at:
+  updated_at:
+  id: 101
+  iso3166_1_numeric: 364
+  iso3166_1_alpha_2: IR
+  iso3166_1_alpha_3: IRN
+168:
+  name: Peru
+  created_at:
+  updated_at:
+  id: 168
+  iso3166_1_numeric: 604
+  iso3166_1_alpha_2: PE
+  iso3166_1_alpha_3: PER
+202:
+  name: Suriname
+  created_at:
+  updated_at:
+  id: 202
+  iso3166_1_numeric: 740
+  iso3166_1_alpha_2: SR
+  iso3166_1_alpha_3: SUR
+68:
+  name: Ethiopia
+  created_at:
+  updated_at:
+  id: 68
+  iso3166_1_numeric: 231
+  iso3166_1_alpha_2: ET
+  iso3166_1_alpha_3: ETH
+135:
+  name: Mauritania
+  created_at:
+  updated_at:
+  id: 135
+  iso3166_1_numeric: 478
+  iso3166_1_alpha_2: MR
+  iso3166_1_alpha_3: MRT
+1:
+  name: Afghanistan
+  created_at:
+  updated_at:
+  id: 1
+  iso3166_1_numeric: 4
+  iso3166_1_alpha_2: AF
+  iso3166_1_alpha_3: AFG
+236:
+  name: Western Sahara
+  created_at:
+  updated_at:
+  id: 236
+  iso3166_1_numeric: 732
+  iso3166_1_alpha_2: EH
+  iso3166_1_alpha_3: ESH
+35:
+  name: Burundi
+  created_at:
+  updated_at:
+  id: 35
+  iso3166_1_numeric: 108
+  iso3166_1_alpha_2: BI
+  iso3166_1_alpha_3: BDI
+102:
+  name: Iraq
+  created_at:
+  updated_at:
+  id: 102
+  iso3166_1_numeric: 368
+  iso3166_1_alpha_2: IQ
+  iso3166_1_alpha_3: IRQ
+169:
+  name: Philippines
+  created_at:
+  updated_at:
+  id: 169
+  iso3166_1_numeric: 608
+  iso3166_1_alpha_2: PH
+  iso3166_1_alpha_3: PHL
+69:
+  name: Falkland Islands (Malvinas)
+  created_at:
+  updated_at:
+  id: 69
+  iso3166_1_numeric: 238
+  iso3166_1_alpha_2: FK
+  iso3166_1_alpha_3: FLK
+136:
+  name: Mauritius
+  created_at:
+  updated_at:
+  id: 136
+  iso3166_1_numeric: 480
+  iso3166_1_alpha_2: MU
+  iso3166_1_alpha_3: MUS
+2:
+  name: Albania
+  created_at:
+  updated_at:
+  id: 2
+  iso3166_1_numeric: 8
+  iso3166_1_alpha_2: AL
+  iso3166_1_alpha_3: ALB
+203:
+  name: Svalbard and Jan Mayen
+  created_at:
+  updated_at:
+  id: 203
+  iso3166_1_numeric: 744
+  iso3166_1_alpha_2: SJ
+  iso3166_1_alpha_3: SJM
+237:
+  name: Yemen
+  created_at:
+  updated_at:
+  id: 237
+  iso3166_1_numeric: 887
+  iso3166_1_alpha_2: YE
+  iso3166_1_alpha_3: YEM
+36:
+  name: Cambodia
+  created_at:
+  updated_at:
+  id: 36
+  iso3166_1_numeric: 116
+  iso3166_1_alpha_2: KH
+  iso3166_1_alpha_3: KHM
+103:
+  name: Ireland
+  created_at:
+  updated_at:
+  id: 103
+  iso3166_1_numeric: 372
+  iso3166_1_alpha_2: IE
+  iso3166_1_alpha_3: IRL
+170:
+  name: Pitcairn
+  created_at:
+  updated_at:
+  id: 170
+  iso3166_1_numeric: 612
+  iso3166_1_alpha_2: PN
+  iso3166_1_alpha_3: PCN
+70:
+  name: Faroe Islands
+  created_at:
+  updated_at:
+  id: 70
+  iso3166_1_numeric: 234
+  iso3166_1_alpha_2: FO
+  iso3166_1_alpha_3: FRO
+137:
+  name: Mayotte
+  created_at:
+  updated_at:
+  id: 137
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: YT
+  iso3166_1_alpha_3:
+3:
+  name: Algeria
+  created_at:
+  updated_at:
+  id: 3
+  iso3166_1_numeric: 12
+  iso3166_1_alpha_2: DZ
+  iso3166_1_alpha_3: DZA
+204:
+  name: Swaziland
+  created_at:
+  updated_at:
+  id: 204
+  iso3166_1_numeric: 748
+  iso3166_1_alpha_2: SZ
+  iso3166_1_alpha_3: SWZ
+238:
+  name: Zambia
+  created_at:
+  updated_at:
+  id: 238
+  iso3166_1_numeric: 894
+  iso3166_1_alpha_2: ZM
+  iso3166_1_alpha_3: ZMB
+104:
+  name: Israel
+  created_at:
+  updated_at:
+  id: 104
+  iso3166_1_numeric: 376
+  iso3166_1_alpha_2: IL
+  iso3166_1_alpha_3: ISR
+171:
+  name: Poland
+  created_at:
+  updated_at:
+  id: 171
+  iso3166_1_numeric: 616
+  iso3166_1_alpha_2: PL
+  iso3166_1_alpha_3: POL
+37:
+  name: Cameroon
+  created_at:
+  updated_at:
+  id: 37
+  iso3166_1_numeric: 120
+  iso3166_1_alpha_2: CM
+  iso3166_1_alpha_3: CMR
+71:
+  name: Fiji
+  created_at:
+  updated_at:
+  id: 71
+  iso3166_1_numeric: 242
+  iso3166_1_alpha_2: FJ
+  iso3166_1_alpha_3: FJI
+138:
+  name: Mexico
+  created_at:
+  updated_at:
+  id: 138
+  iso3166_1_numeric: 484
+  iso3166_1_alpha_2: MX
+  iso3166_1_alpha_3: MEX
+4:
+  name: American Samoa
+  created_at:
+  updated_at:
+  id: 4
+  iso3166_1_numeric: 16
+  iso3166_1_alpha_2: AS
+  iso3166_1_alpha_3: ASM
+205:
+  name: Sweden
+  created_at:
+  updated_at:
+  id: 205
+  iso3166_1_numeric: 752
+  iso3166_1_alpha_2: SE
+  iso3166_1_alpha_3: SWE
+239:
+  name: Zimbabwe
+  created_at:
+  updated_at:
+  id: 239
+  iso3166_1_numeric: 716
+  iso3166_1_alpha_2: ZW
+  iso3166_1_alpha_3: ZWE
+105:
+  name: Italy
+  created_at:
+  updated_at:
+  id: 105
+  iso3166_1_numeric: 380
+  iso3166_1_alpha_2: IT
+  iso3166_1_alpha_3: ITA
+172:
+  name: Portugal
+  created_at:
+  updated_at:
+  id: 172
+  iso3166_1_numeric: 620
+  iso3166_1_alpha_2: PT
+  iso3166_1_alpha_3: PRT
+38:
+  name: Canada
+  created_at:
+  updated_at:
+  id: 38
+  iso3166_1_numeric: 124
+  iso3166_1_alpha_2: CA
+  iso3166_1_alpha_3: CAN
+72:
+  name: Finland
+  created_at:
+  updated_at:
+  id: 72
+  iso3166_1_numeric: 246
+  iso3166_1_alpha_2: FI
+  iso3166_1_alpha_3: FIN
+139:
+  name: Micronesia, Federated States of
+  created_at:
+  updated_at:
+  id: 139
+  iso3166_1_numeric: 583
+  iso3166_1_alpha_2: FM
+  iso3166_1_alpha_3: FSM
+5:
+  name: Andorra
+  created_at:
+  updated_at:
+  id: 5
+  iso3166_1_numeric: 20
+  iso3166_1_alpha_2: AD
+  iso3166_1_alpha_3: AND
+206:
+  name: Switzerland
+  created_at:
+  updated_at:
+  id: 206
+  iso3166_1_numeric: 756
+  iso3166_1_alpha_2: CH
+  iso3166_1_alpha_3: CHE
+106:
+  name: Jamaica
+  created_at:
+  updated_at:
+  id: 106
+  iso3166_1_numeric: 388
+  iso3166_1_alpha_2: JM
+  iso3166_1_alpha_3: JAM
+173:
+  name: Puerto Rico
+  created_at:
+  updated_at:
+  id: 173
+  iso3166_1_numeric: 630
+  iso3166_1_alpha_2: PR
+  iso3166_1_alpha_3: PRI
+39:
+  name: Cape Verde
+  created_at:
+  updated_at:
+  id: 39
+  iso3166_1_numeric: 132
+  iso3166_1_alpha_2: CV
+  iso3166_1_alpha_3: CPV
+73:
+  name: France
+  created_at:
+  updated_at:
+  id: 73
+  iso3166_1_numeric: 250
+  iso3166_1_alpha_2: FR
+  iso3166_1_alpha_3: FRA
+140:
+  name: Moldova, Republic of
+  created_at:
+  updated_at:
+  id: 140
+  iso3166_1_numeric: 498
+  iso3166_1_alpha_2: MD
+  iso3166_1_alpha_3: MDA
+6:
+  name: Angola
+  created_at:
+  updated_at:
+  id: 6
+  iso3166_1_numeric: 24
+  iso3166_1_alpha_2: AO
+  iso3166_1_alpha_3: AGO
+207:
+  name: Syrian Arab Republic
+  created_at:
+  updated_at:
+  id: 207
+  iso3166_1_numeric: 760
+  iso3166_1_alpha_2: SY
+  iso3166_1_alpha_3: SYR
+107:
+  name: Japan
+  created_at:
+  updated_at:
+  id: 107
+  iso3166_1_numeric: 392
+  iso3166_1_alpha_2: JP
+  iso3166_1_alpha_3: JPN
+174:
+  name: Qatar
+  created_at:
+  updated_at:
+  id: 174
+  iso3166_1_numeric: 634
+  iso3166_1_alpha_2: QA
+  iso3166_1_alpha_3: QAT
+40:
+  name: Cayman Islands
+  created_at:
+  updated_at:
+  id: 40
+  iso3166_1_numeric: 136
+  iso3166_1_alpha_2: KY
+  iso3166_1_alpha_3: CYM
+141:
+  name: Monaco
+  created_at:
+  updated_at:
+  id: 141
+  iso3166_1_numeric: 492
+  iso3166_1_alpha_2: MC
+  iso3166_1_alpha_3: MCO
+7:
+  name: Anguilla
+  created_at:
+  updated_at:
+  id: 7
+  iso3166_1_numeric: 660
+  iso3166_1_alpha_2: AI
+  iso3166_1_alpha_3: AIA
+208:
+  name: Taiwan, Province of China
+  created_at:
+  updated_at:
+  id: 208
+  iso3166_1_numeric: 158
+  iso3166_1_alpha_2: TW
+  iso3166_1_alpha_3: TWN
+74:
+  name: French Guiana
+  created_at:
+  updated_at:
+  id: 74
+  iso3166_1_numeric: 254
+  iso3166_1_alpha_2: GF
+  iso3166_1_alpha_3: GUF
+108:
+  name: Jordan
+  created_at:
+  updated_at:
+  id: 108
+  iso3166_1_numeric: 400
+  iso3166_1_alpha_2: JO
+  iso3166_1_alpha_3: JOR
+175:
+  name: Reunion
+  created_at:
+  updated_at:
+  id: 175
+  iso3166_1_numeric: 638
+  iso3166_1_alpha_2: RE
+  iso3166_1_alpha_3: REU
+41:
+  name: Central African Republic
+  created_at:
+  updated_at:
+  id: 41
+  iso3166_1_numeric: 140
+  iso3166_1_alpha_2: CF
+  iso3166_1_alpha_3: CAF
+142:
+  name: Mongolia
+  created_at:
+  updated_at:
+  id: 142
+  iso3166_1_numeric: 496
+  iso3166_1_alpha_2: MN
+  iso3166_1_alpha_3: MNG
+8:
+  name: Antarctica
+  created_at:
+  updated_at:
+  id: 8
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: AQ
+  iso3166_1_alpha_3:
+209:
+  name: Tajikistan
+  created_at:
+  updated_at:
+  id: 209
+  iso3166_1_numeric: 762
+  iso3166_1_alpha_2: TJ
+  iso3166_1_alpha_3: TJK
+75:
+  name: French Polynesia
+  created_at:
+  updated_at:
+  id: 75
+  iso3166_1_numeric: 258
+  iso3166_1_alpha_2: PF
+  iso3166_1_alpha_3: PYF
+109:
+  name: Kazakhstan
+  created_at:
+  updated_at:
+  id: 109
+  iso3166_1_numeric: 398
+  iso3166_1_alpha_2: KZ
+  iso3166_1_alpha_3: KAZ
+176:
+  name: Romania
+  created_at:
+  updated_at:
+  id: 176
+  iso3166_1_numeric: 642
+  iso3166_1_alpha_2: RO
+  iso3166_1_alpha_3: ROM
+42:
+  name: Chad
+  created_at:
+  updated_at:
+  id: 42
+  iso3166_1_numeric: 148
+  iso3166_1_alpha_2: TD
+  iso3166_1_alpha_3: TCD
+143:
+  name: Montserrat
+  created_at:
+  updated_at:
+  id: 143
+  iso3166_1_numeric: 500
+  iso3166_1_alpha_2: MS
+  iso3166_1_alpha_3: MSR
+9:
+  name: Antigua and Barbuda
+  created_at:
+  updated_at:
+  id: 9
+  iso3166_1_numeric: 28
+  iso3166_1_alpha_2: AG
+  iso3166_1_alpha_3: ATG
+210:
+  name: Tanzania, United Republic of
+  created_at:
+  updated_at:
+  id: 210
+  iso3166_1_numeric: 834
+  iso3166_1_alpha_2: TZ
+  iso3166_1_alpha_3: TZA
+76:
+  name: French Southern Territories
+  created_at:
+  updated_at:
+  id: 76
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: TF
+  iso3166_1_alpha_3:
+110:
+  name: Kenya
+  created_at:
+  updated_at:
+  id: 110
+  iso3166_1_numeric: 404
+  iso3166_1_alpha_2: KE
+  iso3166_1_alpha_3: KEN
+177:
+  name: Russian Federation
+  created_at:
+  updated_at:
+  id: 177
+  iso3166_1_numeric: 643
+  iso3166_1_alpha_2: RU
+  iso3166_1_alpha_3: RUS
+43:
+  name: Chile
+  created_at:
+  updated_at:
+  id: 43
+  iso3166_1_numeric: 152
+  iso3166_1_alpha_2: CL
+  iso3166_1_alpha_3: CHL
+144:
+  name: Morocco
+  created_at:
+  updated_at:
+  id: 144
+  iso3166_1_numeric: 504
+  iso3166_1_alpha_2: MA
+  iso3166_1_alpha_3: MAR
+10:
+  name: Argentina
+  created_at:
+  updated_at:
+  id: 10
+  iso3166_1_numeric: 32
+  iso3166_1_alpha_2: AR
+  iso3166_1_alpha_3: ARG
+211:
+  name: Thailand
+  created_at:
+  updated_at:
+  id: 211
+  iso3166_1_numeric: 764
+  iso3166_1_alpha_2: TH
+  iso3166_1_alpha_3: THA
+77:
+  name: Gabon
+  created_at:
+  updated_at:
+  id: 77
+  iso3166_1_numeric: 266
+  iso3166_1_alpha_2: GA
+  iso3166_1_alpha_3: GAB
+178:
+  name: Rwanda
+  created_at:
+  updated_at:
+  id: 178
+  iso3166_1_numeric: 646
+  iso3166_1_alpha_2: RW
+  iso3166_1_alpha_3: RWA
+44:
+  name: China
+  created_at:
+  updated_at:
+  id: 44
+  iso3166_1_numeric: 156
+  iso3166_1_alpha_2: CN
+  iso3166_1_alpha_3: CHN
+111:
+  name: Kiribati
+  created_at:
+  updated_at:
+  id: 111
+  iso3166_1_numeric: 296
+  iso3166_1_alpha_2: KI
+  iso3166_1_alpha_3: KIR
+145:
+  name: Mozambique
+  created_at:
+  updated_at:
+  id: 145
+  iso3166_1_numeric: 508
+  iso3166_1_alpha_2: MZ
+  iso3166_1_alpha_3: MOZ
+11:
+  name: Armenia
+  created_at:
+  updated_at:
+  id: 11
+  iso3166_1_numeric: 51
+  iso3166_1_alpha_2: AM
+  iso3166_1_alpha_3: ARM
+212:
+  name: Timor-Leste
+  created_at:
+  updated_at:
+  id: 212
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: TL
+  iso3166_1_alpha_3:
+78:
+  name: Gambia
+  created_at:
+  updated_at:
+  id: 78
+  iso3166_1_numeric: 270
+  iso3166_1_alpha_2: GM
+  iso3166_1_alpha_3: GMB
+179:
+  name: Saint Helena
+  created_at:
+  updated_at:
+  id: 179
+  iso3166_1_numeric: 654
+  iso3166_1_alpha_2: SH
+  iso3166_1_alpha_3: SHN
+45:
+  name: Christmas Island
+  created_at:
+  updated_at:
+  id: 45
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: CX
+  iso3166_1_alpha_3:
+112:
+  name: Korea, Democratic People's Republic of
+  created_at:
+  updated_at:
+  id: 112
+  iso3166_1_numeric: 408
+  iso3166_1_alpha_2: KP
+  iso3166_1_alpha_3: PRK
+146:
+  name: Myanmar
+  created_at:
+  updated_at:
+  id: 146
+  iso3166_1_numeric: 104
+  iso3166_1_alpha_2: MM
+  iso3166_1_alpha_3: MMR
+12:
+  name: Aruba
+  created_at:
+  updated_at:
+  id: 12
+  iso3166_1_numeric: 533
+  iso3166_1_alpha_2: AW
+  iso3166_1_alpha_3: ABW
+213:
+  name: Togo
+  created_at:
+  updated_at:
+  id: 213
+  iso3166_1_numeric: 768
+  iso3166_1_alpha_2: TG
+  iso3166_1_alpha_3: TGO
+79:
+  name: Georgia
+  created_at:
+  updated_at:
+  id: 79
+  iso3166_1_numeric: 268
+  iso3166_1_alpha_2: GE
+  iso3166_1_alpha_3: GEO
+180:
+  name: Saint Kitts and Nevis
+  created_at:
+  updated_at:
+  id: 180
+  iso3166_1_numeric: 659
+  iso3166_1_alpha_2: KN
+  iso3166_1_alpha_3: KNA
+46:
+  name: Cocos (Keeling) Islands
+  created_at:
+  updated_at:
+  id: 46
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: CC
+  iso3166_1_alpha_3:
+113:
+  name: Korea, Republic of
+  created_at:
+  updated_at:
+  id: 113
+  iso3166_1_numeric: 410
+  iso3166_1_alpha_2: KR
+  iso3166_1_alpha_3: KOR
+147:
+  name: Namibia
+  created_at:
+  updated_at:
+  id: 147
+  iso3166_1_numeric: 516
+  iso3166_1_alpha_2: NA
+  iso3166_1_alpha_3: NAM
+13:
+  name: Australia
+  created_at:
+  updated_at:
+  id: 13
+  iso3166_1_numeric: 36
+  iso3166_1_alpha_2: AU
+  iso3166_1_alpha_3: AUS
+214:
+  name: Tokelau
+  created_at:
+  updated_at:
+  id: 214
+  iso3166_1_numeric: 772
+  iso3166_1_alpha_2: TK
+  iso3166_1_alpha_3: TKL
+80:
+  name: Germany
+  created_at:
+  updated_at:
+  id: 80
+  iso3166_1_numeric: 276
+  iso3166_1_alpha_2: DE
+  iso3166_1_alpha_3: DEU
+181:
+  name: Saint Lucia
+  created_at:
+  updated_at:
+  id: 181
+  iso3166_1_numeric: 662
+  iso3166_1_alpha_2: LC
+  iso3166_1_alpha_3: LCA
+47:
+  name: Colombia
+  created_at:
+  updated_at:
+  id: 47
+  iso3166_1_numeric: 170
+  iso3166_1_alpha_2: CO
+  iso3166_1_alpha_3: COL
+114:
+  name: Kuwait
+  created_at:
+  updated_at:
+  id: 114
+  iso3166_1_numeric: 414
+  iso3166_1_alpha_2: KW
+  iso3166_1_alpha_3: KWT
+14:
+  name: Austria
+  created_at:
+  updated_at:
+  id: 14
+  iso3166_1_numeric: 40
+  iso3166_1_alpha_2: AT
+  iso3166_1_alpha_3: AUT
+215:
+  name: Tonga
+  created_at:
+  updated_at:
+  id: 215
+  iso3166_1_numeric: 776
+  iso3166_1_alpha_2: TO
+  iso3166_1_alpha_3: TON
+81:
+  name: Ghana
+  created_at:
+  updated_at:
+  id: 81
+  iso3166_1_numeric: 288
+  iso3166_1_alpha_2: GH
+  iso3166_1_alpha_3: GHA
+148:
+  name: Nauru
+  created_at:
+  updated_at:
+  id: 148
+  iso3166_1_numeric: 520
+  iso3166_1_alpha_2: NR
+  iso3166_1_alpha_3: NRU
+182:
+  name: Saint Pierre and Miquelon
+  created_at:
+  updated_at:
+  id: 182
+  iso3166_1_numeric: 666
+  iso3166_1_alpha_2: PM
+  iso3166_1_alpha_3: SPM
+48:
+  name: Comoros
+  created_at:
+  updated_at:
+  id: 48
+  iso3166_1_numeric: 174
+  iso3166_1_alpha_2: KM
+  iso3166_1_alpha_3: COM
+115:
+  name: Kyrgyzstan
+  created_at:
+  updated_at:
+  id: 115
+  iso3166_1_numeric: 417
+  iso3166_1_alpha_2: KG
+  iso3166_1_alpha_3: KGZ
+15:
+  name: Azerbaijan
+  created_at:
+  updated_at:
+  id: 15
+  iso3166_1_numeric: 31
+  iso3166_1_alpha_2: AZ
+  iso3166_1_alpha_3: AZE
+216:
+  name: Trinidad and Tobago
+  created_at:
+  updated_at:
+  id: 216
+  iso3166_1_numeric: 780
+  iso3166_1_alpha_2: TT
+  iso3166_1_alpha_3: TTO
+82:
+  name: Gibraltar
+  created_at:
+  updated_at:
+  id: 82
+  iso3166_1_numeric: 292
+  iso3166_1_alpha_2: GI
+  iso3166_1_alpha_3: GIB
+149:
+  name: Nepal
+  created_at:
+  updated_at:
+  id: 149
+  iso3166_1_numeric: 524
+  iso3166_1_alpha_2: NP
+  iso3166_1_alpha_3: NPL
+183:
+  name: Saint Vincent and the Grenadines
+  created_at:
+  updated_at:
+  id: 183
+  iso3166_1_numeric: 670
+  iso3166_1_alpha_2: VC
+  iso3166_1_alpha_3: VCT
+49:
+  name: Congo
+  created_at:
+  updated_at:
+  id: 49
+  iso3166_1_numeric: 178
+  iso3166_1_alpha_2: CG
+  iso3166_1_alpha_3: COG
+116:
+  name: Lao People's Democratic Republic
+  created_at:
+  updated_at:
+  id: 116
+  iso3166_1_numeric: 418
+  iso3166_1_alpha_2: LA
+  iso3166_1_alpha_3: LAO
+16:
+  name: Bahamas
+  created_at:
+  updated_at:
+  id: 16
+  iso3166_1_numeric: 44
+  iso3166_1_alpha_2: BS
+  iso3166_1_alpha_3: BHS
+217:
+  name: Tunisia
+  created_at:
+  updated_at:
+  id: 217
+  iso3166_1_numeric: 788
+  iso3166_1_alpha_2: TN
+  iso3166_1_alpha_3: TUN
+83:
+  name: Greece
+  created_at:
+  updated_at:
+  id: 83
+  iso3166_1_numeric: 300
+  iso3166_1_alpha_2: GR
+  iso3166_1_alpha_3: GRC
+150:
+  name: Netherlands
+  created_at:
+  updated_at:
+  id: 150
+  iso3166_1_numeric: 528
+  iso3166_1_alpha_2: NL
+  iso3166_1_alpha_3: NLD
+184:
+  name: Samoa
+  created_at:
+  updated_at:
+  id: 184
+  iso3166_1_numeric: 882
+  iso3166_1_alpha_2: WS
+  iso3166_1_alpha_3: WSM
+50:
+  name: Congo, the Democratic Republic of the
+  created_at:
+  updated_at:
+  id: 50
+  iso3166_1_numeric: 180
+  iso3166_1_alpha_2: CD
+  iso3166_1_alpha_3: COD
+117:
+  name: Latvia
+  created_at:
+  updated_at:
+  id: 117
+  iso3166_1_numeric: 428
+  iso3166_1_alpha_2: LV
+  iso3166_1_alpha_3: LVA
+17:
+  name: Bahrain
+  created_at:
+  updated_at:
+  id: 17
+  iso3166_1_numeric: 48
+  iso3166_1_alpha_2: BH
+  iso3166_1_alpha_3: BHR
+218:
+  name: Turkey
+  created_at:
+  updated_at:
+  id: 218
+  iso3166_1_numeric: 792
+  iso3166_1_alpha_2: TR
+  iso3166_1_alpha_3: TUR
+84:
+  name: Greenland
+  created_at:
+  updated_at:
+  id: 84
+  iso3166_1_numeric: 304
+  iso3166_1_alpha_2: GL
+  iso3166_1_alpha_3: GRL
+151:
+  name: Netherlands Antilles
+  created_at:
+  updated_at:
+  id: 151
+  iso3166_1_numeric: 530
+  iso3166_1_alpha_2: AN
+  iso3166_1_alpha_3: ANT
+51:
+  name: Cook Islands
+  created_at:
+  updated_at:
+  id: 51
+  iso3166_1_numeric: 184
+  iso3166_1_alpha_2: CK
+  iso3166_1_alpha_3: COK
+118:
+  name: Lebanon
+  created_at:
+  updated_at:
+  id: 118
+  iso3166_1_numeric: 422
+  iso3166_1_alpha_2: LB
+  iso3166_1_alpha_3: LBN
+185:
+  name: San Marino
+  created_at:
+  updated_at:
+  id: 185
+  iso3166_1_numeric: 674
+  iso3166_1_alpha_2: SM
+  iso3166_1_alpha_3: SMR
+219:
+  name: Turkmenistan
+  created_at:
+  updated_at:
+  id: 219
+  iso3166_1_numeric: 795
+  iso3166_1_alpha_2: TM
+  iso3166_1_alpha_3: TKM
+85:
+  name: Grenada
+  created_at:
+  updated_at:
+  id: 85
+  iso3166_1_numeric: 308
+  iso3166_1_alpha_2: GD
+  iso3166_1_alpha_3: GRD
+152:
+  name: New Caledonia
+  created_at:
+  updated_at:
+  id: 152
+  iso3166_1_numeric: 540
+  iso3166_1_alpha_2: NC
+  iso3166_1_alpha_3: NCL
+18:
+  name: Bangladesh
+  created_at:
+  updated_at:
+  id: 18
+  iso3166_1_numeric: 50
+  iso3166_1_alpha_2: BD
+  iso3166_1_alpha_3: BGD
+52:
+  name: Costa Rica
+  created_at:
+  updated_at:
+  id: 52
+  iso3166_1_numeric: 188
+  iso3166_1_alpha_2: CR
+  iso3166_1_alpha_3: CRI
+119:
+  name: Lesotho
+  created_at:
+  updated_at:
+  id: 119
+  iso3166_1_numeric: 426
+  iso3166_1_alpha_2: LS
+  iso3166_1_alpha_3: LSO
+186:
+  name: Sao Tome and Principe
+  created_at:
+  updated_at:
+  id: 186
+  iso3166_1_numeric: 678
+  iso3166_1_alpha_2: ST
+  iso3166_1_alpha_3: STP
+220:
+  name: Turks and Caicos Islands
+  created_at:
+  updated_at:
+  id: 220
+  iso3166_1_numeric: 796
+  iso3166_1_alpha_2: TC
+  iso3166_1_alpha_3: TCA
+86:
+  name: Guadeloupe
+  created_at:
+  updated_at:
+  id: 86
+  iso3166_1_numeric: 312
+  iso3166_1_alpha_2: GP
+  iso3166_1_alpha_3: GLP
+153:
+  name: New Zealand
+  created_at:
+  updated_at:
+  id: 153
+  iso3166_1_numeric: 554
+  iso3166_1_alpha_2: NZ
+  iso3166_1_alpha_3: NZL
+19:
+  name: Barbados
+  created_at:
+  updated_at:
+  id: 19
+  iso3166_1_numeric: 52
+  iso3166_1_alpha_2: BB
+  iso3166_1_alpha_3: BRB
+53:
+  name: Cote D'Ivoire
+  created_at:
+  updated_at:
+  id: 53
+  iso3166_1_numeric: 384
+  iso3166_1_alpha_2: CI
+  iso3166_1_alpha_3: CIV
+120:
+  name: Liberia
+  created_at:
+  updated_at:
+  id: 120
+  iso3166_1_numeric: 430
+  iso3166_1_alpha_2: LR
+  iso3166_1_alpha_3: LBR
+187:
+  name: Saudi Arabia
+  created_at:
+  updated_at:
+  id: 187
+  iso3166_1_numeric: 682
+  iso3166_1_alpha_2: SA
+  iso3166_1_alpha_3: SAU
+221:
+  name: Tuvalu
+  created_at:
+  updated_at:
+  id: 221
+  iso3166_1_numeric: 798
+  iso3166_1_alpha_2: TV
+  iso3166_1_alpha_3: TUV
+87:
+  name: Guam
+  created_at:
+  updated_at:
+  id: 87
+  iso3166_1_numeric: 316
+  iso3166_1_alpha_2: GU
+  iso3166_1_alpha_3: GUM
+154:
+  name: Nicaragua
+  created_at:
+  updated_at:
+  id: 154
+  iso3166_1_numeric: 558
+  iso3166_1_alpha_2: NI
+  iso3166_1_alpha_3: NIC
+20:
+  name: Belarus
+  created_at:
+  updated_at:
+  id: 20
+  iso3166_1_numeric: 112
+  iso3166_1_alpha_2: BY
+  iso3166_1_alpha_3: BLR
+54:
+  name: Croatia
+  created_at:
+  updated_at:
+  id: 54
+  iso3166_1_numeric: 191
+  iso3166_1_alpha_2: HR
+  iso3166_1_alpha_3: HRV
+121:
+  name: Libyan Arab Jamahiriya
+  created_at:
+  updated_at:
+  id: 121
+  iso3166_1_numeric: 434
+  iso3166_1_alpha_2: LY
+  iso3166_1_alpha_3: LBY
+188:
+  name: Senegal
+  created_at:
+  updated_at:
+  id: 188
+  iso3166_1_numeric: 686
+  iso3166_1_alpha_2: SN
+  iso3166_1_alpha_3: SEN
+88:
+  name: Guatemala
+  created_at:
+  updated_at:
+  id: 88
+  iso3166_1_numeric: 320
+  iso3166_1_alpha_2: GT
+  iso3166_1_alpha_3: GTM
+155:
+  name: Niger
+  created_at:
+  updated_at:
+  id: 155
+  iso3166_1_numeric: 562
+  iso3166_1_alpha_2: NE
+  iso3166_1_alpha_3: NER
+21:
+  name: Belgium
+  created_at:
+  updated_at:
+  id: 21
+  iso3166_1_numeric: 56
+  iso3166_1_alpha_2: BE
+  iso3166_1_alpha_3: BEL
+222:
+  name: Uganda
+  created_at:
+  updated_at:
+  id: 222
+  iso3166_1_numeric: 800
+  iso3166_1_alpha_2: UG
+  iso3166_1_alpha_3: UGA
+122:
+  name: Liechtenstein
+  created_at:
+  updated_at:
+  id: 122
+  iso3166_1_numeric: 438
+  iso3166_1_alpha_2: LI
+  iso3166_1_alpha_3: LIE
+189:
+  name: Serbia and Montenegro
+  created_at:
+  updated_at:
+  id: 189
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: CS
+  iso3166_1_alpha_3:
+55:
+  name: Cuba
+  created_at:
+  updated_at:
+  id: 55
+  iso3166_1_numeric: 192
+  iso3166_1_alpha_2: CU
+  iso3166_1_alpha_3: CUB
+223:
+  name: Ukraine
+  created_at:
+  updated_at:
+  id: 223
+  iso3166_1_numeric: 804
+  iso3166_1_alpha_2: UA
+  iso3166_1_alpha_3: UKR
+89:
+  name: Guinea
+  created_at:
+  updated_at:
+  id: 89
+  iso3166_1_numeric: 324
+  iso3166_1_alpha_2: GN
+  iso3166_1_alpha_3: GIN
+156:
+  name: Nigeria
+  created_at:
+  updated_at:
+  id: 156
+  iso3166_1_numeric: 566
+  iso3166_1_alpha_2: NG
+  iso3166_1_alpha_3: NGA
+22:
+  name: Belize
+  created_at:
+  updated_at:
+  id: 22
+  iso3166_1_numeric: 84
+  iso3166_1_alpha_2: BZ
+  iso3166_1_alpha_3: BLZ
+123:
+  name: Lithuania
+  created_at:
+  updated_at:
+  id: 123
+  iso3166_1_numeric: 440
+  iso3166_1_alpha_2: LT
+  iso3166_1_alpha_3: LTU
+190:
+  name: Seychelles
+  created_at:
+  updated_at:
+  id: 190
+  iso3166_1_numeric: 690
+  iso3166_1_alpha_2: SC
+  iso3166_1_alpha_3: SYC
+56:
+  name: Cyprus
+  created_at:
+  updated_at:
+  id: 56
+  iso3166_1_numeric: 196
+  iso3166_1_alpha_2: CY
+  iso3166_1_alpha_3: CYP
+224:
+  name: United Arab Emirates
+  created_at:
+  updated_at:
+  id: 224
+  iso3166_1_numeric: 784
+  iso3166_1_alpha_2: AE
+  iso3166_1_alpha_3: ARE
+90:
+  name: Guinea-Bissau
+  created_at:
+  updated_at:
+  id: 90
+  iso3166_1_numeric: 624
+  iso3166_1_alpha_2: GW
+  iso3166_1_alpha_3: GNB
+157:
+  name: Niue
+  created_at:
+  updated_at:
+  id: 157
+  iso3166_1_numeric: 570
+  iso3166_1_alpha_2: NU
+  iso3166_1_alpha_3: NIU
+23:
+  name: Benin
+  created_at:
+  updated_at:
+  id: 23
+  iso3166_1_numeric: 204
+  iso3166_1_alpha_2: BJ
+  iso3166_1_alpha_3: BEN
+124:
+  name: Luxembourg
+  created_at:
+  updated_at:
+  id: 124
+  iso3166_1_numeric: 442
+  iso3166_1_alpha_2: LU
+  iso3166_1_alpha_3: LUX
+191:
+  name: Sierra Leone
+  created_at:
+  updated_at:
+  id: 191
+  iso3166_1_numeric: 694
+  iso3166_1_alpha_2: SL
+  iso3166_1_alpha_3: SLE
+57:
+  name: Czech Republic
+  created_at:
+  updated_at:
+  id: 57
+  iso3166_1_numeric: 203
+  iso3166_1_alpha_2: CZ
+  iso3166_1_alpha_3: CZE
+225:
+  name: United Kingdom
+  created_at:
+  updated_at:
+  id: 225
+  iso3166_1_numeric: 826
+  iso3166_1_alpha_2: GB
+  iso3166_1_alpha_3: GBR
+91:
+  name: Guyana
+  created_at:
+  updated_at:
+  id: 91
+  iso3166_1_numeric: 328
+  iso3166_1_alpha_2: GY
+  iso3166_1_alpha_3: GUY
+158:
+  name: Norfolk Island
+  created_at:
+  updated_at:
+  id: 158
+  iso3166_1_numeric: 574
+  iso3166_1_alpha_2: NF
+  iso3166_1_alpha_3: NFK
+24:
+  name: Bermuda
+  created_at:
+  updated_at:
+  id: 24
+  iso3166_1_numeric: 60
+  iso3166_1_alpha_2: BM
+  iso3166_1_alpha_3: BMU
+125:
+  name: Macao
+  created_at:
+  updated_at:
+  id: 125
+  iso3166_1_numeric: 446
+  iso3166_1_alpha_2: MO
+  iso3166_1_alpha_3: MAC
+192:
+  name: Singapore
+  created_at:
+  updated_at:
+  id: 192
+  iso3166_1_numeric: 702
+  iso3166_1_alpha_2: SG
+  iso3166_1_alpha_3: SGP
+58:
+  name: Denmark
+  created_at:
+  updated_at:
+  id: 58
+  iso3166_1_numeric: 208
+  iso3166_1_alpha_2: DK
+  iso3166_1_alpha_3: DNK
+226:
+  name: United States
+  created_at:
+  updated_at:
+  id: 226
+  iso3166_1_numeric: 840
+  iso3166_1_alpha_2: US
+  iso3166_1_alpha_3: USA
+159:
+  name: Northern Mariana Islands
+  created_at:
+  updated_at:
+  id: 159
+  iso3166_1_numeric: 580
+  iso3166_1_alpha_2: MP
+  iso3166_1_alpha_3: MNP
+25:
+  name: Bhutan
+  created_at:
+  updated_at:
+  id: 25
+  iso3166_1_numeric: 64
+  iso3166_1_alpha_2: BT
+  iso3166_1_alpha_3: BTN
+92:
+  name: Haiti
+  created_at:
+  updated_at:
+  id: 92
+  iso3166_1_numeric: 332
+  iso3166_1_alpha_2: HT
+  iso3166_1_alpha_3: HTI
+126:
+  name: Macedonia, the Former Yugoslav Republic of
+  created_at:
+  updated_at:
+  id: 126
+  iso3166_1_numeric: 807
+  iso3166_1_alpha_2: MK
+  iso3166_1_alpha_3: MKD
+193:
+  name: Slovakia
+  created_at:
+  updated_at:
+  id: 193
+  iso3166_1_numeric: 703
+  iso3166_1_alpha_2: SK
+  iso3166_1_alpha_3: SVK
+59:
+  name: Djibouti
+  created_at:
+  updated_at:
+  id: 59
+  iso3166_1_numeric: 262
+  iso3166_1_alpha_2: DJ
+  iso3166_1_alpha_3: DJI
+227:
+  name: United States Minor Outlying Islands
+  created_at:
+  updated_at:
+  id: 227
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: UM
+  iso3166_1_alpha_3:
+160:
+  name: Norway
+  created_at:
+  updated_at:
+  id: 160
+  iso3166_1_numeric: 578
+  iso3166_1_alpha_2: "NO"
+  iso3166_1_alpha_3: NOR
+26:
+  name: Bolivia
+  created_at:
+  updated_at:
+  id: 26
+  iso3166_1_numeric: 68
+  iso3166_1_alpha_2: BO
+  iso3166_1_alpha_3: BOL
+93:
+  name: Heard Island and Mcdonald Islands
+  created_at:
+  updated_at:
+  id: 93
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: HM
+  iso3166_1_alpha_3:
+127:
+  name: Madagascar
+  created_at:
+  updated_at:
+  id: 127
+  iso3166_1_numeric: 450
+  iso3166_1_alpha_2: MG
+  iso3166_1_alpha_3: MDG
+194:
+  name: Slovenia
+  created_at:
+  updated_at:
+  id: 194
+  iso3166_1_numeric: 705
+  iso3166_1_alpha_2: SI
+  iso3166_1_alpha_3: SVN
+60:
+  name: Dominica
+  created_at:
+  updated_at:
+  id: 60
+  iso3166_1_numeric: 212
+  iso3166_1_alpha_2: DM
+  iso3166_1_alpha_3: DMA
+228:
+  name: Uruguay
+  created_at:
+  updated_at:
+  id: 228
+  iso3166_1_numeric: 858
+  iso3166_1_alpha_2: UY
+  iso3166_1_alpha_3: URY
+161:
+  name: Oman
+  created_at:
+  updated_at:
+  id: 161
+  iso3166_1_numeric: 512
+  iso3166_1_alpha_2: OM
+  iso3166_1_alpha_3: OMN
+27:
+  name: Bosnia and Herzegovina
+  created_at:
+  updated_at:
+  id: 27
+  iso3166_1_numeric: 70
+  iso3166_1_alpha_2: BA
+  iso3166_1_alpha_3: BIH
+94:
+  name: Holy See (Vatican City State)
+  created_at:
+  updated_at:
+  id: 94
+  iso3166_1_numeric: 336
+  iso3166_1_alpha_2: VA
+  iso3166_1_alpha_3: VAT
+128:
+  name: Malawi
+  created_at:
+  updated_at:
+  id: 128
+  iso3166_1_numeric: 454
+  iso3166_1_alpha_2: MW
+  iso3166_1_alpha_3: MWI
+195:
+  name: Solomon Islands
+  created_at:
+  updated_at:
+  id: 195
+  iso3166_1_numeric: 90
+  iso3166_1_alpha_2: SB
+  iso3166_1_alpha_3: SLB
+61:
+  name: Dominican Republic
+  created_at:
+  updated_at:
+  id: 61
+  iso3166_1_numeric: 214
+  iso3166_1_alpha_2: DO
+  iso3166_1_alpha_3: DOM
+229:
+  name: Uzbekistan
+  created_at:
+  updated_at:
+  id: 229
+  iso3166_1_numeric: 860
+  iso3166_1_alpha_2: UZ
+  iso3166_1_alpha_3: UZB
+162:
+  name: Pakistan
+  created_at:
+  updated_at:
+  id: 162
+  iso3166_1_numeric: 586
+  iso3166_1_alpha_2: PK
+  iso3166_1_alpha_3: PAK
+28:
+  name: Botswana
+  created_at:
+  updated_at:
+  id: 28
+  iso3166_1_numeric: 72
+  iso3166_1_alpha_2: BW
+  iso3166_1_alpha_3: BWA
+95:
+  name: Honduras
+  created_at:
+  updated_at:
+  id: 95
+  iso3166_1_numeric: 340
+  iso3166_1_alpha_2: HN
+  iso3166_1_alpha_3: HND
+196:
+  name: Somalia
+  created_at:
+  updated_at:
+  id: 196
+  iso3166_1_numeric: 706
+  iso3166_1_alpha_2: SO
+  iso3166_1_alpha_3: SOM
+62:
+  name: Ecuador
+  created_at:
+  updated_at:
+  id: 62
+  iso3166_1_numeric: 218
+  iso3166_1_alpha_2: EC
+  iso3166_1_alpha_3: ECU
+129:
+  name: Malaysia
+  created_at:
+  updated_at:
+  id: 129
+  iso3166_1_numeric: 458
+  iso3166_1_alpha_2: MY
+  iso3166_1_alpha_3: MYS
+230:
+  name: Vanuatu
+  created_at:
+  updated_at:
+  id: 230
+  iso3166_1_numeric: 548
+  iso3166_1_alpha_2: VU
+  iso3166_1_alpha_3: VUT
+163:
+  name: Palau
+  created_at:
+  updated_at:
+  id: 163
+  iso3166_1_numeric: 585
+  iso3166_1_alpha_2: PW
+  iso3166_1_alpha_3: PLW
+29:
+  name: Bouvet Island
+  created_at:
+  updated_at:
+  id: 29
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: BV
+  iso3166_1_alpha_3:
+96:
+  name: Hong Kong
+  created_at:
+  updated_at:
+  id: 96
+  iso3166_1_numeric: 344
+  iso3166_1_alpha_2: HK
+  iso3166_1_alpha_3: HKG
+197:
+  name: South Africa
+  created_at:
+  updated_at:
+  id: 197
+  iso3166_1_numeric: 710
+  iso3166_1_alpha_2: ZA
+  iso3166_1_alpha_3: ZAF
+63:
+  name: Egypt
+  created_at:
+  updated_at:
+  id: 63
+  iso3166_1_numeric: 818
+  iso3166_1_alpha_2: EG
+  iso3166_1_alpha_3: EGY
+130:
+  name: Maldives
+  created_at:
+  updated_at:
+  id: 130
+  iso3166_1_numeric: 462
+  iso3166_1_alpha_2: MV
+  iso3166_1_alpha_3: MDV
+231:
+  name: Venezuela
+  created_at:
+  updated_at:
+  id: 231
+  iso3166_1_numeric: 862
+  iso3166_1_alpha_2: VE
+  iso3166_1_alpha_3: VEN
+164:
+  name: Palestinian Territory, Occupied
+  created_at:
+  updated_at:
+  id: 164
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: PS
+  iso3166_1_alpha_3:
+30:
+  name: Brazil
+  created_at:
+  updated_at:
+  id: 30
+  iso3166_1_numeric: 76
+  iso3166_1_alpha_2: BR
+  iso3166_1_alpha_3: BRA
+97:
+  name: Hungary
+  created_at:
+  updated_at:
+  id: 97
+  iso3166_1_numeric: 348
+  iso3166_1_alpha_2: HU
+  iso3166_1_alpha_3: HUN
+198:
+  name: South Georgia and the South Sandwich Islands
+  created_at:
+  updated_at:
+  id: 198
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: GS
+  iso3166_1_alpha_3:
+64:
+  name: El Salvador
+  created_at:
+  updated_at:
+  id: 64
+  iso3166_1_numeric: 222
+  iso3166_1_alpha_2: SV
+  iso3166_1_alpha_3: SLV
+131:
+  name: Mali
+  created_at:
+  updated_at:
+  id: 131
+  iso3166_1_numeric: 466
+  iso3166_1_alpha_2: ML
+  iso3166_1_alpha_3: MLI
+232:
+  name: Viet Nam
+  created_at:
+  updated_at:
+  id: 232
+  iso3166_1_numeric: 704
+  iso3166_1_alpha_2: VN
+  iso3166_1_alpha_3: VNM
+165:
+  name: Panama
+  created_at:
+  updated_at:
+  id: 165
+  iso3166_1_numeric: 591
+  iso3166_1_alpha_2: PA
+  iso3166_1_alpha_3: PAN
+31:
+  name: British Indian Ocean Territory
+  created_at:
+  updated_at:
+  id: 31
+  iso3166_1_numeric:
+  iso3166_1_alpha_2: IO
+  iso3166_1_alpha_3:
+98:
+  name: Iceland
+  created_at:
+  updated_at:
+  id: 98
+  iso3166_1_numeric: 352
+  iso3166_1_alpha_2: IS
+  iso3166_1_alpha_3: ISL
+199:
+  name: Spain
+  created_at:
+  updated_at:
+  id: 199
+  iso3166_1_numeric: 724
+  iso3166_1_alpha_2: ES
+  iso3166_1_alpha_3: ESP
+65:
+  name: Equatorial Guinea
+  created_at:
+  updated_at:
+  id: 65
+  iso3166_1_numeric: 226
+  iso3166_1_alpha_2: GQ
+  iso3166_1_alpha_3: GNQ
+132:
+  name: Malta
+  created_at:
+  updated_at:
+  id: 132
+  iso3166_1_numeric: 470
+  iso3166_1_alpha_2: MT
+  iso3166_1_alpha_3: MLT
+233:
+  name: Virgin Islands, British
+  created_at:
+  updated_at:
+  id: 233
+  iso3166_1_numeric: 92
+  iso3166_1_alpha_2: VG
+  iso3166_1_alpha_3: VGB
+32:
+  name: Brunei Darussalam
+  created_at:
+  updated_at:
+  id: 32
+  iso3166_1_numeric: 96
+  iso3166_1_alpha_2: BN
+  iso3166_1_alpha_3: BRN
+99:
+  name: India
+  created_at:
+  updated_at:
+  id: 99
+  iso3166_1_numeric: 356
+  iso3166_1_alpha_2: IN
+  iso3166_1_alpha_3: IND
+166:
+  name: Papua New Guinea
+  created_at:
+  updated_at:
+  id: 166
+  iso3166_1_numeric: 598
+  iso3166_1_alpha_2: PG
+  iso3166_1_alpha_3: PNG
+200:
+  name: Sri Lanka
+  created_at:
+  updated_at:
+  id: 200
+  iso3166_1_numeric: 144
+  iso3166_1_alpha_2: LK
+  iso3166_1_alpha_3: LKA
+66:
+  name: Eritrea
+  created_at:
+  updated_at:
+  id: 66
+  iso3166_1_numeric: 232
+  iso3166_1_alpha_2: ER
+  iso3166_1_alpha_3: ERI
+133:
+  name: Marshall Islands
+  created_at:
+  updated_at:
+  id: 133
+  iso3166_1_numeric: 584
+  iso3166_1_alpha_2: MH
+  iso3166_1_alpha_3: MHL

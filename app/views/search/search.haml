@@ -1,0 +1,58 @@
+#search-results-page
+
+  #search-results-controls
+    - form_tag search_path, :method => :get do
+      = label_tag 'q', 'Searching for:'
+      = text_field_tag 'q', params[:q], :size => 20, :class => "search-input"
+      = submit_tag "Search", :class => "search-button"
+
+
+  #search-results-topics
+    %h1 Topics
+    - if @topic_results.nil?
+      None
+    - else
+      - topics_html = []
+      - @topic_results.each_hit_with_result do |hit, topic|
+        - topics_html << capture do
+          %a.search-results-topic{:href => parameterized_videos_path(nil, :topic => topic)}>= topic.name
+      != topics_html.join(', ')
+
+  #search-results-videos
+    %h1 Videos
+    - if @video_results.nil?
+      None
+    - else
+      - config = {:height => 100, :width => 100}
+      - @video_results.each_hit_with_result do |hit, video|
+        - html = capture do
+          - unless video.video_segments.live.count == 1
+            - segments = video.video_segments.live.ordered.all.select{|s| @video_segment_results_by_id.include? s.id}
+            - unless segments.count == 0
+              %h3 Relevant chapters:
+              %ul.search-results-segments
+                -# TODO only show relevant segments
+                - segments.each do |segment|
+                  %li.search-results-segment
+                    %a.search-result-video-segment-title{:href => video_segment_video_path(segment)}= segment.name
+        = render :partial => 'videos/index_video', :locals => {:video => video, :fields => [:thumbnail, :name, :description, html]}
+
+  #search-results-external
+    %h1 Around the Web
+    - if @external_results.nil? || @external_results.empty?
+      None
+    - else
+      - @external_results.each do |result|
+        - unless result['results'].empty?
+          %h2{}= result['type'].name
+          %ul.search-results-external
+            - result['results'].each do |content|
+              - next if content.is_duplicate
+              %li.search-results-external-item.related-content{:about => content.url}
+                .content-type-id.hidden= content.content_type.id
+                %a{:href => content.url, :target => "_blank", :property => 'dc:title'}= content.name
+                .hidden
+                  .related-content-attribution{:property => 'dc:publisher'}!= external_content_attribution(content)
+                  - if content.published_at.present?
+                    .related-content-pushlished-at{:property => 'dc:date', :content => content.published_at}= natural_time(content.published_at)
+                  .related-content-description{:property => 'dc:description'}= content.description

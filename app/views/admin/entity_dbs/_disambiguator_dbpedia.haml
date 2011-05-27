@@ -1,0 +1,12 @@
+- disabled = form.object.new_record?
+%tr
+  %th DBPedia Lookup:
+  %td
+    = text_field_tag 'dbpedia_name', topic_name, :class => 'topic-name dbpedia-name do-init', :size => 60, :disabled => disabled
+%tr
+  %th Identifier:
+  %td
+    = form.hidden_field :id, :class => 'entity-id', :disabled => disabled
+    = form.hidden_field :entity_db_id, :class => 'entity-db-id', :disabled => true
+    = form.hidden_field :'_destroy', :class => 'entity-destroy', :disabled => disabled
+    = form.text_field :identifier, :class => 'entity-identifier', :size => 60, :disabled => disabled

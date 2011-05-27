@@ -1,0 +1,10 @@
+- form_for :share, :url => video_path(@video.permalink), :html => {:class => 'shareform', :onsubmit => 'return false'} do |form|
+
+  .formrow
+    = form.label :url, "Share this video:"
+    = form.text_field :url, :value => video_url(@video.permalink), :class => 'video-share-field', :readonly => 'readonly', :size => 60
+
+  - if @video.embeddable
+    .formrow
+      Copy the HTML embed code below into your site or blog:
+      = form.text_area :code, :value => "#{embed_code(video)}", :class => 'video-embed-code', :readonly => 'readonly'

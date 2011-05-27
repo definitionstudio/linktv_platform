@@ -1,0 +1,35 @@
+-# Note: flowplayer requires inline dimensions
+.video-player-internal{:id => video_player_id}
+  .video-player-handler
+
+  - if video_file.is_cdn
+    %div.flowplayer.cdn{:style => "height: #{height}px; width: #{width}px;", :id => id}
+    :javascript
+      var FPconfig = {
+        clip: {
+           url: "#{video_file.identifier}",
+           provider: 'cdn',
+           autoPlay: false,
+           scaling: 'orig'
+        },
+        plugins: {
+          cdn: {
+            url: "#{options[:flowplayer_rtmp]}",
+            netConnectionUrl: "#{APP_CONFIG[:video_host][:stream_host]}"
+          }
+        }
+      }
+
+  - else
+    %div.flowplayer{:style => "height: #{height}px; width: #{width}px;", :id => id}
+    :javascript
+      var FPconfig = {
+        clip: {
+           url: "#{video_file.url || ''}",
+           autoPlay: false,
+           scaling: 'orig'
+        }
+      }
+
+  :javascript
+    flowplayer("#{id}", {src: "#{options[:flowplayer_swf]}"}, FPconfig);

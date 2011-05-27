@@ -1,0 +1,5 @@
+#error-header= @error_name
+#error-text= render :partial => 'errors/standard_error_message', :locals => {:error_name => @error_name}
+
+- if DEVELOPMENT_MODE
+  = render :partial => 'errors/exception', :locals => {:exception => @exception}

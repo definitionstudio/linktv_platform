@@ -1,0 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/entities.js" %>
+  <%= javascript_include_tag "#{LINKTV_PLATFORM_ASSETS_PATH}//javascripts/admin/topics.js" %>
+<% end %>
+
+<% # Active scaffold render :super seems to not work from a .haml template %>
+<%= render :super %>

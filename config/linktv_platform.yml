@@ -1,0 +1,150 @@
+# General site settings
+site:
+  name: My Site
+  host: localhost
+  referrer: http:://mysite.com
+
+# Key used for simple encryption/decryption of things like URL parameters
+# Not expected to be used for secure data
+simple_encryption:
+  secret_key: xxxxxxx
+
+# Analytics
+google_analytics:
+  account_id:
+
+# Facebook meta tags (see https://developers.facebook.com/docs/insights/)
+facebook:
+  page_id:
+  app_id:
+  admins:
+
+# Video CDN (TODO: support for non-Amazon CDNs)
+video_files:
+  cdn_enable: false
+  s3_access_key:
+  s3_secret_key:
+  s3_bucket:
+
+# Video hosts: include prefix (i.e. rtmp://cloudfront.yourdomain.org/cfx/st)
+video_host:
+  stream_host:
+  download_host:
+
+# Video player
+video:
+  player:
+    swf: /assets/linktv_platform/player/player.swf
+    width: 640
+    height: 360
+    large_width: 960
+    large_height: 540
+    id: video-player
+    flash_player_version: 9.0.115
+    config:
+
+  embedded_player:
+    swf: /assets/linktv_platform/player/player.swf
+    width: 480
+    height: 270
+    large_width: 640
+    large_height: 360
+    related_content_height: 200
+    id: video-player
+    flash_player_version: 9.0.115
+    config:
+
+  admin_player:
+    # Override the FlowPlayer URLs below with a local installation;
+    # these URLs are volatile, and should not be used in production
+    flowplayer_swf: http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf
+    flowplayer_rtmp: http://releases.flowplayer.org/swf/flowplayer.rtmp-3.2.3.swf
+    flowplayer_js: http://flowplayer.org/js/flowplayer-3.2.6.min.js
+    id: flowplayer
+    width: 480
+    height: 360
+
+# APIs
+apis:
+  defaults:
+    external_content:
+      # 48 hour dynamic content lifetime, after which it is subject to deletion
+      lifetime: 172800
+      # 15 minute content refresh. If most recent content is older than that, a background refresh will be performed
+      refresh: 900
+  # Config params will be used both on the front- and back-end
+  config:
+    # Score above which topic will be emphasized, or required, in related content queries
+    emphasis_threshold: 90
+    # Default score below which related content (articles, etc.) will be filtered
+    low_score_threshold: 50
+  # API-specific settings
+  daylife:
+    accesskey: 
+    secretkey: 
+    limit: 20
+  truveo:
+    appid: 
+    sharedsecret: 
+    limit: 20
+  zemanta:
+    api_key: 
+    limit: 20
+  socialactions:
+    limit: 20
+
+# Thumbnails
+thumbnails:
+  format: jpg
+  input_accept: image/jpeg, image/png
+  input_max_file_size: 1000000
+  # jpeg quality range: 0-95, per http://gd2.rubyforge.org/rdoc/
+  jpeg_quality: 90
+  not_available_path: /assets/linktv_platform/images/image-not-found.png
+  default:
+    width: 160
+    height: 90
+  video:
+    width: 160
+    height: 90
+  video_segment:
+    height: 50
+    width: 50
+  external_content:
+    width: 60
+    height: 40
+
+# Index page pagination
+pagination:
+  topics:
+    per_page: 10
+  videos:
+    per_page: 10
+
+# Video RSS feed
+rss:
+  videos:
+    title: My Video Feed
+    link: http://site.org
+    description: This is an MRSS video feed
+    language: en-us
+    copyright: All rights reserved.
+    limit: 25
+
+# Media types (don't change these unless you know what you're doing)
+media_types:
+  -
+    key: internal
+    display_name: Internal
+    media_instance_types:
+      - Standard
+      - HQ
+  -
+    key: youtube
+    display_name: YouTube
+    media_instance_types:
+      - YouTube
+      
+# Developers
+developers:
+  enable_api: false

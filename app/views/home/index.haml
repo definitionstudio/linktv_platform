@@ -1,0 +1,18 @@
+#home-page
+  #index
+    #home-index
+      #videos-index
+        #page-heading Featured Videos
+        - if @featured_videos.empty?
+          None
+        - else
+          - @featured_videos.each do |video|
+            = render :partial => 'videos/index_video', :locals => {:video => video, :fields => [:thumbnail, :name, :description, :duration]}
+
+      #topics-index
+        #page-heading Featured Topics
+        - if @featured_topics.empty?
+          None
+        - else
+          - @featured_topics.each do |topic|
+            = render :partial => 'topics/index_topic', :locals => {:topic => topic, :fields => [:name, :video_count, :description]}

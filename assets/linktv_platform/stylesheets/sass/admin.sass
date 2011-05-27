@@ -1,0 +1,555 @@
+/******************************************************************************
+  Global rules
+
+*, p
+  font-family: inherit
+  font-size: inherit
+  line-height: inherit
+  margin: 0
+  padding: 0
+
+p, .p
+  line-height: 1.2em
+  font-size: 100%
+  margin: 0 0 1em 0
+
+body
+
+  line-height: 1em
+  //font: 13px "Lucida Grande","Helvetica Neue",Arial,sans-serif
+  font: 13px sans-serif
+  color: #222244
+
+  table.structural
+    border-collapse: collapse
+    border: 0
+    margin: 0
+    thead, tbody, tfoot
+      th, td
+        padding: 0
+
+  table.standard
+    border-collapse: collapse
+    margin: 0
+    td, th
+      padding: 0.4em
+      background-color: transparent
+    th
+      font-weight: bold
+
+#flash-messages
+  padding: 0 20px 0 20px
+
+#header
+  h1
+    margin: 0.5em 0 0em
+    font-weight: normal
+  ul.topnav
+    font-weight: normal
+    a, .non-link
+      color: #CCDDEE
+    a:hover
+      color: #8bc144
+
+#footer
+  background-color: #ddd
+  padding: 20px
+
+#topnav
+  font-size: 120%
+  font-weight: bold
+
+.ajax-loader
+  background-image: url("/assets/linktv_platform/images/ajax-loader.gif")
+  background-position: 0px 1px
+  background-repeat: no-repeat
+  padding: 0 0 0 20px
+  line-height: 14px
+  height: 14px
+  overflow: visible
+  display: block
+
+// Hide anything that needs to be initialized until it's done
+.do-init
+  display: none
+
+/******************************************************************************
+  Shortcut rules that map directly to styles
+
+.display-none
+  display: none
+
+.inline
+  display: inline
+
+.align-left
+  text-align: left
+.align-right
+  text-align: right
+.align-center
+  text-align: center
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+
+.clear-both
+  clear: both
+
+.italic
+  font-style: italic
+
+/******************************************************************************
+  State
+
+// For elements with loading indicator
+.ajax-loading
+  display: none
+.state-ajax-loading
+  .ajax-content
+    display: none
+  .ajax-loading
+    display: block
+
+/******************************************************************************
+  Layout
+
+#wrapper
+  padding: 0
+  margin: 20px 0 0 0
+
+#main
+  width: 100%
+
+#document-body
+  padding: 0 20px 20px 20px
+
+.standard-margin
+  margin: 20px !important
+
+.standard-padding
+  padding: 10px !important
+
+.bottom-margin
+  margin-bottom: 20px !important
+
+/******************************************************************************
+  Button and link styling
+  Matching active scaffold and the rest of the app
+
+body
+  a.button, a.button:link, a.button:visited,
+  a.button:hover, a.button:active,
+  button.button, button.button[type],
+  input[type="submit"],
+  .active-scaffold input[type="submit"],
+  .active-scaffold input[type="button"],
+  .active-scaffold .sub-form .footer input[type="button"],
+  .active-scaffold a.cancel
+    font-weight: bold
+    border: 1px solid #BFBFBF
+    padding: 5px 8px
+    margin: 0 7px 0 0
+  .active-scaffold div.actions a.action
+    padding-left: 20px
+
+  a.button,
+  a.button:link,
+  a.button:visited,
+  button.button,
+  input[type="submit"],
+  .active-scaffold input[type="submit"],
+  .active-scaffold input[type="button"],
+  .active-scaffold a.cancel
+    /*  background-color: #62bbe8;*/
+    background: url("/assets/linktv_platform/javascripts/jquery/themes/cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9
+    color: #2779AA
+
+  a.button:hover,
+  button.button:hover,
+  input[type="submit"]:hover,
+  .ui-widget-content a.button:hover,
+  .active-scaffold input[type="submit"]:hover,
+  .active-scaffold input[type="button"]:hover,
+  .active-scaffold a.cancel:hover
+    background: url("/assets/linktv_platform/javascripts/jquery/themes/cupertino/images/ui-bg_glass_50_3baae3_1x400.png") repeat-x scroll 50% 50%
+    color: #fff
+
+  // Note these two sets of rules match, but with a parent having the state-disabled for the second set.
+  // Note: There's probably a cool way to do this in SASS
+  a.button.state-disabled, button.button.state-disabled, input.button.state-disabled,
+  a.button.state-disabled:hover, button.button.state-disabled:hover, input.button.state-disabled:hover
+    cursor: default
+    background: #ddd
+    color: #888
+  .operation-context.state-disabled
+    a.button, button.button, input.button,
+    a.button:hover, button.button:hover, input.button:hover
+      cursor: default
+      background: #ddd
+      color: #888
+
+  a.button.state-busy, button.button.state-busy, input.button.state-busy
+    background-image: url("/assets/linktv_platform/images/ajax-loader.gif") !important
+    background-repeat: no-repeat !important
+    background-position: 6px 5px !important
+    text-indent: 18px !important
+
+/******************************************************************************
+  General app theme and Active Scaffold theme updates unification
+  Nested under body tag to force override of default rules
+
+body
+  &, & .active-scaffold
+
+    h1, h2, h3, h4
+      color: #448
+      font-weight: bold
+      margin: 0 0 1em 0
+
+    h1
+      font-size: 160%
+
+    h2
+      font-size: 150%
+
+    h3
+      font-size: 140%
+
+    h4
+      font-size: 130%
+
+    .description
+      font: inherit
+      font-size: 95%
+      color: #444
+      margin-bottom: 1em
+      display: block
+      width: 500px
+
+    input.text-input
+      margin-bottom: 0.6em
+
+  dt, .term
+    color: #2779AA
+    margin: 0 0 0.1em 0
+
+  dt,
+  table th,
+  table th label,
+  .term
+    font-size: 105%
+    font-weight: bold
+
+  dd
+    color: #224
+    margin-bottom: 0.75em
+
+  ul
+    list-style-position: inside
+
+.subtitle
+  color: #777
+  font-style: italic
+  font-size: 95%
+
+/******************************************************************************
+  web_app_theme overrides
+
+#main .block
+  margin: 0
+
+#footer .block
+  padding: 0
+  font-size: inherit
+
+/******************************************************************************
+  Active Scaffold theme updates and jQuery UI unification
+  Nested under body tag to force override of default rules
+
+body
+
+  .ui-tabs,
+  .active-scaffold .view
+    padding: 0.8em
+
+  .ui-tabs .ui-tabs-nav li a
+    padding: 0.3em 0.7em
+
+  .ui-tabs-nav
+    border: 0
+    background: none
+
+  .ui-tabs .ui-tabs-panel
+    border: 1px solid #aed0ea
+    // Contents will decide how much margin, so we leave padding to zero
+    padding: 0
+
+  // Match active scaffold to jQuery ui rule for .ui-widget-content
+  .ui-widget-content,
+  .ui-tabs .ui-tabs-panel,
+  .active-scaffold .view
+    border: 1px solid #DDDDDD
+    color: #362B36
+
+  .ui-widget-content,
+  .ui-tabs .ui-tabs-panel,
+  .active-scaffold .view,
+  .ui-tabs .ui-tabs-panel
+    background: url("/assets/linktv_platform/javascripts/jquery/themes/cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png") repeat-x scroll 50% top #F2F5F7
+
+  // Show view
+  .active-scaffold .show-view
+    dt
+      font-weight: bold
+      font-family: inherit
+      font-size: 105%
+    dd
+      font-weight: normal
+      color: #557
+
+  // Edit view
+  .active-scaffold .edit-view
+    th, td
+      padding: 0.2em 0.5em
+    th
+      font-weight: bold
+      font-family: inherit
+      font-size: 105%
+      background: inherit
+
+  input.ui-autocomplete-loading
+    background: url("/assets/linktv_platform/images/ajax-loader.gif") no-repeat scroll right center white
+
+  .active-scaffold
+    textarea
+      width: 40em
+      height: 10em
+
+    .form-footer
+      margin-top: 1em
+      form
+        // Forms within footer wrap buttons
+        display: inline
+
+  a,
+  body .ui-widget-content a,
+  body .active-scaffold a
+    color: #444488
+    text-decoration: none
+    &:hover
+      cursor: pointer
+      color: #dd3300
+      background-color: inherit
+      //border-bottom: 1px dotted #cde
+  body .ui-widget-content a.button,
+  body .active-scaffold a.button
+    &:hover
+      color: #fff
+
+/******************************************************************************
+  jQuery UI
+
+body
+
+  .ui-widget
+    font-family: inherit
+    font-size: inherit
+
+  .ui-helper-reset
+    line-height: inherit
+
+  .ui-dialog
+    .ui-dialog-title
+      padding-right: 2em
+
+  .ui-accordion .ui-accordion-header,
+  .ui-tabs .ui-tabs-nav li
+    font-size: 105%
+
+  .ui-accordion
+    .ui-accordion-content
+      padding: 0
+    .ui-accordion-header
+      margin: 0
+      a
+        padding: 0.35em 0.5em 0.3em 2.2em
+        vertical-align: middle
+        font-size: inherit
+        font-weight: inherit
+      .ui-icon
+        margin-top: -9px
+
+  /* Corner radius */
+  .ui-corner-tl
+    -moz-border-radius-topleft: 2px
+    -webkit-border-top-left-radius: 2px
+  .ui-corner-tr
+    -moz-border-radius-topright: 2px
+    -webkit-border-top-right-radius: 2px
+  .ui-corner-bl
+    -moz-border-radius-bottomleft: 2px
+    -webkit-border-bottom-left-radius: 2px
+  .ui-corner-br
+    -moz-border-radius-bottomright: 2px
+    -webkit-border-bottom-right-radius: 2px
+  .ui-corner-top
+    -moz-border-radius-topleft: 2px
+    -webkit-border-top-left-radius: 2px
+    -moz-border-radius-topright: 2px
+    -webkit-border-top-right-radius: 2px
+  .ui-corner-bottom
+    -moz-border-radius-bottomleft: 2px
+    -webkit-border-bottom-left-radius: 2px
+    -moz-border-radius-bottomright: 2px
+    -webkit-border-bottom-right-radius: 2px
+  .ui-corner-right
+    -moz-border-radius-topright: 2px
+    -webkit-border-top-right-radius: 2px
+    -moz-border-radius-bottomright: 2px
+    -webkit-border-bottom-right-radius: 2px
+  .ui-corner-left
+    -moz-border-radius-topleft: 2px
+    -webkit-border-top-left-radius: 2px
+    -moz-border-radius-bottomleft: 2px
+    -webkit-border-bottom-left-radius: 2px
+  .ui-corner-all
+    -moz-border-radius: 2px
+    -webkit-border-radius: 2px
+
+/******************************************************************************
+  Show-hide elements
+
+.show-hide-context
+  .show-control
+    display: none
+
+.show-hide-context.state-hidden
+  .hideable
+    display: none
+  .hide-control
+    display: none
+  .show-control
+    display: inline
+
+/******************************************************************************
+  In-place edit
+// TODO make general classes for what should be shown or hidden based on state
+
+.in-place-edit-context
+  //.in-place-edit-value
+  .in-place-edit-buttons, .in-place-edit-field, .in-place-edit-fields, select.hidden-select, .autocomplete, .in-place-edit-deletable-item-list, .in-place-edit-notes
+    display: none
+
+// Special case for image-uploader--always show image
+.in-place-edit-context.image-uploader
+  .in-place-edit-value
+    display: block
+
+.in-place-edit-context
+  .image-attribution
+    margin-top: 10px
+
+.in-place-edit-active
+  background: #ff8
+  border: 1px solid #550
+  padding: 10px !important
+  margin: 10px 0
+  .in-place-edit
+    display: none
+  .in-place-edit-value
+    display: none
+  .in-place-edit-buttons
+    display: inline
+  .in-place-edit-field, .in-place-edit-fields, .in-place-edit-deletable-item-list, .in-place-edit-notes, .autocomplete
+    display: block
+  .in-place-edit-field.inline
+    display: inline
+
+/******************************************************************************
+  Icons
+
+img.icon
+  padding: 0
+  background-repeat: no-repeat
+  background-attachment: scroll
+  background-color: transparent
+  background-image: url("/assets/linktv_platform/images/admin/icons.png")
+  height: 16px
+  width: 16px
+
+.icon-margin-right
+  margin: 0 4px 0 0
+
+button.button, a.button
+  img
+    margin: 0 3px -3px 0 !important
+
+td
+  .icon
+    // Prevent icon in table cell from increasing line height
+    margin-bottom: -4px
+
+// Keep blank icon at coordinates 0,0 so that undefined classes show up blank
+.icon-blank
+  background-position: 0px 0px
+.icon-external
+  background-position: 0px -16px
+.icon-notice
+  background-position: 0px -32px
+.icon-error
+  background-position: 0px -48px
+.icon-warning
+  background-position: 0px -64px
+.icon-success, .icon-accept
+  background-position: 0px -80px
+.icon-delete, .icon-cancel
+  background-position: 0px -96px
+.icon-add
+  background-position: 0px -112px
+.icon-sticky
+  background-position: 0px -128px
+.icon-non-sticky
+  background-position: 0px -144px
+.icon-segment-in
+  background-position: 0px -160px
+.icon-undelete, .icon-refresh
+  background-position: 0px -176px
+.icon-edit
+  background-position: 0px -192px
+.icon-upload
+  background-position: 0px -208px
+.icon-home
+  background-position: 0px -224px
+.icon-query
+  background-position: 0px -240px
+.icon-small-delete
+  background-position: 0px -256px
+.icon-save
+  background-position: 0px -270px
+
+
+.icon-freebase
+  background-position: -16px 0px
+.icon-wikipedia
+  background-position: -16px -16px
+.icon-reload
+  background-position: -16px -32px
+.icon-red-light
+  background-position: -16px -48px
+.icon-yellow-light
+  background-position: -16px -64px
+.icon-green-light
+  background-position: -16px -80px
+.icon-dbpedia
+  background-position: -16px -96px
+
+
+/******************************************************************************
+  Topics
+
+.topic-chooser .matching-topics
+  max-height: 200px
+  overflow: auto

@@ -1,0 +1,42 @@
+%a#rss-link{:href => parameterized_videos_path(@page_params, :format => 'rss')} RSS
+
+#page-heading
+  Videos
+  - unless @primary_topics.empty?
+    &mdash;
+    != @primary_topics.collect {|t| link_to t.name, topic_path(t.permalink) }.join(', ')
+
+#videos-filters.index-filters
+  .sort
+    .label Sort by:
+    = select :video, :order_by, @order_bys.collect {|ob| [ob[:name], parameterized_videos_path(@page_params, :order_by => ob[:value].to_s, :page => nil)]}, {:selected => parameterized_videos_path(@page_params)}
+  .regions
+    .label Regions:
+    - region_collection = @regions.collect {|r| [r.name, parameterized_videos_path(@page_params, :region => r.id, :page => nil)]};
+    - region_collection = [['All Regions', parameterized_videos_path(@page_params, :clear_regions => true, :page => nil)]] | region_collection
+    = select :video, :region, region_collection, {:selected => parameterized_videos_path(@page_params)}
+
+#videos-sidebar
+  - unless @featured_topics.empty?
+    .title Featured Topics
+    %ul.topic-list
+      - @featured_topics.each do |t|
+        %li!= link_to t.name, parameterized_videos_path(@page_params, :topic => t, :page => nil)
+
+  - unless @related_topics.empty?
+    .title Related Topics
+    %ul.topic-list
+      - @related_topics.each do |t|
+        %li!= link_to t.name, parameterized_videos_path(@page_params, :topic => t, :page => nil)
+
+  - if @featured_topics.empty? && @related_topics.empty?
+    No related topics available.
+
+#videos-index
+  - if @paginated_videos.nil? || @paginated_videos.empty?
+    No matching videos found.
+  -else
+    - @paginated_videos.each do |video|
+      = render :partial => 'videos/index_video', :locals => {:video => video, :fields => [:thumbnail, :name, :description, :duration]}
+    #pagination
+      = will_paginate @paginated_videos

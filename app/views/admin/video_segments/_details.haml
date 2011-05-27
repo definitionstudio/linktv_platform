@@ -1,0 +1,44 @@
+- inputs_disabled = 'disabled' if is_model
+%table.left
+  %tr
+    %td.align-left
+      = segment_form.label :start_time, 'Segment In:', :class => 'term',
+        :title => "Beginning time for the video segment, in HH:MM:SS"
+      = segment_form.text_field :start_time, :class => 'start-time', :size => 8, :disabled => inputs_disabled,
+        :value => (format_time(video_segment.start_time) unless video_segment.start_time.nil?)
+      %a.segment-in{:href => '#', :title => "Use current video playhead time"}
+        = icon :'icon-segment-in'
+
+    %td.align-right
+      = segment_form.label :name, 'Segment Title:', :class => 'term'
+      = segment_form.text_field :name, :class => 'segment-title', :size => 40, :disabled => inputs_disabled
+  %tr
+    %td{:colspan => 2}
+      = segment_form.label :transcript_text, 'Transcript Text:', :class => 'term',
+        :title => "Transcript text for this video segment. Will be submitted for entity extraction analysis."
+      %br
+      = segment_form.text_area :transcript_text, :rows => 10, :cols => 80, :class => 'transcript-text',
+        :disabled => inputs_disabled
+
+.in-place-edit-context.standard-margin.image-uploader.left
+  %dl
+    %dt
+      Video Segment Thumbnail:
+      = in_place_edit_controls
+    %dd
+      = segment_form.hidden_field :thumbnail_id, :class => 'image-id', :disabled => inputs_disabled
+      .in-place-edit-value= video_segment_thumbnail_html(video_segment, :static => true, :width => @thumb_config[:width], :height => @thumb_config[:height])
+      .in-place-edit-field
+        -# input will be enabled if a standard form upload is to be used
+        = segment_form.file_field :thumbnail, :class => 'in-place-edit-field', :accept => APP_CONFIG[:thumbnails][:input_accept], :disabled => true
+        .image-attribution
+          .label Image Attribution:
+          = segment_form.text_field :thumbnail_attribution, :size => 60, :value => video_segment.thumbnail_attribution
+
+.right.clear-both
+  %a.button.global-handler.delete-segment{:href => '#'}
+    = icon :'icon-delete icon-margin-right'
+    Delete Segment
+    = segment_form.hidden_field :deleted, :class => 'delete-segment', :disabled => inputs_disabled
+
+.clear-both

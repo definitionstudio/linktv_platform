@@ -1,0 +1,8 @@
+.topic-tooltip
+  %p.description
+    = topic.description || 'No description present'
+  %p.links
+    Linked videos:
+    = pluralize(topic.topic_video_segments.count, '')
+  .identifiers
+    = render :partial => 'topic_identifiers', :locals => {:topic => topic}

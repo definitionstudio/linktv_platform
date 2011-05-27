@@ -1,0 +1,66 @@
+%dl
+  %dt Permalink:
+  %dd
+    - if @video.permalink.present?
+      %a{:href => video_path(@video.permalink), :title => 'View on front end', :target => '_blank'}= @video.permalink
+    - else
+      (Will be set when first published)
+
+  %dt Settings:
+  %dd.settings
+    = video_form.check_box :download_enabled
+    = video_form.label :download_enabled, 'Download Enabled'
+    = video_form.check_box :embeddable
+    = video_form.label :embeddable, 'Embeddable'
+    = video_form.check_box :recommended
+    = video_form.label :recommended, 'Recommended'
+    = video_form.check_box :is_featured
+    = video_form.label :is_featured, 'Featured Video'
+
+  -# Publish status and date
+  %dt Publish Status:
+  %dd
+    = video_form.check_box :published
+    = video_form.label :published, 'Published'
+
+#published-at.in-place-edit-context.date-time
+  %dl
+    %dt
+      %span{:title => "Video publication date"} Publish Date:
+      = in_place_edit_controls
+    %dd
+      .in-place-edit-value= @video.published_at.present? ? @video.published_at : ''
+      .in-place-edit-fields
+        = video_form.label :published_at, 'Publish At'
+        = datetime_select 'video', 'published_at', {}, {:class => 'in-place-edit-field inline'}
+        - t = Time.zone.now
+        = t.zone
+
+-# Geographic restrictions
+.in-place-edit-context.uses-hidden-select
+  %dl
+    %dt
+      %span{:title => "Countries to which viewing this content is restricted"} Geographic Restrictions:
+      = in_place_edit_controls
+    %dd
+      .in-place-edit-value= @video.restricted_countries.empty? ? "None" : @video.restricted_countries.collect{|r| r.name}.join(', ')
+      -# Hidden select field that will be used to manage currently or previously selected countries
+      = collection_select :video, :restricted_country_ids, @video.restricted_countries, :id, :name, {:prompt => false}, {:class => 'in-place-edit-field hidden-select', :multiple => true}
+      -# Add a dummy record so that array is still sent in POST when no others are selected
+      = hidden_field_tag 'video[restricted_country_ids][]'
+      #restricted-country-list
+      .in-place-edit-deletable-item-list
+        .content
+        .model{:style => 'display: none'}
+          %span.object-country.object
+            %a{:href => '#', :class => 'delete-option', :title => 'Delete restricted country'}
+              = icon(:'icon-small-delete')
+            %span.name
+      = text_field_tag 'restricted_countries_autocomplete', nil, {:class => 'autocomplete', :size => 40, 
+        :'data-url' => autocomplete_admin_countries_path}
+      .in-place-edit-notes.subtitle
+        %p
+          Select countries to which viewing the video should be restricted.
+          Country names will be autocompleted.
+          If none are selected, video is available to all regions.
+

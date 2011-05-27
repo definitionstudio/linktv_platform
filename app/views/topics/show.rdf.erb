@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#"
+  xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+  <rdf:Description rdf:about="<%= topic_url("#{@topic.permalink}") %>">
+    <!-- topic metadata -->
+    <dc:title xml:lang="en"><%= @topic.name %></dc:title>
+    <dc:description xml:lang="en"><%= @topic.description %></dc:description>
+
+    <!-- linked entities -->
+    <% @topic.entity_identifiers.each do |ident| %>
+    <owl:sameAs rdf:resource="<%= ident.uri %>"/>
+    <% end %>
+
+    <!-- related videos -->
+    <% @related_videos.each do |video| %>
+    <dc:relation rdf:resource="<%= video_url(video.permalink) %>"/>
+    <% end %>
+
+    <!-- related topics -->
+    <% @related_topics.each do |related_topic| %>
+    <dc:relation rdf:resource="<%= topic_url("#{related_topic.permalink}") %>"/>
+    <% end %>
+      
+  </rdf:Description>
+
+</rdf:RDF>
