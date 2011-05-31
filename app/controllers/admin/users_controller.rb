@@ -2,12 +2,7 @@ class Admin::UsersController < Admin::AdminController
 
   active_scaffold :users do |config|
     config.list.columns =
-      [:login, :display_name, :email, :roles, :login_count, :request_count, :current_login_at,
-        :last_login_at, :created_at, :active]
-    config.show.columns =
-      [:login, :display_name, :location, :email, :roles, :login_count, :request_count,
-        :current_login_ip, :current_login_at, :last_login_ip, :last_login_at, :last_request_at,
-        :created_at, :updated_at, :active, :deleted]
+      [:login, :display_name, :email, :roles, :created_at, :active]
     config.create.columns = config.update.columns =
       [:login, :display_name, :location, :email, :roles, :active]
     config.columns[:roles].form_ui = :select

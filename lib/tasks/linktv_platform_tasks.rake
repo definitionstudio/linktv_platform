@@ -207,7 +207,6 @@ namespace :linktv_platform do
         user.password_confirmation = 'admin'
         user.email = 'admin@my.host.com'
         user.active = true
-        user.privileged = true
         user.save!
         role_admin.users << user
         role_super_admin.users << user

@@ -5,18 +5,8 @@ class LinktvPlatformCreateUsers < ActiveRecord::Migration
       t.string   "email"
       t.string   "location"
       t.string   "login"
-      t.integer  "login_count",                       :default => 0,     :null => false
-      t.integer  "failed_login_count",                :default => 0,     :null => false
-      t.datetime "current_login_at"
-      t.datetime "last_login_at"
-      t.string   "current_login_ip"
-      t.string   "last_login_ip"
-      t.integer  "request_count",                     :default => 0,     :null => false
-      t.datetime "last_request_at"
-      t.boolean  "privileged",                        :default => false, :null => false
       t.boolean  "active",                            :default => false, :null => false
       t.boolean  "deleted",                           :default => false, :null => false
-
       t.timestamps
     end
 
