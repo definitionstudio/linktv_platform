@@ -52,27 +52,34 @@
             %a{:href => "#{!link.page.nil? ? link.page.path : link.url}", :target => link.target || nil}= link.name
 
       #footer-attribution
-        An
-        %a(href="https://github.com/definitionstudio/linktv_platform" target="_blank") open source project
-        developed for
-        %a{:href => "http://www.viewchange.org/", :target => "_blank"} ViewChange.org
-        and
-        %a{:href => "http://www.linktv.org/", :target => "_blank"} Link TV
-        %span>.
         #footer-powered-by
-          Powered by
           %ul.footer-links
             %li
-              %a{:href => "http://www.freebase.com/", :target => "_blank"} Freebase
+              %a{:href => "http://www.zemanta.com/", :target => "_blank"} 
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_zemanta_on.png")
             %li
-              %a{:href => "http://dbpedia.org/", :target => "_blank"} DBpedia
+              %a{:href => "http://www.daylife.com/", :target => "_blank"}
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_daylife_on.png")
             %li
-              %a{:href => "http://www.zemanta.com/", :target => "_blank"} Zemanta
+              %a{:href => "http://www.truveo.com/", :target => "_blank"}
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_truveo_on.png")
             %li
-              %a{:href => "http://www.daylife.com/", :target => "_blank"} Daylife
+              %a{:href => "http://www.socialactions.com/", :target => "_blank"}
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_socialactions_on.png")
             %li
-              %a{:href => "http://www.truveo.com/", :target => "_blank"} Truveo
+              %a{:href => "http://www.freebase.com/", :target => "_blank"}
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_freebase_on.png")
             %li
-              %a{:href => "http://www.socialactions.com/", :target => "_blank"} Social Actions
+              %a{:href => "http://dbpedia.org/", :target => "_blank"} 
+                %img(src="#{LINKTV_PLATFORM_ASSETS_PATH}/images/partner_logos/partner_dbpedia_on.png")
+        #copyright
+          An
+          %a(href="https://github.com/definitionstudio/linktv_platform" target="_blank") open source project
+          developed for
+          %a{:href => "http://www.viewchange.org/", :target => "_blank"} ViewChange.org
+          and
+          %a{:href => "http://www.linktv.org/", :target => "_blank"} Link TV
+          %span>.
+        
 
     = yield :after_body

@@ -137,9 +137,6 @@ ul#header-nav
 
 #footer-powered-by
   padding: 10px 0
-  border-top: 1px dotted #999
-  margin-top: 10px
-  
 ul.footer-links
   list-style-type: none
   display: inline
@@ -149,12 +146,9 @@ ul.footer-links
     zoom: 1
     *display: inline
     margin: 0 5px 0 0
-    padding: 3px 5px
-    border-bottom: 1px solid #555
-    border-right: 1px solid #555
-    border-top: 1px solid #222
-    border-left: 1px solid #222
-    border-radius: $corner-radius
+    padding: 0 15px
+    img
+      vertical-align: middle
 #footer-links
   padding: 0 20px
   display: block
@@ -164,13 +158,12 @@ ul.footer-links
   background: -moz-linear-gradient(top,  #eeeeee,  #ffffff) /* for firefox 3.6+ */ 
   li
     padding: 5px 10px
-    background-color: #333
+    background-color: #333    
     border-top: 1px solid #555
     border-left: 1px solid #555
-    border-bottom: 0
     border-right: 1px solid #222
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
+    border-top-left-radius: $corner-radius
+    border-top-right-radius: $corner-radius
     color: #fff
     font-size: 125%
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#111111') /* for IE */
@@ -184,8 +177,13 @@ ul.footer-links
       text-decoration: none
 
 #footer-attribution
-  padding: 10px 20px 0 20px
+  padding: 0 20px
+  text-align: center
 
+#copyright
+  border-top: 1px dotted #666
+  padding: 10px 0
+  
 #body
   background: #eee
   padding: 20px
