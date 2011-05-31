@@ -131,6 +131,7 @@ end
 #  has_image_type :string(255)
 #  has_image_id   :integer(4)
 #  source_url     :string(1024)
+#  attribution    :string(1024)
 #  created_at     :datetime
 #  updated_at     :datetime
 #

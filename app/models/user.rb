@@ -67,23 +67,14 @@ end
 #
 # Table name: users
 #
-#  id                 :integer(4)      not null, primary key
-#  display_name       :string(255)     default("")
-#  location           :string(255)
-#  active             :boolean(1)      default(FALSE), not null
-#  deleted            :boolean(1)      default(FALSE), not null
-#  login              :string(255)
-#  email              :string(255)
-#  login_count        :integer(4)      default(0), not null
-#  failed_login_count :integer(4)      default(0), not null
-#  last_request_at    :datetime
-#  current_login_at   :datetime
-#  last_login_at      :datetime
-#  current_login_ip   :string(255)
-#  last_login_ip      :string(255)
-#  privileged         :boolean(1)
-#  request_count      :integer(4)      default(0), not null
-#  created_at         :datetime
-#  updated_at         :datetime
+#  id           :integer(4)      not null, primary key
+#  display_name :string(255)     default("")
+#  email        :string(255)
+#  location     :string(255)
+#  login        :string(255)
+#  active       :boolean(1)      default(FALSE), not null
+#  deleted      :boolean(1)      default(FALSE), not null
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
