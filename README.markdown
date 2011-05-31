@@ -82,13 +82,9 @@ Install required gems.
 Install required plugins.
 
 	$ script/plugin install git://github.com/rails/rails_xss.git
-	
 	$ script/plugin install git://github.com/rails/acts_as_list.git
-	
 	$ script/plugin install git://github.com/activescaffold/active_scaffold.git
-	
 	$ script/plugin install git://github.com/activescaffold/active_scaffold_sortable.git
-	
 	$ script/plugin install git://github.com/ewildgoose/render_component.git -r rails-2.3
 
 Initialize delayed_job.
@@ -121,8 +117,9 @@ Run database migrations and seed default data.
 	$ rake db:migrate
 	$ rake linktv_platform:db:seed:all
 	
-Edit config/application.yml. See the [Configuration](https://github.com/definitionstudio/linktv_platform/wiki/Configuration)
-page in the wiki for more information.
+Edit the application configuration, including API keys, in config/application.yml. 
+See the [Configuration](https://github.com/definitionstudio/linktv_platform/wiki/Configuration)
+page in the wiki for details.
 
 Start Sunspot/Solr. See the [Sunspot Wiki](https://github.com/outoftime/sunspot/wiki) for more info on running Solr in production.
 
@@ -156,13 +153,13 @@ The example below shows an excerpt from the application.yml configuration file, 
 	      flowplayer_rtmp: /assets/flowplayer/flowplayer.rtmp-3.2.3.swf
 
 
-### Authentication
+### Authorization
 
-Authentication is not enabled by default. The administration modules may be secured using HTTP authentication, 
+Authentication and authorization services are not enabled by default. The administration modules may be secured using HTTP authentication, 
 or via the included Authorization module (based on [AuthLogic](https://github.com/binarylogic/authlogic)).
 Of course, you are free to provide your own auth system, as well.
 
-See the Authentication wiki page for details.
+See the [Authorization](https://github.com/definitionstudio/linktv_platform/wiki/Authorization) wiki page for details.
 
 
 ### Optional Installs
