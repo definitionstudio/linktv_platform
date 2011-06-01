@@ -12,11 +12,11 @@ namespace :linktv_platform do
     system "rm -f #{RAILS_ROOT}/public/assets/linktv_platform"
     system "ln -s #{LINKTV_PLATFORM_ROOT}/assets/linktv_platform #{RAILS_ROOT}/public/assets/linktv_platform"
 
-    # Symlink db migrations
-    system "rm -f #{RAILS_ROOT}/db/migrate/??????????????_linktv_platform_*.rb"
+    # Copy db migrations
+    #system "rm -f #{RAILS_ROOT}/db/migrate/??????????????_linktv_platform_*.rb"
     Dir.chdir("#{LINKTV_PLATFORM_ROOT}/db/migrate") do
       Dir["*.rb"].each do |filename|
-        system "ln -s #{LINKTV_PLATFORM_ROOT}/db/migrate/#{filename} #{RAILS_ROOT}/db/migrate"
+        system "cp #{LINKTV_PLATFORM_ROOT}/db/migrate/#{filename} #{RAILS_ROOT}/db/migrate"
       end
     end
 
