@@ -7,10 +7,9 @@ namespace :linktv_platform do
     # create private media store
     system "mkdir -p #{RAILS_ROOT}/media"
 
-    # Symlink to plugin-related assets
+    # Copy plugin-related assets
     system "mkdir -p #{RAILS_ROOT}/public/assets"
-    system "rm -f #{RAILS_ROOT}/public/assets/linktv_platform"
-    system "ln -s #{LINKTV_PLATFORM_ROOT}/assets/linktv_platform #{RAILS_ROOT}/public/assets/linktv_platform"
+    system "cp -r #{LINKTV_PLATFORM_ROOT}/assets/linktv_platform #{RAILS_ROOT}/public/assets"
 
     # Copy db migrations
     #system "rm -f #{RAILS_ROOT}/db/migrate/??????????????_linktv_platform_*.rb"
