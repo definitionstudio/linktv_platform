@@ -260,13 +260,21 @@ class Video < ActiveRecord::Base
     self.published_at = published_at.midnight + (time - time.midnight).to_i
   end
 
+  def has_thumbnail?
+    self.thumbnail.present? && self.thumbnail.exists?
+  end
+
+  def has_thumbnail_url?
+    imported_video.present? && imported_video.thumbnail_url.present?
+  end
+
   # Download the image thumbnail and create an image resource
   def download_thumbnail
-    return false if self.thumbnail || !imported_video
+    return false if has_thumbnail? || !has_thumbnail_url?
     thumbnail_url = imported_video.thumbnail_url
-    return false unless thumbnail_url
 
-    self.thumbnail = Image.create! :filename => File.basename(thumbnail_url), :source_url => thumbnail_url
+    self.thumbnail = Image.create! :filename => File.basename(thumbnail_url),
+        :source_url => imported_video.thumbnail_url unless self.thumbnail.present?
     return false unless thumbnail.download
     self.save!
   end
