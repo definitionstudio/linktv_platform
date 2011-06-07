@@ -180,10 +180,8 @@ var VideoEdit = {
 
         if(matches && matches[1]) {
           VideoEdit.initYoutubePlayer(elem.find('.ytapiplayer').attr('id'), matches[1]);
-          if($j('#update-youtube-metadata:checked').length) {
-            // reload video metadata
-            $j.getScript('http://gdata.youtube.com/feeds/api/videos/'+matches[1]+'?alt=jsonc&v=2&callback=VideoEdit.updateYoutubeMetadata');
-          }
+          // load video metadata from YouTube API
+          $j.getScript('http://gdata.youtube.com/feeds/api/videos/'+matches[1]+'?alt=jsonc&v=2&callback=VideoEdit.parseYoutubeMetadata');
         } else {
           alert('Invalid YouTube URL entered. Please check and try again.');
         }
@@ -505,8 +503,16 @@ var VideoEdit = {
       ytapiplayerId, width, height, "9.0.115", null, null, params, atts);
   },
 
-  updateYoutubeMetadata: function(apidata) {
+  parseYoutubeMetadata: function(apidata) {
     try {
+      if(!apidata.data) {
+          alert('[YouTube] Video not found. Check the URL and try again.');
+          return;
+      }
+      if(apidata.data.accessControl.embed != "allowed") alert('[YouTube] Embedding not enabled by the video owner.');
+
+      if(!$j('#update-youtube-metadata:checked').length) return;
+
       var titleField = $j('#video_name');
       $j(titleField).val(apidata.data.title);
       $j(titleField).siblings('.in-place-edit-value').text(apidata.data.title);
@@ -529,10 +535,7 @@ var VideoEdit = {
       $j(sourceLinkField).val(sourceLinkURI);
       $j(sourceLinkField).siblings('.in-place-edit-value').text(sourceLinkURI);
 
-    } catch(err) {
-      // silent
-    }
-
+    } catch(err) {}
   },
 
   initGeoRestrictions: function() {
