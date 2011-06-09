@@ -18,7 +18,14 @@
     - player_width = player_options[:width]
     - player_height = player_options[:height]
 
-  - if @video_files.first.media_type == 'youtube'
+  - if @player_type == 'embedded' && !@video.embeddable
+    :javascript
+      function playerLoadHTML5Video() {
+        $('##{player_options[:id]}').html(window.playerFallbackElement);
+        $('.player-message', '##{player_options[:id]}').html('#{restricted_video_embed_message}');
+      }
+
+  - elsif @video_files.first.media_type == 'youtube'
     :javascript
       var youtube_url = '#{@video_files.first.url}';
       var youtube_video_id;

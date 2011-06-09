@@ -135,7 +135,7 @@ class VideosController < FrontEndController
       @message = @template.restricted_video_message
     end
 
-    @player_type = (params[:type] || 'local')
+    @player_type = request.xhr? ? (params[:type] || 'local') : 'embedded' # force 'embedded' for non-XHR requests
     @start = (params[:start] || 0).to_i
 
     @video_segments.each do |segment|
@@ -155,7 +155,6 @@ class VideosController < FrontEndController
       respond_to do |format|
         format.html {
           # load EMBEDDED PLAYER container w/ajax load to call this action via XHR
-          @player_type = 'embedded'
           render :partial => 'videos/video_player', :layout => 'embedded_player'
         }
         format.json {
@@ -168,7 +167,7 @@ class VideosController < FrontEndController
 
   def swf
     # used for Google Video Sitemap video:player_loc
-    redirect_to APP_CONFIG[:video][:embedded_player][:swf] + "?playerMode=embedded&configUrl=#{CGI::escape(video_url)}.xml"
+    redirect_to APP_CONFIG[:video][:embedded_player][:swf] + "?configUrl=#{CGI::escape(player_video_url)}.json"
   end
 
   # TODO: this request should be signed for authenticity
@@ -233,6 +232,10 @@ class VideosController < FrontEndController
       @player_config[:mediaStatus] = { :available => true, :message => '' }
     else
       @player_config = { :mediaStatus => { :available => false, :message => @template.restricted_video_message } }
+    end
+
+    if @player_type == 'embedded' && !@video.embeddable
+      @player_config = { :mediaStatus => { :available => false, :message => @template.restricted_video_embed_message } }
     end
   end
 

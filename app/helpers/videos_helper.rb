@@ -165,7 +165,11 @@ module VideosHelper
   end
 
   def restricted_video_message
-    "Media for this video is not available in your region."
+    "This video is not available in your region."
+  end
+
+  def restricted_video_embed_message
+    "This video is not available for embedding on external sites."
   end
 
   def to_timecode seconds
