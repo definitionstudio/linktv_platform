@@ -25,4 +25,10 @@ module VideoSegmentsHelper
     path
   end
 
+  def video_segment_video_url segment
+    path = !segment.video.permalink.nil? ? video_url(segment.video.permalink) : video_url(segment.video)
+    path+= "?start=#{segment.start_time}"
+    path
+  end
+
 end
