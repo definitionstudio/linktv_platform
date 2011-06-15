@@ -127,6 +127,7 @@ class VideosController < FrontEndController
     expires_now
 
     @video_segments = @video.video_segments.live.ordered
+    @more_info = @video.resource_attr_by_name 'more_info'
 
     @video_files = get_video_files @video   # smallest first
     @player_options = APP_CONFIG[:video]
