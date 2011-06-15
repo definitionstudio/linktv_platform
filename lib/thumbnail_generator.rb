@@ -10,17 +10,17 @@ module ThumbnailGenerator
       # args[:width]
       # args[:rw] int 1 to respect target width
       # args[:rh] int 1 to respect target height
-      # args[:grow] int 0 to prevent image enlargement
+      # args[:grow] int 1 to allow image enlargement
       # args[:crop] string :center, TODO: additional options
       # args[:mask]
       # args[:desaturate]
       def self.thumbnail uri, args = {}
         args[:width] = (args[:width] || APP_CONFIG[:thumbnails][:default][:width]).to_i
         args[:height] = (args[:height] || APP_CONFIG[:thumbnails][:default][:height]).to_i
-        args[:grow] = args[:grow] == '1'
-        args[:rw] = args[:rw] == '1'
-        args[:rh] = args[:rh] == '1'
-        args[:desaturate] = args[:desaturate] == '1'
+        args[:grow] ||= nil
+        args[:rw] ||= nil
+        args[:rh] ||= nil
+        args[:desaturate] ||= nil
         args[:format] ||= APP_CONFIG[:thumbnails][:format]
 
 
@@ -115,7 +115,7 @@ module ThumbnailGenerator
 
         if args[:mask] || nil
           if APP_CONFIG[:thumbnails][:mask].present?
-            mask_path = File.join(IMAGE_WORK_ROOT, APP_CONFIG[:thumbnails][:mask])
+            mask_path = File.join(RAILS_ROOT, 'public', APP_CONFIG[:thumbnails][:mask])
             if File.exists? mask_path
               mask_image = GD2::Image.import mask_path
               image.mask! mask_image

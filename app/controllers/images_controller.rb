@@ -16,7 +16,7 @@ class ImagesController < FrontEndController
 
     begin
       @image = Image.find params[:id]
-      raise Exceptions::HTTPNotFound if thumb.nil?
+      raise Exceptions::HTTPNotFound if @image.nil?
 
       # Download image if necessary
       raise "Image download failed" unless @image.download
