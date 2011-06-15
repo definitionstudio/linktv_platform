@@ -113,7 +113,7 @@
       }
       $(function() {
         var flashvars = {
-          config: JSON.stringify(#{@player_config.to_json})
+          config: encodeURIComponent(JSON.stringify(#{@player_config.to_json}))
         };
         var params = { allowfullscreen:true, allowscriptaccess:"always", wmode:"transparent" };
         var attributes = { id: "#{player_options[:id]}", width: "#{player_width}", height: "#{player_height}" };
