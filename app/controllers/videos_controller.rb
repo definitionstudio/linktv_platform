@@ -238,6 +238,13 @@ class VideosController < FrontEndController
     if @player_type == 'embedded' && !@video.embeddable
       @player_config = { :mediaStatus => { :available => false, :message => @template.restricted_video_embed_message } }
     end
+
+    customize_player_config
+  end
+
+  # override this method in your controller
+  # to customize the generated @player_config
+  def customize_player_config
   end
 
   def get_video_files video
