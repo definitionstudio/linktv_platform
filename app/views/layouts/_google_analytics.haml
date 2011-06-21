@@ -3,7 +3,7 @@
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', "#{APP_CONFIG[:google_analytics][:account_id]}"]);
     #{"_gaq.push(['_trackPageview']);" if local_assigns[:track_pageview] || false}
-    #{"_gaq.push(['_trackEvent', 'Embedded Videos', 'Impression', document.location]);" if local_assigns[:track_embed] || false}
+    #{"_gaq.push(['_trackEvent', 'Embedded Videos', 'Impression', location.href]);" if local_assigns[:track_embed] || false}
 
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
