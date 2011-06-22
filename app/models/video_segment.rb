@@ -180,8 +180,8 @@ class VideoSegment < ActiveRecord::Base
     lifetime = APP_CONFIG[:apis][:defaults][:external_content][:lifetime]
     age = mr_content ? Time.now.to_i - mr_content.created_at.to_i : lifetime + 1
     if mr_content && age < lifetime
-      # Content exists, is ok to display, but is due for an update
-      if age < APP_CONFIG[:apis][:defaults][:external_content][:refresh]
+      # Content exists, is ok to display, but may be due for a background update
+      if age > APP_CONFIG[:apis][:defaults][:external_content][:refresh]
         self.update_all_external_contents_later
       end
       return true
