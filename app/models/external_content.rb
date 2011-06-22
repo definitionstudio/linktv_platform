@@ -122,7 +122,7 @@ class ExternalContent < ActiveRecord::Base
     return nil if (title.nil? || title.empty?) && (text.nil? || text.empty?) && (topics_data.nil? || topics_data.empty?)
 
     contents_by_id = {}
-    content_types = (args[:content_type_id] || nil) ? [::ContentType.find(args[:content_type_id])] : ContentType.live # Default to all
+    content_types = (args[:content_type_id] || nil) ? [ContentType.find(args[:content_type_id])] : ContentType.live # Default to all
 
     # Hit each ContentType/API in a separate thread
     begin
@@ -154,18 +154,15 @@ class ExternalContent < ActiveRecord::Base
               next
             end
             Thread.current[:content_types] = query[:content_types] unless query.nil? || query[:content_types].nil?
-          rescue => error
+          rescue Exception => error
             Thread.current[:rescued] = error
+            logger.error error.inspect
           end
         end
       end
-      # Join and check for exceptions
       threads.each do |thread|
         thread.join
-        next unless thread[:rescued].present?
-        raise thread[:rescued]
-      end
-      threads.each do |thread|
+        next if thread[:rescued].present?
         thread[:content_types].each do |content_type_id, contents|
           (contents_by_id[content_type_id] ||= []).concat contents unless contents.nil? || contents.empty?
         end unless thread[:content_types].nil? || thread[:content_types].empty?
