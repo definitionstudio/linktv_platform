@@ -47,6 +47,8 @@ class VideoSegment < ActiveRecord::Base
 
   def live?; active && !deleted end
 
+  named_scope :include_thumbnail, :include => :thumbnail
+
   # Score matches
   # - Use the lower of the two TopicVideoSegment#score values
   # - Sum them for the group (Video or VideoSegment)
@@ -279,6 +281,12 @@ class VideoSegment < ActiveRecord::Base
     self.view_data[:related_internal_videos] = Video.
       scoped(:conditions => ["videos.id != ?", self.video_id]).
       available.
+      related_to_video_segments(self.id).
+      include_thumbnail
+
+    self.view_data[:related_internal_video_segments] = VideoSegment.
+      scoped(:conditions => ["video_segments.video_id != ?", self.video_id]).
+      scoped(:include => :video, :joins => :video).video_available.
       related_to_video_segments(self.id).
       include_thumbnail
 
