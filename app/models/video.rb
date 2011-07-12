@@ -74,6 +74,7 @@ class Video < ActiveRecord::Base
   }
 
   # Find the videos related to ANY of the topics. Assume topics have already been
+  # screened to be "live" as necessary.
   alias_scope :related_to_topics, lambda {|topic_ids|
     Video.topics_id_eq(topic_ids).scoped(
       :select => "videos.*, #{Topic.scaled_score} * SUM(topic_video_segments.score) score",

@@ -100,6 +100,34 @@ class VideoSegment < ActiveRecord::Base
     }
   }
 
+  # Find the video segments related to ANY of the topics. Assume topics have already been
+  # screened to be "live" as necessary.
+  # TODO DRY this up with corresponding scope in Video
+  alias_scope :related_to_topics, lambda {|topic_ids|
+    VideoSegment.topics_id_eq(topic_ids).scoped(
+      :select => "video_segments.*, videos.*, #{Topic.scaled_score} * SUM(topic_video_segments.score) score",
+      :group => "video_segments.id"
+    )
+  }
+
+  # Find the video segments related to ALL of the topics. Assume topics have already been
+  # screened to be "live" as necessary.
+  # TODO DRY this up with corresponding scope in Video
+  alias_scope :related_to_all_topics, lambda {|topic_ids|
+    topic_count = topic_ids.is_a?(Array) ? topic_ids.count : 1
+    VideoSegment.topics_id_eq(topic_ids).scoped(
+      :select =>
+        "video_segments.*, videos.*, " +
+        "COUNT(DISTINCT topics.id) topic_count, " +
+        "#{Topic.scaled_score} * SUM(topic_video_segments.score) score, " +
+        "#{Topic.scaled_score} * SUM(topic_video_segments.score * (videos.recommended + 1)) recommended_score",
+      :having =>
+        ["topic_count = ?", topic_count],
+      :group => 'video_segments.id'
+    )
+  }
+
+
   def start_time= value
     match = value.match(/^((\d*):)??((\d*):)?(\d*)$/) if value.is_a?(String)
     value = $2.to_i * 3600 + $4.to_i * 60 + $5.to_i if match
