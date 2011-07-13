@@ -107,7 +107,7 @@ class VideoSegment < ActiveRecord::Base
   # TODO DRY this up with corresponding scope in Video
   alias_scope :related_to_topics, lambda {|topic_ids|
     VideoSegment.topics_id_eq(topic_ids).scoped(
-      :select => "video_segments.*, videos.*, #{Topic.scaled_score} * SUM(topic_video_segments.score) score",
+      :select => "video_segments.*, #{Topic.scaled_score} * SUM(topic_video_segments.score) score",
       :group => "video_segments.id"
     )
   }
@@ -119,7 +119,7 @@ class VideoSegment < ActiveRecord::Base
     topic_count = topic_ids.is_a?(Array) ? topic_ids.count : 1
     VideoSegment.topics_id_eq(topic_ids).scoped(
       :select =>
-        "video_segments.*, videos.*, " +
+        "video_segments.*, " +
         "COUNT(DISTINCT topics.id) topic_count, " +
         "#{Topic.scaled_score} * SUM(topic_video_segments.score) score, " +
         "#{Topic.scaled_score} * SUM(topic_video_segments.score * (videos.recommended + 1)) recommended_score",
