@@ -73,7 +73,7 @@ class TopicsController < FrontEndController
 
     respond_to do |format|
       format.html
-      format.rdf {render :layout => false}
+      format.rdf {render :action => 'show.rdf.erb', :layout => false}
     end
     
   end
