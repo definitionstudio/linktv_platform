@@ -70,8 +70,8 @@ apis:
     external_content:
       # 48 hour dynamic content lifetime, after which it is subject to deletion
       lifetime: 172800
-      # 15 minute content refresh. If most recent content is older than that, a background refresh will be performed
-      refresh: 900
+      # one hour content refresh. If most recent content is older than that, a background refresh will be performed
+      refresh: 3600
   # Config params will be used both on the front- and back-end
   config:
     # Score above which topic will be emphasized, or required, in related content queries
