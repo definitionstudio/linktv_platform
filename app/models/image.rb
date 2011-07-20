@@ -40,6 +40,19 @@ class Image < ActiveRecord::Base
     mkdir
     File.open(pathname, "w") {|f| f.write data}
   end
+  
+  def copy
+    begin
+      new_image = self.clone
+      new_image.save
+      new_image.mkdir
+      FileUtils.cp self.pathname, new_image.pathname
+      new_image
+    rescue => error
+      logger.info "Image#copy error=[#{error.inspect}]"
+      return false
+    end
+  end
 
   def download
     return true if File.exists?(self.pathname)
