@@ -142,6 +142,7 @@ class ExternalContent < ActiveRecord::Base
           begin
             Thread.current[:api] = api # For debug
             Thread.current[:content_types] = {}
+            logger.info "*** EXTERNAL CONTENT API QUERY [" + Time.now.to_s + "] " + thread_api.name
             query = thread_api.query(
               :title => title,
               :text => text,
