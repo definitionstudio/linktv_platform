@@ -1,5 +1,7 @@
 class Admin::ExternalContentsController < Admin::AdminController
 
+  helper :images, :videos, :video_segments, :external_contents
+
   def new
     @external_content = ExternalContent.new params[:external_content]
     render :json => {
