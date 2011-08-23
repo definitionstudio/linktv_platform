@@ -8,6 +8,7 @@ class Transcript
     text = text.gsub(/(<\/dt>)(.*?)(<dt>|\Z)/m, '\1<dd>\2</dd>\3')
 
     text = CGI.unescapeHTML text
+    "<dl>#{text}</dl>"
   end
 
   # Parse transcript formatted text and return content only
