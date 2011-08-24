@@ -211,6 +211,11 @@ class Video < ActiveRecord::Base
     end
   end
 
+  # Convenience method for polymorphic references
+  def video
+    self
+  end
+
   def self.featured_videos_playlist
     @@featured_videos_playlist ||= Playlist.scoped_by_user_id(nil).scoped_by_permalink(:"featured-videos").first
   end

@@ -2,11 +2,18 @@ class PlaylistItem < ActiveRecord::Base
   
   belongs_to :playlist
   belongs_to :playlistable_item, :polymorphic => true
+
+  # DougP Note: symbolizing the item_type prevents autoloading using include
   symbolize :playlistable_item_type, :in => [:Video, :VideoSegment, :Topic, :ExternalContent]
+  #named_scope :include_playlistable_item, :include => :playlistable_item
 
   validates_uniqueness_of :playlistable_item_id, :scope => [:playlist_id, :playlistable_item_type]
 
   named_scope :ordered, :order => :display_order
+  named_scope :videos, :conditions => {:playlistable_item_type => 'Video'}
+  named_scope :videos_and_segments, :conditions =>
+      ["playlistable_item_type IN ('Video', 'VideoSegment')"]
+  named_scope :external_content, :conditions => {:playlistable_item_type => 'ExternalContent'}
 
   begin
     acts_as_list :scope => :playlist, :column => 'display_order'
@@ -58,6 +65,10 @@ class PlaylistItem < ActiveRecord::Base
 
   def url
     archive_type.present? ? (data['url'] || nil) : nil
+  end
+
+  def publish_date
+    archive_type.present? ? (Time.parse(data['publish_date']) rescue nil) : nil
   end
 
   private
