@@ -111,7 +111,7 @@ class VideosController < FrontEndController
       related_to_videos(@video.id).public.scoped(:order => 'score DESC')
 
     @player_options = APP_CONFIG[:video]
-    @video_files = get_video_files @video
+    @video_files = @video.get_video_files(request_country)
 
     respond_to do |format|
       format.html do
@@ -129,7 +129,7 @@ class VideosController < FrontEndController
     @video_segments = @video.video_segments.live.ordered
     @more_info = @video.resource_attr_by_name 'more_info'
 
-    @video_files = get_video_files @video   # smallest first
+    @video_files = @video.get_video_files(request_country)  # smallest first
     @player_options = APP_CONFIG[:video]
 
     unless @video.unrestricted? request_country

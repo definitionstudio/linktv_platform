@@ -370,6 +370,14 @@ class Video < ActiveRecord::Base
     video_play_stats.count
   end
 
+  def get_video_files request_country
+    if self.unrestricted? request_country
+      return self.video_files.available.media_type_eq(self.media_type).ordered
+    else
+      return []
+    end
+  end
+
   # sunspot (solr) fulltext searching
   # http://wiki.github.com/outoftime/sunspot/setting-up-classes-for-search-and-indexing
 
