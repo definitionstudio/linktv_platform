@@ -100,6 +100,7 @@ class VideosController < FrontEndController
       @video_segment = segment if @start >= segment.start_time
     end
     @video_segment = @video_segments.first if @video_segment.nil?   # default to first segment if time lookup fails
+    @segment_contents_tabs = %w(related-videos related-articles actions)
 
     @page_title = "#{@video.name}" + " - #{@page_title}"
     @more_info = @video.resource_attr_by_name 'more_info'
@@ -131,12 +132,16 @@ class VideosController < FrontEndController
 
     @video_files = @video.get_video_files(request_country)  # smallest first
     @player_options = APP_CONFIG[:video]
+    @show_segment_contents = (params[:related] || nil) == 'true'
 
     unless @video.unrestricted? request_country
       @message = @template.restricted_video_message
     end
 
     @player_type = request.xhr? ? (params[:type] || 'local') : 'embedded' # force 'embedded' for non-XHR requests
+    if @player_type == 'embedded'
+      @embedded_player_params = Hash[params.select{|k, v| [:size, :related].include?(k.to_sym)}].merge({:context => 'reload', :type => 'embedded'})
+    end
     @start = (params[:start] || 0).to_i
 
     @video_segments.each do |segment|
@@ -148,10 +153,17 @@ class VideosController < FrontEndController
     init_player_config
 
     if request.xhr?
-      render :json => {
-        :status => 'success',
-        :html => render_to_string(:layout => false)
-      }
+      if params[:context] == 'reload'
+        render :json => {
+          :status => 'success',
+          :html => render_to_string(:partial => 'videos/video_player', :layout => false)
+        }
+      else
+        render :json => {
+          :status => 'success',
+          :html => render_to_string(:layout => false)
+        }
+      end
     else
       respond_to do |format|
         format.html {
