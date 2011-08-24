@@ -55,6 +55,8 @@ class Playlist < ActiveRecord::Base
     def is_saved_items
       return self.permalink == self.class.saved_items_permalink
     end
+
+    named_scope :saved_items, :conditions => {:permalink => Playlist.saved_items_permalink}
   end
 
   def before_validation_on_create
