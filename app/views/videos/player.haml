@@ -11,8 +11,15 @@
 
   - if @player_type == 'embedded'
     - player_options = @player_options[:embedded_player]
-    - player_width = params[:size] == 'large' ? player_options[:large_width] : player_options[:width]     # values also set in video.js
-    - player_height = params[:size] == 'large' ? player_options[:large_height] : player_options[:height]
+    - if params[:width].present?
+      - player_width = params[:width]
+      - player_height = params[:height]
+    - elsif params[:size].present? && params[:size] == 'large'
+      - player_width = player_options[:large_width]
+      - player_height = player_options[:large_height]
+    - else
+      - player_width = player_options[:width]     # values also set in video.js
+      - player_height = player_options[:height]
   - else
     - player_options = @player_options[:player]
     - player_width = player_options[:width]
