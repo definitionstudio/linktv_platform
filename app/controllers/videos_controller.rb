@@ -139,9 +139,6 @@ class VideosController < FrontEndController
     end
 
     @player_type = request.xhr? ? (params[:type] || 'local') : 'embedded' # force 'embedded' for non-XHR requests
-    if @player_type == 'embedded'
-      @embedded_player_params = Hash[params.select{|k, v| [:size, :related].include?(k.to_sym)}].merge({:context => 'reload', :type => 'embedded'})
-    end
     @start = (params[:start] || 0).to_i
 
     @video_segments.each do |segment|
