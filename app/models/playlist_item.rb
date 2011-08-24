@@ -40,6 +40,26 @@ class PlaylistItem < ActiveRecord::Base
     }.to_json
   end
 
+  def data
+    @data ||= JSON.parse(archive_data)
+  end
+
+  def name
+    archive_type.present? ? data['name'] : playlistable_item.name
+  end
+
+  def attribution
+    archive_type.present? ? (data['attribution'] || nil) : nil
+  end
+
+  def description
+    archive_type.present? ? (data['description'] || nil) : nil
+  end
+
+  def url
+    archive_type.present? ? (data['url'] || nil) : nil
+  end
+
   private
   def archive_if_necessary
     # For playlistable_items that may be deleted, we archive a subset of the data in JSON
