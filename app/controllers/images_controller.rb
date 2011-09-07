@@ -23,6 +23,11 @@ class ImagesController < FrontEndController
 
       thumb = @image.thumbnail options
     rescue => exc
+      logger.error exc.inspect
+    end
+
+    if thumb.nil?
+      # load default image
       thumb = Image.thumbnail Image.image_not_available_path, options
     end
 
