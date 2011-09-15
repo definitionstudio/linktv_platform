@@ -211,6 +211,11 @@ class Video < ActiveRecord::Base
     end
   end
 
+  # Convenience method for polymorphic references
+  def video
+    self
+  end
+
   def self.featured_videos_playlist
     @@featured_videos_playlist ||= Playlist.scoped_by_user_id(nil).scoped_by_permalink(:"featured-videos").first
   end
@@ -368,6 +373,14 @@ class Video < ActiveRecord::Base
 
   def play_count
     video_play_stats.count
+  end
+
+  def get_video_files request_country
+    if self.unrestricted? request_country
+      return self.video_files.available.media_type_eq(self.media_type).ordered
+    else
+      return []
+    end
   end
 
   # sunspot (solr) fulltext searching

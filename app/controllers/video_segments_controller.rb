@@ -30,4 +30,8 @@ class VideoSegmentsController < FrontEndController
     end
   end
 
+  protected
+
+  include Linktv::Platform::VideoPlayer::ControllerMixin
+
 end

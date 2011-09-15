@@ -28,6 +28,7 @@ module ThumbnailGenerator
           image = GD2::Image.load open(uri)
           image = image.to_true_color unless image.is_a? GD2::Image::TrueColor
         rescue => exc
+          Rails.logger.warn exc.inspect
           return nil
         end
 

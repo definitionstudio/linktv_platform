@@ -4,7 +4,7 @@
 .video-player.object-video-player{:class => "#{url.present? ? 'state-video-present' : nil}"}
   %div.video-file-not-present
     No media present.
-  %div.video-file-video{:id => video_file.video_id}
+  %div.video-file-video{:id => "video-file-#{video_file.id}"}
     - video_player_id = "video-player-#{video_file.key}"
 
     - if video_file.media_type.to_sym == :youtube

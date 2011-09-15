@@ -49,6 +49,8 @@ class VideoSegment < ActiveRecord::Base
 
   named_scope :include_thumbnail, :include => :thumbnail
 
+  delegate :available?, :to => :video
+
   # Score matches
   # - Use the lower of the two TopicVideoSegment#score values
   # - Sum them for the group (Video or VideoSegment)
