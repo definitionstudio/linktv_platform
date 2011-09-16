@@ -3,6 +3,7 @@ class Admin::TopicsController < Admin::AdminController
   active_scaffold :topics do |config|
     config.actions = [:list, :search, :show, :create, :update, :subform, :delete]
     config.list.columns = [:name, :description, :entity_identifiers, :permalink, :live_video_segment_count, :active]
+    config.list.sorting = {:id => 'DESC'}
     config.search.columns = [:name]
     config.show.columns =
       [:name, :is_featured, :description, :entity_identifiers, :guid, :live_video_segment_count, :active]

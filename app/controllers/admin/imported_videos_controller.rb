@@ -3,6 +3,7 @@ class Admin::ImportedVideosController < Admin::AdminController
   active_scaffold :imported_videos do |config|
     config.actions = [:list, :search]
     config.list.label = 'Imported Videos'
+    config.list.sorting = {:id => 'DESC'}
     config.list.columns = [:name, :source_published_at, :link, :video_source, :status]
   end
 
