@@ -28,7 +28,7 @@ module Linktv
       config.gem "i18n", :version => '0.4.2'              # user older version to prevent errors w/rails 2.3.8 (may need to uninstall newer gem, if installed)
       config.gem "mysql", :version => '2.8.1'
       config.gem "json", :version => '1.4.6'
-      config.gem "haml", :version => '3.0.13'
+      config.gem "haml", :version => '3.1.2'
       config.gem "symbolize", :version => '3.0.1'
       config.gem "permalink_fu", :version => '1.0.0'
       config.gem "will_paginate", :version => '2.3.14'
