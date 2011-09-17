@@ -45,7 +45,7 @@ Dependencies
 	* [RailsXss](https://github.com/rails/rails_xss)
 	* [render_component](https://github.com/ewildgoose/render_component)
 * See environment.rb for gem dependencies
-
+* Tested on ruby 1.8.7
 
 Getting Started
 ---------------
@@ -83,8 +83,8 @@ Install required plugins.
 
 	$ script/plugin install git://github.com/rails/rails_xss.git
 	$ script/plugin install git://github.com/rails/acts_as_list.git
-	$ script/plugin install git://github.com/activescaffold/active_scaffold.git
-	$ script/plugin install git://github.com/activescaffold/active_scaffold_sortable.git
+	$ script/plugin install git://github.com/activescaffold/active_scaffold.git -r rails-2.3
+	$ script/plugin install git://github.com/definitionstudio/active_scaffold_sortable.git -r rails-2.3
 	$ script/plugin install git://github.com/ewildgoose/render_component.git -r rails-2.3
 
 Initialize delayed_job.
