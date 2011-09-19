@@ -83,7 +83,7 @@ Install required plugins.
 
 	$ script/plugin install git://github.com/rails/rails_xss.git
 	$ script/plugin install git://github.com/rails/acts_as_list.git
-	$ script/plugin install git://github.com/activescaffold/active_scaffold.git -r rails-2.3
+	$ script/plugin install git://github.com/definitionstudio/active_scaffold.git
 	$ script/plugin install git://github.com/definitionstudio/active_scaffold_sortable.git -r rails-2.3
 	$ script/plugin install git://github.com/ewildgoose/render_component.git -r rails-2.3
 
