@@ -24,6 +24,8 @@ $j(function() {
 
 var Admin = {
 
+  contentModified: false,
+
   init: function() {
     var doc = $j(document);
 
@@ -472,23 +474,20 @@ var Admin = {
         var contentType = xhr.getResponseHeader('Content-Type') || '';
         if (!contentType) return; // Must have been interrupted
 
+        if ($j.isFunction(options.incomingSuccess))
+            options.incomingSuccess(data, textStatus, xhr);
+
         if (contentType.match('^text/html;')) {
           if ($j.isFunction(options.successHtml))
             options.successHtml(data, textStatus, xhr);
-          else if ($j.isFunction(options.incomingSuccess))
-            options.incomingSuccess(data, textStatus, xhr);
 
         } else if (contentType.match('^application/json;')) {
           if ($j.isFunction(options.successJson))
             options.successJson(data, textStatus, xhr);
-          else if ($j.isFunction(options.incomingSuccess))
-            options.incomingSuccess(data, textStatus, xhr);
 
         } else if (contentType.match('^text/javascript;')) {
           if ($j.isFunction(options.successJs))
             options.successJs(data, textStatus, xhr);
-          else if ($j.isFunction(options.incomingSuccess))
-            options.incomingSuccess(data, textStatus, xhr);
           else if (options.successJsEval)
             eval(xhr.responseText);
         }
@@ -504,11 +503,12 @@ var Admin = {
         var contentType = xhr.getResponseHeader('Content-Type');
         if (!contentType) return; // Must have been interrupted
 
+        if ($j.isFunction(options.incomingError))
+            options.incomingError(xhr, textStatus, errorThrown);
+
         if (contentType.match('^text/html;')) {
           if ($j.isFunction(options.errorHtml))
             options.errorHtml(xhr, textStatus, errorThrown);
-          else if ($j.isFunction(options.incomingError))
-            options.incomingError(xhr, textStatus, errorThrown);
           else {
             // Default: On error, replace the page contents with the error, for ease of debug
             var html = xhr.responseText;
@@ -520,14 +520,10 @@ var Admin = {
         } else if (contentType.match('^application/json;')) {
           if ($j.isFunction(options.errorJson))
             options.errorJson(xhr, textStatus, errorThrown);
-          else if ($j.isFunction(options.incomingError))
-            options.incomingError(xhr, textStatus, errorThrown);
 
         } else if (contentType.match('^text/javascript;')) {
           if ($j.isFunction(options.errorJs))
             options.errorJs(xhr, textStatus, errorThrown);
-          else if ($j.isFunction(options.incomingError))
-            options.incomingError(xhr, textStatus, errorThrown);
           else if (options.errorJsEval)
             eval(xhr.responseText);
         }
@@ -655,6 +651,24 @@ var Admin = {
       str = '0' + str;
     }
     return str;
+  },
+
+  setContentModified: function() {
+    if(!Admin.contentModified) {
+      Admin.contentModified = true;
+      window.onbeforeunload = function(e) {
+        e = e || window.event;
+        // For IE and Firefox prior to version 4
+        if (e) e.returnValue = 'You may have unsaved changes.';
+        // all others
+        return 'You may have unsaved changes.';
+      };
+    }
+  },
+
+  clearContentModified: function() {
+    Admin.contentModified = false;
+    window.onbeforeunload = function() {};
   }
 
 }

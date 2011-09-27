@@ -101,7 +101,10 @@ var VideoEdit = {
           url: form.attr('action'),
           dataType: 'json',
           data: form.serializeArray(),
-          trigger: $j(event.target)
+          trigger: $j(event.target),
+          success: function(data, textStatus, xhr) {
+            Admin.clearContentModified();
+          }
         });
       });
       return false;
@@ -120,7 +123,8 @@ var VideoEdit = {
         theme_advanced_buttons4: null,
         theme_advanced_toolbar_location: "top",
         width: "100%",
-        height: "100"
+        height: "100",
+        onchange_callback: Admin.setContentModified
       }
     });
 
@@ -264,7 +268,6 @@ var VideoEdit = {
           target.focus().select();
         }
       });
-      return false;
 
     }).delegate('a.segment-in', 'click', function(event) {
       // Capture the start time from the video playhead position
@@ -273,6 +276,7 @@ var VideoEdit = {
         if (target.hasClass('state-disabled')) return;
         target.parents('div.segment-panel-details:first').find('input.start-time').
           val(VideoEdit.formatTime(VideoEdit.getVideoPlayheadTime()));
+        Admin.setContentModified();
       });
       return false;
 
@@ -297,7 +301,6 @@ var VideoEdit = {
         var segment = target.parents('.object-video-segment:first');
         VideoEdit.updateSegmentState(segment);
       });
-      return false;
 
     // Topics
     }).delegate('a.delete-topic', 'click', function(event) {
@@ -308,6 +311,7 @@ var VideoEdit = {
         topic.addClass('state-deleted static-static').find('input.destroy').val(1);
         var segment = topic.parents('.object-video-segment:first');
         VideoEdit.updateSegmentState(segment);
+        Admin.setContentModified();
       });
       return false;
 
@@ -462,6 +466,9 @@ var VideoEdit = {
       context.find('.video-file-panel').hide();
       $j('#' + elem.val()).show();
     }).trigger('change');
+
+    // Bind input changes for "modified" detection
+    $j('#video').delegate('input,textarea,select', 'change', Admin.setContentModified);
 
     // Currenty unused, but keep around
     //$j(document).trigger('video-edit-after-init');
@@ -708,6 +715,7 @@ var VideoEdit = {
     segmentAccordion.append(newSegment).accordion('destroy').
       accordion(VideoEdit.accordionParams).accordion('activate', $j('.segment-header', segmentAccordion).length - 1);
     VideoEdit.initSegmentTabs(newSegment.find('.segment-tabs'));
+    Admin.setContentModified();
   },
 
   deleteSegment: function(segment) {
@@ -716,6 +724,7 @@ var VideoEdit = {
     // Hide the segment and its header, which will be the previous DOM element
     segment.prev().andSelf().hide();
     segmentAccordion.accordion('destroy').accordion(VideoEdit.accordionParams);
+    Admin.setContentModified();
     return false;
   },
 
@@ -800,6 +809,9 @@ var VideoEditTopics = {
         input.val(ui.value);
         indicator.text(ui.value);
         VideoEditTopics.setState(context.parents('tr:first'));
+      },
+      change: function(event, ui) {
+        Admin.setContentModified();
       }
     });
   },
@@ -839,6 +851,7 @@ var VideoEditTopics = {
 
     segment.find('table.segment-topics-table .segment-topics-body').append(tvs);
     VideoEditTopics.initDynamicContent(tvs);
+    Admin.setContentModified();
   },
 
   /**
@@ -963,6 +976,7 @@ var VideoEditExternalContent = {
       object.attr('data-manual', 0).attr('data-static', 0).
         removeClass('state-manual static-static');
     }
+    Admin.setContentModified();
   },
 
   setSticky: function(object, value) {
@@ -975,6 +989,7 @@ var VideoEditExternalContent = {
         removeClass('state-sticky static-static').
         find('input.input-sticky').val(0);
     }
+    Admin.setContentModified();
   },
 
   setDeleted: function(object, value) {
@@ -988,6 +1003,7 @@ var VideoEditExternalContent = {
         removeClass('state-deleted state-static').
         find('input.input-deleted').val(0);
     }
+    Admin.setContentModified();
   },
 
   newContent: function(elem, options) {
