@@ -102,9 +102,7 @@ var VideoEdit = {
           dataType: 'json',
           data: form.serializeArray(),
           trigger: $j(event.target),
-          success: function(data, textStatus, xhr) {
-            Admin.clearContentModified();
-          }
+          successClearContentModified: true
         });
       });
       return false;

@@ -399,6 +399,7 @@ var Admin = {
       // Defaults
       successJsEval: true, // Execute javascript if returned for success
       errorJsEval: false, // Execute javascript if returned for error
+      successClearContentModified: false,
       complete: options.complete,
 
       // TODO: successJson and errorJson handlers might be able to be merged.
@@ -486,20 +487,25 @@ var Admin = {
         var contentType = xhr.getResponseHeader('Content-Type') || '';
         if (!contentType) return; // Must have been interrupted
 
-        if ($j.isFunction(options.incomingSuccess))
-            options.incomingSuccess(data, textStatus, xhr);
+        if (options.successClearContentModified) Admin.clearContentModified();
 
         if (contentType.match('^text/html;')) {
           if ($j.isFunction(options.successHtml))
             options.successHtml(data, textStatus, xhr);
+          else if ($j.isFunction(options.incomingSuccess))
+            options.incomingSuccess(data, textStatus, xhr);
 
         } else if (contentType.match('^application/json;')) {
           if ($j.isFunction(options.successJson))
             options.successJson(data, textStatus, xhr);
+          else if ($j.isFunction(options.incomingSuccess))
+            options.incomingSuccess(data, textStatus, xhr);
 
         } else if (contentType.match('^text/javascript;')) {
           if ($j.isFunction(options.successJs))
             options.successJs(data, textStatus, xhr);
+          else if ($j.isFunction(options.incomingSuccess))
+            options.incomingSuccess(data, textStatus, xhr);
           else if (options.successJsEval)
             eval(xhr.responseText);
         }
@@ -515,12 +521,11 @@ var Admin = {
         var contentType = xhr.getResponseHeader('Content-Type');
         if (!contentType) return; // Must have been interrupted
 
-        if ($j.isFunction(options.incomingError))
-            options.incomingError(xhr, textStatus, errorThrown);
-
         if (contentType.match('^text/html;')) {
           if ($j.isFunction(options.errorHtml))
             options.errorHtml(xhr, textStatus, errorThrown);
+          else if ($j.isFunction(options.incomingError))
+            options.incomingError(xhr, textStatus, errorThrown);
           else {
             // Default: On error, replace the page contents with the error, for ease of debug
             var html = xhr.responseText;
@@ -532,10 +537,14 @@ var Admin = {
         } else if (contentType.match('^application/json;')) {
           if ($j.isFunction(options.errorJson))
             options.errorJson(xhr, textStatus, errorThrown);
+          else if ($j.isFunction(options.incomingError))
+            options.incomingError(xhr, textStatus, errorThrown);
 
         } else if (contentType.match('^text/javascript;')) {
           if ($j.isFunction(options.errorJs))
             options.errorJs(xhr, textStatus, errorThrown);
+          else if ($j.isFunction(options.incomingError))
+            options.incomingError(xhr, textStatus, errorThrown);
           else if (options.errorJsEval)
             eval(xhr.responseText);
         }
