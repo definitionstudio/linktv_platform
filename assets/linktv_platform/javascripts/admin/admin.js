@@ -10,11 +10,23 @@ if (window.console && window.console.firebug) {
     window.console.log = function() {};
   if (!window.console.dir)
     window.console.dir = function() {};
+  if (!window.console.debug)
+    window.console.debug = function() {};
+  if (!window.console.info)
+    window.console.info = function() {};
+  if (!window.console.warn)
+    window.console.warn = function() {};
+  if (!window.console.error)
+    window.console.error = function() {};
 } else {
   // Define dummy stub functions
   window.console = {
-    log: function() {},
-    dir: function() {}
+    log:    function() {},
+    dir:    function() {},
+    debug:  function() {},
+    info:   function() {},
+    warn:   function() {},
+    error:  function() {}
   }
 }
 
