@@ -5,13 +5,13 @@
       = field
     - else
       - if field == :thumbnail
-        %a.video-thumbnail{:href => video_path(video.permalink)}
+        %a.video-thumbnail{:href => video_path(video.permalink), :target => '_top'}
           - config ||= APP_CONFIG[:thumbnails][:video]
           = video_thumbnail_html video, :height => config[:height], :width => config[:width]
 
       - if field == :name
         .video-name{:property => 'dc:title', :content => "#{video.name}"}
-          %a{:href => video_path(video.permalink)}= video.name
+          %a{:href => video_path(video.permalink), :target => '_top'}= video.name
 
       - if field == :description
         .video-description{:property => 'dc:description'}!= truncate(strip_tags(video.description), :length => local_assigns[:text_length] || 150)
