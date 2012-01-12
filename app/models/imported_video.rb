@@ -39,9 +39,9 @@ class ImportedVideo < ActiveRecord::Base
   def media_url
     parse_xml
     if @attr.media_group
-     @attr.media_group.media_contents.max{|a, b| a.media_content_bitrate <=> b.media_content_bitrate}.media_content_url
-    elsif @attr.media_content
-      @attr.media_content.media_content_url
+      @attr.media_group.media_contents.max{|a, b| a.media_content_bitrate <=> b.media_content_bitrate}.media_content_url
+    elsif @attr.media_contents
+      @attr.media_contents.max{|a, b| a.media_content_bitrate <=> b.media_content_bitrate}.media_content_url
     else
       @attr.enclosure_url
     end
@@ -49,9 +49,10 @@ class ImportedVideo < ActiveRecord::Base
 
   def video_files
     parse_xml
-    if @attr.media_group
+    if @attr.media_group || @attr.media_contents
       # Multiple video files
-      contents = @attr.media_group.media_contents.sort{|a, b|
+      contents = @attr.media_group ? @attr.media_group.media_contents : @attr.media_contents
+      contents.sort!{|a, b|
         a.media_content_bitrate.to_i <=> b.media_content_bitrate.to_i     # TODO: bitrate value not reliable
       }
       contents.collect {|content|
@@ -65,17 +66,6 @@ class ImportedVideo < ActiveRecord::Base
           :active => true
         })
       }
-    elsif @attr.media_content
-      # Only one video file
-      [VideoFile.new({
-        :status => :provisioned,
-        :url => @attr.media_content.media_content_url,
-        :file_size => @attr.media_content.media_content_filesize,
-        :mime_type => @attr.media_content.media_content_type,
-        :bitrate => @attr.media_content.media_content_bitrate,
-        :media_type => :internal,
-        :active => true
-      })]
     else
       # Only one video file (enclosure)
       [VideoFile.new({
@@ -93,8 +83,6 @@ class ImportedVideo < ActiveRecord::Base
     parse_xml
     if @attr.media_group
       @attr.media_group.media_thumbnail_url
-    elsif @attr.media_content
-      @attr.media_content.media_thumbnail_url
     else
       @attr.media_thumbnail_url
     end
@@ -119,8 +107,6 @@ class ImportedVideo < ActiveRecord::Base
     parse_xml
     if @attr.media_group
       str = @attr.media_group.media_keywords
-    elsif @attr.media_content
-      str = @attr.media_content.media_keywords
     else
       str = @attr.media_keywords
     end
@@ -131,8 +117,8 @@ class ImportedVideo < ActiveRecord::Base
     parse_xml
     if @attr.media_group
       @attr.media_group.media_contents[0].media_content_duration rescue nil
-    elsif @attr.media_content
-      @attr.media_content.media_content_duration
+    elsif @attr.media_contents
+      @attr.media_contents[0].media_content_duration
     else
       nil
     end
@@ -167,10 +153,8 @@ class ImportedVideo < ActiveRecord::Base
     parse_xml
     if @attr.media_group
       @attr.media_group.media_text.gsub(/\r(\n)?|\n(\r)?/, "\r\n") rescue nil
-    elsif @attr.media_content
-      @attr.media_content.media_text.gsub(/\r(\n)?|\n(\r)?/, "\r\n") rescue nil
     else
-      nil
+      @attr.media_text.gsub(/\r(\n)?|\n(\r)?/, "\r\n") rescue nil
     end
   end
 
