@@ -76,6 +76,6 @@ module Linktv::Platform::PlatformController
   # define benign exceptions
   @@benign_exceptions = [Exceptions::HTTPBadRequest, Exceptions::HTTPUnauthorized,
     Exceptions::HTTPNotFound, ActionController::InvalidAuthenticityToken,
-    Exceptions::Unauthorized]
+    Exceptions::Unauthorized, ActionController::MethodNotAllowed]
 
 end
