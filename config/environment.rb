@@ -44,10 +44,10 @@ module Linktv
       config.gem "erubis", :version => '2.6.6'
 
       # RSS/XML handling
-      config.gem "nokogiri", :version => '1.4.4'
+      config.gem "nokogiri", :version => '1.5.6'
       config.gem "builder", :version => '= 2.1.2'
       config.gem "feedzirra", :version => '0.0.24'
-      config.gem "sax-machine", :version => '0.0.16'
+      config.gem "sax-machine", :version => '0.1.0'
 
       config.after_initialize do
 
