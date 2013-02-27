@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :login
   validates_uniqueness_of :login
-  validates_uniqueness_of :email, :allow_nil => true
+  validates_uniqueness_of :email, :allow_blank => true, :case_sensitive => false
   validates_format_of :email, :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD, :unless => 'email.blank?'
   validates_presence_of :display_name
   validates_length_of :display_name, :in => 4..32
